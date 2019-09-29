@@ -1,17 +1,12 @@
 # JiraTimers
 
-JiraTimers is a desktop tool for recording time spent on different Jira issues. Just started.
-
-## Issues
-
 [![Issues board](https://dxssrr2j0sq4w.cloudfront.net/3.2.0/img/external/zenhub-badge.svg)](https://app.zenhub.com/workspaces/jiratimers-5d8f719fbe90910001987cdc/board?repos=211514366)
+[![AppVeyor branch](https://img.shields.io/appveyor/ci/i4004/jiratimers)](https://ci.appveyor.com/project/i4004/jiratimers)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/i4004/JiraTimers)](https://www.codefactor.io/repository/github/i4004/JiraTimers)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](http://makeapullrequest.com)
 
-## Build status
-
-| Branch      | Status                                                                                                                                                    |
-| :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **master**  | [![Build status](https://ci.appveyor.com/api/projects/status/wf0nnp32e9lgbcs3/branch/master?svg=true)](https://ci.appveyor.com/project/i4004/jiratimers)  |
-| **develop** | [![Build status](https://ci.appveyor.com/api/projects/status/wf0nnp32e9lgbcs3/branch/develop?svg=true)](https://ci.appveyor.com/project/i4004/jiratimers) |
+JiraTimers is a desktop tool for recording time spent on different Jira issues. Just started.
 
 ## Contributing
 
