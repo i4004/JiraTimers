@@ -4,7 +4,11 @@
 		<Version>0.1</Version>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="ElectronNET.API" Version="5.22.14" />
 		<PackageReference Include="Microsoft.AspNetCore.App" />
 		<PackageReference Include="Simplify.Web" Version="2.3.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<DotNetCliToolReference Include="ElectronNET.CLI" Version="*" />
 	</ItemGroup>
 </Project>
