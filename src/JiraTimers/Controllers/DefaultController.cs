@@ -9,7 +9,7 @@ namespace JiraTimers.Controllers
 	{
 		public override ControllerResponse Invoke()
 		{
-			return new Ajax("Hello world");
+			return new Ajax("Hello world!");
 		}
 	}
 }

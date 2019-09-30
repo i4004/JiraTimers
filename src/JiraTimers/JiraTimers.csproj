@@ -2,6 +2,7 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.2</TargetFramework>
 		<Version>0.1</Version>
+		<RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="ElectronNET.API" Version="5.22.14" />
@@ -9,6 +10,8 @@
 		<PackageReference Include="Simplify.Web" Version="2.3.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<DotNetCliToolReference Include="ElectronNET.CLI" Version="*" />
+		<Content Update="electron.manifest.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 </Project>
