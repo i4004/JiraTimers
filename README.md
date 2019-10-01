@@ -8,6 +8,24 @@
 
 JiraTimers is a desktop tool for recording time spent on different Jira issues. Just started.
 
+## Start the Application
+
+### Prerequisites
+
+To start the application make sure you have installed the "[ElectronNET.CLI](https://www.nuget.org/packages/ElectronNET.CLI/)" packages as global tool:
+
+```bash
+dotnet tool install ElectronNET.CLI -g
+```
+
+Make sure you have __node.js v8.6.0__ and on __macOS/Linux__ the electron-builder installed!
+
+### Start
+
+```bash
+electronize start
+```
+
 ## Contributing
 
 There are many ways in which you can participate in the project. Like most open-source software projects, contributing code is just one of many outlets where you can help improve. Some of the things that you could help out with are:
