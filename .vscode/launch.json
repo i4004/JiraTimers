@@ -1,0 +1,17 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+	{
+		"name": "Launch",
+		"type": "coreclr",
+		"request": "launch",
+		"preLaunchTask": "Build",
+		"program": "${workspaceFolder}/src/JiraTimers/bin/Debug/netcoreapp2.2/JiraTimers.dll",
+		"cwd": "${workspaceFolder}/src/JiraTimers/bin/Debug/netcoreapp2.2/",
+		"internalConsoleOptions": "openOnSessionStart",
+		"env":
+		{
+			"ASPNETCORE_ENVIRONMENT": "Development"
+		}
+	}]
+}
