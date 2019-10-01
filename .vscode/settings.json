@@ -1,6 +1,7 @@
 {
 	"dotnet-test-explorer.testProjectPath": "src/**/*Tests.csproj",
 	"cSpell.words": [
-		"Jira"
+		"Jira",
+		"electronize"
 	]
 }
