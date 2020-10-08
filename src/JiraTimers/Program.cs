@@ -1,17 +1,25 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿using Qml.Net;
+using Qml.Net.Runtimes;
 
 namespace JiraTimers
 {
 	public static class Program
 	{
-		public static void Main(string[] args)
+		public static int Main(string[] args)
 		{
-			CreateWebHostBuilder(args).Build().Run();
-		}
+			RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
 
-		public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-			WebHost.CreateDefaultBuilder(args)
-				.UseStartup<Startup>();
+			QQuickStyle.SetStyle("Material");
+
+			using (var application = new QGuiApplication(args))
+			{
+				using (var qmlEngine = new QQmlApplicationEngine())
+				{
+					qmlEngine.Load("Pages/Main.qml");
+
+					return application.Exec();
+				}
+			}
+		}
 	}
 }
