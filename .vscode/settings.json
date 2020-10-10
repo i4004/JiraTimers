@@ -2,15 +2,5 @@
 	"dotnet-test-explorer.testProjectPath": "src/**/*Tests.csproj",
 	"cSpell.words": [
 		"Jira"
-	],
-	"beautify.language": {
-		"js": {
-			"type": [
-				"qml"
-			],
-			"filename": [
-				".qml"
-			]
-		}
-	}
+	]
 }
