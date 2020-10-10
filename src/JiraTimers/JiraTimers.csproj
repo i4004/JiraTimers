@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
-		<OutputType>WinExe</OutputType>
+		<OutputType>exe</OutputType>
 		<Version>0.1</Version>
 		<RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
 	</PropertyGroup>
