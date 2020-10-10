@@ -1,14 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
-		<OutputType>Exe</OutputType>
+		<OutputType>WinExe</OutputType>
 		<Version>0.1</Version>
 		<RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Qml.Net.WindowsBinaries" Version="0.11.0 " />
+		<PackageReference Include="Qml.Net" Version="0.11.0 " />
 	</ItemGroup>
 	<ItemGroup>
-		<Content Include="pages\**" CopyToPublishDirectory="Always" />
+		<None Update="pages\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 </Project>

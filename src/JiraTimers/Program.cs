@@ -11,15 +11,12 @@ namespace JiraTimers
 
 			QQuickStyle.SetStyle("Material");
 
-			using (var application = new QGuiApplication(args))
-			{
-				using (var qmlEngine = new QQmlApplicationEngine())
-				{
-					qmlEngine.Load("Pages/Main.qml");
+			using var application = new QGuiApplication(args);
+			using var qmlEngine = new QQmlApplicationEngine();
 
-					return application.Exec();
-				}
-			}
+			qmlEngine.Load("Pages/Main.qml");
+
+			return application.Exec();
 		}
 	}
 }
