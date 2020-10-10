@@ -5,9 +5,12 @@ import QtQuick.Controls.Material 2.1
 
 ApplicationWindow
 {
+	title: "JiraTimers"
 	id: window
+
 	width: 360
 	height: 520
 	visible: true
-	title: "Qml.Net"
+
+	flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
 }
