@@ -2,6 +2,7 @@
 	"recommendations": [
 		"ms-dotnettools.csharp",
 		"formulahendry.dotnet-test-explorer",
-		"EditorConfig.EditorConfig"
+		"bbenoist.qml",
+		"hookyqr.beautify"
 	]
 }
