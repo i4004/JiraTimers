@@ -4,7 +4,7 @@ SystemTrayIcon
 {
 	id: sysTray
 
-	icon.source: "../../Images/TrayIcon.png"
+	icon.source: "../../Images/Icon.png"
 	tooltip: "JiraTimers"
 
 	visible: true
