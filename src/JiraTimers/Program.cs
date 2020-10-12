@@ -17,6 +17,8 @@ namespace JiraTimers
 			using var qmlEngine = new QQmlApplicationEngine();
 
 			qmlEngine.Load("Pages/Main.qml");
+			// qmlEngine.Load("qrc:/main.qml");
+
 
 			return application.Exec();
 
