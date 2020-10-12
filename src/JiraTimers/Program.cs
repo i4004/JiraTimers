@@ -11,17 +11,15 @@ namespace JiraTimers
 		{
 			RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
 
+			// TODO check need
 			QQuickStyle.SetStyle("Material");
 
 			using var application = new QGuiApplication(args);
 			using var qmlEngine = new QQmlApplicationEngine();
 
 			qmlEngine.Load("Pages/Main.qml");
-			// qmlEngine.Load("qrc:/main.qml");
-
 
 			return application.Exec();
-
 		}
 	}
 }
