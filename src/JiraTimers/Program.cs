@@ -1,6 +1,8 @@
 ﻿using System;
 using Qml.Net;
 using Qml.Net.Runtimes;
+using Simplify.DI;
+using JiraTimers.Setup;
 
 namespace JiraTimers
 {
@@ -9,10 +11,16 @@ namespace JiraTimers
 		[STAThread]
 		public static int Main(string[] args)
 		{
+			// IOC container setup
+			DIContainer.Current.RegisterJiraTimers().Verify();
+
+			// QT setup
 			RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
 
 			// TODO check need
 			QQuickStyle.SetStyle("Material");
+
+			// Launch
 
 			using var application = new QGuiApplication(args);
 			using var qmlEngine = new QQmlApplicationEngine();
