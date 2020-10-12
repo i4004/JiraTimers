@@ -6,7 +6,10 @@ namespace JiraTimers.Setup
 	{
 		public static IDIContainerProvider RegisterJiraTimers(this IDIContainerProvider container)
 		{
+			container.RegisterConfiguration();
+
 			return container;
 		}
+
 	}
 }
