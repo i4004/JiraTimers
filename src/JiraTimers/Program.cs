@@ -1,8 +1,8 @@
 ﻿using System;
+using JiraTimers.Setup;
 using Qml.Net;
 using Qml.Net.Runtimes;
 using Simplify.DI;
-using JiraTimers.Setup;
 
 namespace JiraTimers
 {

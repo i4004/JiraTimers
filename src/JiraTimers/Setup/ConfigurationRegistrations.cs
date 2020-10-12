@@ -12,7 +12,7 @@ namespace JiraTimers.Setup
 				.AddJsonFile("appsettings.json", true)
 				.Build();
 
-			registrator.Register(p => configuration, LifetimeType.Singleton);
+			registrator.Register<IConfiguration>(p => configuration, LifetimeType.Singleton);
 
 			config?.Invoke(configuration);
 

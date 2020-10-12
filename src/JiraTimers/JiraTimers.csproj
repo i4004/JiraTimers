@@ -12,12 +12,18 @@
 		<PackageReference Include="Qml.Net.OSXBinaries" Version="0.11.0" />
 		<PackageReference Include="Qml.Net.WindowsBinaries" Version="0.11.0" />
 		<PackageReference Include="Simplify.DI" Version="4.0.*" />
+		<PackageReference Include="Simplify.System" Version="1.2.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="Images\**\*">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="pages\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
