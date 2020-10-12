@@ -17,7 +17,9 @@ namespace JiraTimers
 			// QT setup
 			RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
 
-			// TODO check need
+			// UI setup
+
+			QGuiApplication.SetAttribute(ApplicationAttribute.EnableHighDpiScaling, true);
 			QQuickStyle.SetStyle("Material");
 
 			// Launch

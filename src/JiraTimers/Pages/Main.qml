@@ -1,11 +1,9 @@
 ﻿import QtQuick 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.1
 
 import "Controls"
-
-// TODO
-// import QtQuick.Controls.Material 2.1
 
 ApplicationWindow
 {
@@ -17,8 +15,7 @@ ApplicationWindow
 
 	flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
 
-	// TODO
-	// Material.theme: Material.Light
+	Material.theme: Material.Light
 
 	visible: true
 
@@ -28,12 +25,7 @@ ApplicationWindow
 		// sysTray.showMessage("JiraTimers", "Hello!")
 	}
 
+
 	JiraTimersSystemTrayIcon
 	{}
-
-	// onClosing:
-	// {
-	// 	close.accepted = false
-	// 	app.visible = false
-	// }
 }
