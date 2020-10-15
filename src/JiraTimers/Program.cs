@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.IO;
+using System;
 using JiraTimers.Setup;
 using Qml.Net;
 using Qml.Net.Runtimes;
@@ -21,15 +22,22 @@ namespace JiraTimers
 
 			QGuiApplication.SetAttribute(ApplicationAttribute.EnableHighDpiScaling, true);
 			QQuickStyle.SetStyle("Material");
+			RegisterTheme();
 
 			// Launch
 
 			using var application = new QGuiApplication(args);
 			using var qmlEngine = new QQmlApplicationEngine();
 
-			qmlEngine.Load("Pages/Main.qml");
+			qmlEngine.Load("Qml/Main.qml");
 
 			return application.Exec();
+		}
+
+		private static void RegisterTheme()
+		{
+			var filePath = "file:///" + Directory.GetCurrentDirectory().Replace("\\", "/") + "/Qml/Theme.qml";
+			Qml.Net.Qml.RegisterSingletonType(filePath, "Theme", "jira.timers.theme");
 		}
 	}
 }
