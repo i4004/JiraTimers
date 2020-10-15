@@ -28,9 +28,15 @@ ApplicationWindow
 		{
 			anchors.fill: parent
 
-			Text
+			Label
 			{
 				text: "Status bar"
+
+				color: Material.background
+				font.pixelSize: Theme.fontSize
+
+				Layout.leftMargin: Theme.paddingMedium
+				Layout.fillWidth: true
 			}
 
 			Button
@@ -39,8 +45,8 @@ ApplicationWindow
 				icon.color: Material.primary
 
 				Layout.alignment: Qt.AlignRight
+				Layout.rightMargin: Theme.paddingMedium
 			}
-
 		}
 	}
 
