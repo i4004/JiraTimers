@@ -17,7 +17,7 @@ ToolBar
 		{
 			text: qsTr("Status bar")
 
-			color: Material.background
+			color: Material.accent
 			font.pixelSize: Theme.fontSize
 
 			Layout.leftMargin: Theme.paddingMedium
@@ -27,10 +27,17 @@ ToolBar
 		Button
 		{
 			icon.source: "../../Images/SettingsIcon.png"
-			icon.color: Material.primary
+			icon.color: Material.accent
 
 			Layout.alignment: Qt.AlignRight
 			Layout.rightMargin: Theme.paddingMedium
+
+			onClicked:
+			{
+				var component = Qt.createComponent("../Settings.qml");
+				var win = component.createObject(app);
+				win.show();
+			}
 		}
 	}
 }
