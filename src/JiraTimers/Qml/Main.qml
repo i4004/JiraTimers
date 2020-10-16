@@ -20,35 +20,8 @@ ApplicationWindow
 
 	visible: true
 
-	footer: ToolBar
-	{
-		Material.foreground: Material.foreground
-
-		RowLayout
-		{
-			anchors.fill: parent
-
-			Label
-			{
-				text: "Status bar"
-
-				color: Material.background
-				font.pixelSize: Theme.fontSize
-
-				Layout.leftMargin: Theme.paddingMedium
-				Layout.fillWidth: true
-			}
-
-			Button
-			{
-				icon.source: "../Images/SettingsIcon.png"
-				icon.color: Material.primary
-
-				Layout.alignment: Qt.AlignRight
-				Layout.rightMargin: Theme.paddingMedium
-			}
-		}
-	}
+	footer: JiraTimersToolbar
+	{}
 
 	JiraTimersSystemTrayIcon
 	{}
