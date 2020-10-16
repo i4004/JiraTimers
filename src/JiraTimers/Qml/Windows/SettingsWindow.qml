@@ -4,7 +4,7 @@ import QtQuick.Controls.Material 2.1
 import QtQuick.Layouts 1.3
 
 import jira.timers.theme 1.0
-import "Controls"
+import "../Controls"
 
 ApplicationWindow
 {

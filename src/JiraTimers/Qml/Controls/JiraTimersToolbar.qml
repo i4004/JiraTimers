@@ -34,7 +34,7 @@ ToolBar
 
 			onClicked:
 			{
-				var component = Qt.createComponent("../Settings.qml");
+				var component = Qt.createComponent("../Windows/SettingsWindow.qml");
 				var win = component.createObject(app);
 				win.show();
 			}
