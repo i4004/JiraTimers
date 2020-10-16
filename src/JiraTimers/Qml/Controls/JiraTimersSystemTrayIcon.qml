@@ -11,7 +11,7 @@ SystemTrayIcon
 
 	onActivated:
 	{
-		if (reason == SystemTrayIcon.DoubleClick)
+		if (reason == SystemTrayIcon.Trigger)
 			app.visible = !app.visible
 	}
 
