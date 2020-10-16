@@ -15,7 +15,7 @@ ToolBar
 
 		Label
 		{
-			text: "Status bar"
+			text: qsTr("Status bar")
 
 			color: Material.background
 			font.pixelSize: Theme.fontSize

@@ -9,7 +9,7 @@ import "Controls"
 ApplicationWindow
 {
 	id: app
-	title: "JiraTimers"
+	title: Qt.application.name
 
 	width: 520
 	height: 520
