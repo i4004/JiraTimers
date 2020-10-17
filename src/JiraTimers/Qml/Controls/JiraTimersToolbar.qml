@@ -9,7 +9,7 @@ as WindowsManager
 
 ToolBar
 {
-	Material.foreground: Material.foreground
+	Material.foreground: parent.Material.foreground
 
 	RowLayout
 	{
