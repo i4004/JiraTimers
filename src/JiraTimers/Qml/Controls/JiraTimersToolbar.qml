@@ -4,6 +4,8 @@ import QtQuick.Controls.Material 2.1
 import QtQuick.Layouts 1.3
 
 import jira.timers.theme 1.0
+import "../WindowsManager.js"
+as WindowsManager
 
 ToolBar
 {
@@ -34,9 +36,7 @@ ToolBar
 
 			onClicked:
 			{
-				var component = Qt.createComponent("../Windows/SettingsWindow.qml");
-				var win = component.createObject(app);
-				win.show();
+				var window = WindowsManager.openWindow("Windows/SettingsWindow.qml");
 			}
 		}
 	}
