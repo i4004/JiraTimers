@@ -1,5 +1,5 @@
 // Opens the new QML window
-function openWindow(path)
+function openWindow(path, parent)
 {
 	var component = Qt.createComponent(path);
 
@@ -9,7 +9,7 @@ function openWindow(path)
 		return;
 	}
 
-	var window = component.createObject(app);
+	var window = component.createObject(parent);
 	window.show();
 
 	return window;

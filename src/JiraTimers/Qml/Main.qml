@@ -16,7 +16,14 @@ ApplicationWindow
 
 	flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
 
-	Material.theme: Material.Light
+	// Material.theme: Material.Light
+	// Material.primary: "#DAD4E0"
+
+	Material.theme: Material.Dark
+	Material.primary: "#3B3A3D"
+	Material.foreground: "white"
+
+	Material.accent: "#7D2CCE"
 
 	visible: true
 
