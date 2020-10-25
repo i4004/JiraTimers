@@ -8,10 +8,7 @@ namespace JiraTimers.Settings
 	{
 		public WritableJsonConfigurationProvider(JsonConfigurationSource source) : base(source)
 		{
-			FullFilePath = Source.FileProvider.GetFileInfo(source.Path).PhysicalPath;
 		}
-
-		public string FullFilePath { get; }
 
 		public override void Set(string key, string value)
 		{
@@ -25,13 +22,13 @@ namespace JiraTimers.Settings
 
 		private string ReadJson()
 		{
-			return File.ReadAllText(FullFilePath);
+			return File.ReadAllText(Source.Path);
 		}
 
 		private void WriteJson(dynamic jsonObj)
 		{
 			string output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
-			File.WriteAllText(FullFilePath, output);
+			File.WriteAllText(Source.Path, output);
 		}
 	}
 }
