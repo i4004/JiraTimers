@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System;
+﻿using System;
+using System.IO;
 using JiraTimers.Setup;
 using Qml.Net;
 using Qml.Net.Runtimes;
@@ -13,25 +13,30 @@ namespace JiraTimers
 		public static int Main(string[] args)
 		{
 			// IOC container setup
-			DIContainer.Current.RegisterJiraTimers().Verify();
+			DIContainer.Current.RegisterJiraTimers(args).Verify();
 
 			// QT setup
 			RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
 
-			// UI setup
-
-			QGuiApplication.SetAttribute(ApplicationAttribute.EnableHighDpiScaling, true);
-			QQuickStyle.SetStyle("Material");
-			RegisterTheme();
+			SetupUI();
 
 			// Launch
 
-			using var application = new QGuiApplication(args);
-			using var qmlEngine = new QQmlApplicationEngine();
+			using var scope = DIContainer.Current.BeginLifetimeScope();
 
-			qmlEngine.Load("Qml/Main.qml");
+			var app = scope.Resolver.Resolve<QGuiApplication>();
 
-			return application.Exec();
+			scope.Resolver.Resolve<QQmlApplicationEngine>().Load("Qml/Main.qml");
+
+			return app.Exec();
+		}
+
+		private static void SetupUI()
+		{
+			QCoreApplication.SetAttribute(ApplicationAttribute.EnableHighDpiScaling, true);
+			QQuickStyle.SetStyle("Material");
+
+			RegisterTheme();
 		}
 
 		private static void RegisterTheme()

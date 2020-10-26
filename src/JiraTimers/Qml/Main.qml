@@ -9,40 +9,26 @@ import "Controls"
 ApplicationWindow
 {
 	id: app
-	title: "JiraTimers"
+	title: Qt.application.name
 
 	width: 520
 	height: 520
 
 	flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
 
-	Material.theme: Material.Light
+	// Material.theme: Material.Light
+	// Material.primary: "#DAD4E0"
+
+	Material.theme: Material.Dark
+	Material.primary: "#3B3A3D"
+	Material.foreground: "white"
+
+	Material.accent: "#3A6686"
 
 	visible: true
 
-	footer: ToolBar
-	{
-		Material.foreground: Material.foreground
-
-		RowLayout
-		{
-			anchors.fill: parent
-
-			Text
-			{
-				text: "Status bar"
-			}
-
-			Button
-			{
-				icon.source: "../Images/SettingsIcon.png"
-				icon.color: Material.primary
-
-				Layout.alignment: Qt.AlignRight
-			}
-
-		}
-	}
+	footer: JiraTimersToolbar
+	{}
 
 	JiraTimersSystemTrayIcon
 	{}

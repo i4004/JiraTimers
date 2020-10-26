@@ -1,16 +1,15 @@
-using JiraTimers.Settings;
 using Simplify.DI;
 
 namespace JiraTimers.Setup
 {
 	public static class IocRegistrations
 	{
-		public static IDIContainerProvider RegisterJiraTimers(this IDIContainerProvider container)
+		public static IDIContainerProvider RegisterJiraTimers(this IDIContainerProvider container, string[] args)
 		{
 			container.RegisterConfiguration()
 				.RegisterJira()
-				.Register<JiraTimersSettings>(LifetimeType.Singleton)
-				.Register<IJiraTimersSettings>(r => r.Resolve<JiraTimersSettings>(), LifetimeType.Singleton);
+				.RegisterQt(args)
+				.RegisterJiraTimersSettings();
 
 			return container;
 		}

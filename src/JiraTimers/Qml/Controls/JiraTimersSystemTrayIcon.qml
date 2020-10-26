@@ -5,13 +5,13 @@ SystemTrayIcon
 	id: sysTray
 
 	icon.source: "../../Images/Icon.png"
-	tooltip: "JiraTimers"
+	tooltip: Qt.application.name
 
 	visible: true
 
 	onActivated:
 	{
-		if (reason == SystemTrayIcon.DoubleClick)
+		if (reason == SystemTrayIcon.Trigger)
 			app.visible = !app.visible
 	}
 
@@ -19,7 +19,7 @@ SystemTrayIcon
 	{
 		MenuItem
 		{
-			text: "Quit"
+			text: qsTr("Quit")
 			onTriggered: Qt.quit()
 		}
 	}
