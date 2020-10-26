@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using JiraTimers.DI;
 using JiraTimers.Setup;
 using Qml.Net;
 using Qml.Net.Runtimes;
@@ -18,20 +19,9 @@ namespace JiraTimers
 
 			SetupQT();
 			SetupUI();
+			RegisterQmlTypes();
 
 			return LaunchApp();
-		}
-
-		private static int LaunchApp()
-		{
-			using var scope = DIContainer.Current.BeginLifetimeScope();
-
-			var app = scope.Resolver.Resolve<QGuiApplication>();
-			var engine = scope.Resolver.Resolve<QQmlApplicationEngine>();
-
-			engine.Load(StartupQmlFilePath);
-
-			return app.Exec();
 		}
 
 		private static void SetupQT()
@@ -51,6 +41,23 @@ namespace JiraTimers
 		{
 			var filePath = "file:///" + Directory.GetCurrentDirectory().Replace("\\", "/") + "/Qml/Theme.qml";
 			Qml.Net.Qml.RegisterSingletonType(filePath, "Theme", "jira.timers.theme");
+		}
+
+		private static void RegisterQmlTypes()
+		{
+			Qml.Net.Qml.RegisterType<DiScope>(nameof(JiraTimers) + ".Net.Components");
+		}
+
+		private static int LaunchApp()
+		{
+			using var scope = DIContainer.Current.BeginLifetimeScope();
+
+			var app = scope.Resolver.Resolve<QGuiApplication>();
+			var engine = scope.Resolver.Resolve<QQmlApplicationEngine>();
+
+			engine.Load(StartupQmlFilePath);
+
+			return app.Exec();
 		}
 	}
 }

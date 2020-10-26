@@ -6,6 +6,8 @@ import QtQuick.Layouts 1.3
 import jira.timers.theme 1.0
 import "../Controls"
 
+import JiraTimers.Net.Components 1.0
+
 ApplicationWindow
 {
 	id: window
@@ -102,4 +104,11 @@ ApplicationWindow
 			onClicked: window.close()
 		}
 	}
+
+	DiScope
+	{
+		id: scope
+	}
+
+	onClosing: scope.dispose()
 }
