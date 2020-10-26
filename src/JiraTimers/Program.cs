@@ -12,16 +12,15 @@ namespace JiraTimers
 		[STAThread]
 		public static int Main(string[] args)
 		{
-			// IOC container setup
 			DIContainer.Current.RegisterJiraTimers(args).Verify();
 
-			// QT setup
-			RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
+			SetupQT();
 
-			SetupUI();
+			return LaunchApp();
+		}
 
-			// Launch
-
+		private static int LaunchApp()
+		{
 			using var scope = DIContainer.Current.BeginLifetimeScope();
 
 			var app = scope.Resolver.Resolve<QGuiApplication>();
@@ -29,6 +28,13 @@ namespace JiraTimers
 			scope.Resolver.Resolve<QQmlApplicationEngine>().Load("Qml/Main.qml");
 
 			return app.Exec();
+		}
+
+		private static void SetupQT()
+		{
+			RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
+
+			SetupUI();
 		}
 
 		private static void SetupUI()
