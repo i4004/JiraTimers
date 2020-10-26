@@ -9,6 +9,8 @@ namespace JiraTimers
 {
 	public static class Program
 	{
+		private const string StartupQmlFilePath = "Qml/Main.qml";
+
 		[STAThread]
 		public static int Main(string[] args)
 		{
@@ -24,8 +26,9 @@ namespace JiraTimers
 			using var scope = DIContainer.Current.BeginLifetimeScope();
 
 			var app = scope.Resolver.Resolve<QGuiApplication>();
+			var engine = scope.Resolver.Resolve<QQmlApplicationEngine>();
 
-			scope.Resolver.Resolve<QQmlApplicationEngine>().Load("Qml/Main.qml");
+			engine.Load(StartupQmlFilePath);
 
 			return app.Exec();
 		}
