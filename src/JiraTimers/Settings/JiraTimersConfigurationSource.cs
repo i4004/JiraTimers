@@ -8,7 +8,7 @@ namespace JiraTimers.Settings
 {
 	public class JiraTimersConfigurationSource : JsonConfigurationSource
 	{
-		private const string AppSettingsFolderName = "JiraTimers";
+		private const string AppSettingsDirectoryName = "JiraTimers";
 		private const string AppSettingsFileName = "Settings.json";
 
 		private string _appSettingsDirectoryPath;
@@ -19,7 +19,7 @@ namespace JiraTimers.Settings
 
 			var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.Create);
 
-			_appSettingsDirectoryPath = System.IO.Path.Combine(appDataPath, AppSettingsFolderName);
+			_appSettingsDirectoryPath = System.IO.Path.Combine(appDataPath, AppSettingsDirectoryName);
 			Path = System.IO.Path.Combine(_appSettingsDirectoryPath, AppSettingsFileName);
 
 			CreateAppSettingsDirectoryIfNotExists();
