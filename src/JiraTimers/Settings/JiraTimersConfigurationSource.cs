@@ -8,10 +8,10 @@ namespace JiraTimers.Settings
 {
 	public class JiraTimersConfigurationSource : JsonConfigurationSource
 	{
-		private const string AppSettingsDirectoryName = "JiraTimers";
+		private const string AppSettingsDirectoryName = nameof(JiraTimers);
 		private const string AppSettingsFileName = "Settings.json";
 
-		private string _appSettingsDirectoryPath;
+		private readonly string _appSettingsDirectoryPath;
 
 		public JiraTimersConfigurationSource()
 		{
