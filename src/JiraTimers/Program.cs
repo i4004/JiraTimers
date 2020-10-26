@@ -17,6 +17,7 @@ namespace JiraTimers
 			DIContainer.Current.RegisterJiraTimers(args).Verify();
 
 			SetupQT();
+			SetupUI();
 
 			return LaunchApp();
 		}
@@ -36,8 +37,6 @@ namespace JiraTimers
 		private static void SetupQT()
 		{
 			RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
-
-			SetupUI();
 		}
 
 		private static void SetupUI()
