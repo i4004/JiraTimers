@@ -45,7 +45,7 @@ namespace JiraTimers
 
 		private static void RegisterQmlTypes()
 		{
-			Qml.Net.Qml.RegisterType<DiScope>(nameof(JiraTimers) + ".Net.Components");
+			Qml.Net.Qml.RegisterType<JiraTimersLifeTimeScope>(nameof(JiraTimers) + ".Net.Components");
 		}
 
 		private static int LaunchApp()

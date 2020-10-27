@@ -8,7 +8,7 @@ import "../Controls"
 
 import JiraTimers.Net.Components 1.0
 
-ApplicationWindow
+ScopedApplicationWindow
 {
 	id: window
 	title: qsTr("JiraTimers Settings")
@@ -46,6 +46,8 @@ ApplicationWindow
 
 		TextField
 		{
+			id: jiraBaseUrlTextField
+
 			Layout.preferredWidth: parent.width
 
 			placeholderText: qsTr("Jira base URL")
@@ -91,7 +93,14 @@ ApplicationWindow
 
 			DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
 
-			onClicked: window.close()
+			onClicked:
+			{
+				var settings = scope.getSettings();
+
+				settings.jiraBaseUrl = jiraBaseUrlTextField.text;
+
+				window.close();
+			}
 		}
 		Button
 		{
@@ -105,10 +114,11 @@ ApplicationWindow
 		}
 	}
 
-	DiScope
-	{
-		id: scope
-	}
 
-	onClosing: scope.dispose()
+	Component.onCompleted:
+	{
+		var settings = scope.getSettings();
+
+		jiraBaseUrlTextField.text = settings.jiraBaseUrl;
+	}
 }
