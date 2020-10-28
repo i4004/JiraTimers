@@ -17,10 +17,10 @@ namespace JiraTimers.Configuration.Writable
 			FilePath = System.IO.Path.Combine(_appSettingsDirectoryPath, appSettingsFileName);
 			Path = appSettingsFileName;
 
-			FileProvider = new PhysicalFileProvider(_appSettingsDirectoryPath);
-
 			CreateAppSettingsDirectoryIfNotExists();
 			CreateAppSettingsFileIfNotExists();
+
+			FileProvider = new PhysicalFileProvider(_appSettingsDirectoryPath);
 		}
 
 		public string FilePath { get; }
