@@ -26,7 +26,11 @@ namespace JiraTimers
 
 		private static void SetupQT()
 		{
+			Console.WriteLine("Checking and downloading QT Runtime if unavailable...");
+
 			RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
+
+			Console.WriteLine("QT runtime is OK.");
 		}
 
 		private static void SetupUI()
@@ -40,6 +44,8 @@ namespace JiraTimers
 		private static void RegisterTheme()
 		{
 			var filePath = "file:///" + Directory.GetCurrentDirectory().Replace("\\", "/") + "/Qml/Theme.qml";
+			filePath = filePath.Replace("////", "///");
+
 			Qml.Net.Qml.RegisterSingletonType(filePath, "Theme", "jira.timers.theme");
 		}
 
