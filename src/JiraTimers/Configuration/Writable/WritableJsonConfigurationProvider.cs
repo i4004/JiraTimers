@@ -1,4 +1,5 @@
 using System.IO;
+using System.Text;
 using JiraTimers.IO;
 using Microsoft.Extensions.Configuration.Json;
 using Newtonsoft.Json;
@@ -27,13 +28,13 @@ namespace JiraTimers.Configuration.Writable
 
 		private string ReadJson()
 		{
-			return File.ReadAllText(_container.FilePath);
+			return File.ReadAllText(_container.FilePath, Encoding.UTF8);
 		}
 
 		private void WriteJson(dynamic jsonObj)
 		{
 			string output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
-			File.WriteAllText(_container.FilePath, output);
+			File.WriteAllText(_container.FilePath, output, Encoding.UTF8);
 		}
 	}
 }

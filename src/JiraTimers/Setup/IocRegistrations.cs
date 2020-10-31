@@ -1,3 +1,4 @@
+using JiraTimers.Settings;
 using Simplify.DI;
 
 namespace JiraTimers.Setup
@@ -9,6 +10,7 @@ namespace JiraTimers.Setup
 			container.RegisterConfiguration()
 				.RegisterJira()
 				.RegisterQt(args)
+				.RegisterCryptography()
 				.RegisterJiraTimersSettings();
 
 			return container;
