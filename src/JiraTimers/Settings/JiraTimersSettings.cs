@@ -28,5 +28,17 @@ namespace JiraTimers.Settings
 			get => _configuration[nameof(JiraUserPassword)];
 			set => _configuration[nameof(JiraUserPassword)] = value;
 		}
+
+		public bool MinimizeToSystemTray
+		{
+			get => _configuration.GetValue<bool>(nameof(MinimizeToSystemTray));
+			set => _configuration[nameof(MinimizeToSystemTray)] = value.ToString();
+		}
+
+		public bool MinimizeOnClose
+		{
+			get => _configuration.GetValue<bool>(nameof(MinimizeOnClose));
+			set => _configuration[nameof(MinimizeOnClose)] = value.ToString();
+		}
 	}
 }

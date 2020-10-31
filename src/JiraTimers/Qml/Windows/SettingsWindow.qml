@@ -78,11 +78,15 @@ ScopedApplicationWindow
 
 		CheckBox
 		{
+			id: minimizeToSystemTray
+
 			text: qsTr("Minimize to system tray")
 		}
 
 		CheckBox
 		{
+			id: minimizeOnClose
+
 			text: qsTr("Minimize on close")
 		}
 	}
@@ -104,6 +108,9 @@ ScopedApplicationWindow
 				settings.jiraBaseUrl = jiraBaseUrlTextField.text;
 				settings.jiraUserName = jiraUserName.text;
 				settings.jiraUserPassword = jiraUserPassword.text;
+
+				settings.minimizeToSystemTray = minimizeToSystemTray.checked;
+				settings.minimizeOnClose = minimizeOnClose.checked;
 
 				window.close();
 			}
@@ -128,5 +135,8 @@ ScopedApplicationWindow
 		jiraBaseUrlTextField.text = settings.jiraBaseUrl;
 		jiraUserName.text = settings.jiraUserName;
 		jiraUserPassword.text = settings.jiraUserPassword;
+
+		minimizeToSystemTray.checked = settings.minimizeToSystemTray;
+		minimizeOnClose.checked = settings.minimizeOnClose;
 	}
 }
