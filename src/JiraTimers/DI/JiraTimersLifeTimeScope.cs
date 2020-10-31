@@ -18,9 +18,9 @@ namespace JiraTimers.DI
 			_scope.Dispose();
 		}
 
-		public JiraTimersSettings GetSettings()
+		public ISettings GetSettings()
 		{
-			return _scope.Resolver.Resolve<JiraTimersSettings>();
+			return _scope.Resolver.Resolve<ISettings>();
 		}
 	}
 }
