@@ -6,7 +6,9 @@ import QtQuick.Layouts 1.3
 import jira.timers.theme 1.0
 import "../Controls"
 
-ApplicationWindow
+import JiraTimers.Net.Components 1.0
+
+ScopedApplicationWindow
 {
 	id: window
 	title: qsTr("JiraTimers Settings")
@@ -44,6 +46,8 @@ ApplicationWindow
 
 		TextField
 		{
+			id: jiraBaseUrlTextField
+
 			Layout.preferredWidth: parent.width
 
 			placeholderText: qsTr("Jira base URL")
@@ -51,16 +55,20 @@ ApplicationWindow
 
 		TextField
 		{
+			id: jiraUserName
+
 			Layout.preferredWidth: parent.width
 
-			placeholderText: qsTr("User name")
+			placeholderText: qsTr("Jira user name")
 		}
 
 		TextField
 		{
+			id: jiraUserPassword
+
 			Layout.preferredWidth: parent.width
 
-			placeholderText: qsTr("Password")
+			placeholderText: qsTr("Jira user password")
 		}
 
 		SubHeader
@@ -70,11 +78,15 @@ ApplicationWindow
 
 		CheckBox
 		{
+			id: minimizeToSystemTray
+
 			text: qsTr("Minimize to system tray")
 		}
 
 		CheckBox
 		{
+			id: minimizeOnClose
+
 			text: qsTr("Minimize on close")
 		}
 	}
@@ -89,7 +101,19 @@ ApplicationWindow
 
 			DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
 
-			onClicked: window.close()
+			onClicked:
+			{
+				var settings = scope.getSettings();
+
+				settings.jiraBaseUrl = jiraBaseUrlTextField.text;
+				settings.jiraUserName = jiraUserName.text;
+				settings.jiraUserPassword = jiraUserPassword.text;
+
+				settings.minimizeToSystemTray = minimizeToSystemTray.checked;
+				settings.minimizeOnClose = minimizeOnClose.checked;
+
+				window.close();
+			}
 		}
 		Button
 		{
@@ -101,5 +125,18 @@ ApplicationWindow
 
 			onClicked: window.close()
 		}
+	}
+
+
+	Component.onCompleted:
+	{
+		var settings = scope.getSettings();
+
+		jiraBaseUrlTextField.text = settings.jiraBaseUrl;
+		jiraUserName.text = settings.jiraUserName;
+		jiraUserPassword.text = settings.jiraUserPassword;
+
+		minimizeToSystemTray.checked = settings.minimizeToSystemTray;
+		minimizeOnClose.checked = settings.minimizeOnClose;
 	}
 }

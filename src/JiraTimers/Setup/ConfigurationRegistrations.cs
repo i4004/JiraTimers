@@ -1,4 +1,5 @@
 using System;
+using JiraTimers.Configuration;
 using JiraTimers.Settings;
 using Microsoft.Extensions.Configuration;
 using Simplify.DI;
@@ -9,8 +10,7 @@ namespace JiraTimers.Setup
 	{
 		public static IDIRegistrator RegisterConfiguration(this IDIRegistrator registrator, Action<IConfiguration> config = null)
 		{
-			var configurationBuilder = new ConfigurationBuilder();
-			var configuration = configurationBuilder.Add(new JiraTimersConfigurationSource()).Build();
+			var configuration = JiraTimersConfigurationBuilder.Build();
 
 			registrator.Register<IConfiguration>(p => configuration, LifetimeType.Singleton);
 

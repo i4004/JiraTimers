@@ -1,13 +1,18 @@
 using System.IO;
+using JiraTimers.IO;
 using Microsoft.Extensions.Configuration.Json;
 using Newtonsoft.Json;
 
-namespace JiraTimers.Settings
+namespace JiraTimers.Configuration.Writable
 {
-	public class WritableJsonConfigurationProvider : JsonConfigurationProvider
+	public class WritableJsonConfigurationProvider<T> : JsonConfigurationProvider
+		where T : JsonConfigurationSource, IFilePathContainer
 	{
-		public WritableJsonConfigurationProvider(JsonConfigurationSource source) : base(source)
+		private readonly IFilePathContainer _container;
+
+		public WritableJsonConfigurationProvider(T source) : base(source)
 		{
+			_container = source;
 		}
 
 		public override void Set(string key, string value)
@@ -22,13 +27,13 @@ namespace JiraTimers.Settings
 
 		private string ReadJson()
 		{
-			return File.ReadAllText(Source.Path);
+			return File.ReadAllText(_container.FilePath);
 		}
 
 		private void WriteJson(dynamic jsonObj)
 		{
 			string output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
-			File.WriteAllText(Source.Path, output);
+			File.WriteAllText(_container.FilePath, output);
 		}
 	}
 }
