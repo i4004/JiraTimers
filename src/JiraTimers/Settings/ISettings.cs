@@ -1,6 +1,6 @@
 namespace JiraTimers.Settings
 {
-	public interface IJiraTimersSettings
+	public interface ISettings
 	{
 		public string JiraBaseUrl { get; }
 		public string JiraUserName { get; }
