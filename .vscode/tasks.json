@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+				"build",
+				"${workspaceFolder}/src/JiraTimers.sln"
+			],
+			"problemMatcher": "$msCompile",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "Test with coverage",
+			"command": "dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./coverage/lcov.info ${workspaceFolder}/src/JiraTimers.sln --filter TestCategory!=Integration ",
+			"type": "shell",
+			"problemMatcher": "$msCompile",
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			}
+		}
+	]
+}

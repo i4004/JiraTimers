@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<OutputType>exe</OutputType>
+		<Version>0.1</Version>
+		<RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Atlassian.SDK" Version="12.1.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.*" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.*" />
+		<PackageReference Include="Simplify.DI" Version="4.0.*" />
+		<PackageReference Include="Simplify.System" Version="1.2.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Qml.Net" Version="0.11.0" />
+		<PackageReference Include="Qml.Net.LinuxBinaries" Version="0.11.0" />
+		<PackageReference Include="Qml.Net.OSXBinaries" Version="0.11.0" />
+		<PackageReference Include="Qml.Net.WindowsBinaries" Version="0.11.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="Images\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Qml\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+</Project>

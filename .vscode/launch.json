@@ -1,0 +1,18 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+	{
+		"name": "JiraTimers Launch",
+		"type": "coreclr",
+		"request": "launch",
+		"preLaunchTask": "Build",
+		"program": "${workspaceFolder}/src/JiraTimers/bin/Debug/netcoreapp3.1/JiraTimers.exe",
+		"cwd": "${workspaceFolder}/src/JiraTimers/bin/Debug/netcoreapp3.1",
+		"console": "integratedTerminal",
+		"internalConsoleOptions": "neverOpen",
+		"env":
+		{
+			"ASPNETCORE_ENVIRONMENT": "Development"
+		}
+	}]
+}
