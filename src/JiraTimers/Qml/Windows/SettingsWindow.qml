@@ -55,16 +55,20 @@ ScopedApplicationWindow
 
 		TextField
 		{
+			id: jiraUserName
+
 			Layout.preferredWidth: parent.width
 
-			placeholderText: qsTr("User name")
+			placeholderText: qsTr("Jira user name")
 		}
 
 		TextField
 		{
+			id: jiraUserPassword
+
 			Layout.preferredWidth: parent.width
 
-			placeholderText: qsTr("Password")
+			placeholderText: qsTr("Jira user password")
 		}
 
 		SubHeader
@@ -98,6 +102,8 @@ ScopedApplicationWindow
 				var settings = scope.getSettings();
 
 				settings.jiraBaseUrl = jiraBaseUrlTextField.text;
+				settings.jiraUserName = jiraUserName.text;
+				settings.jiraUserPassword = jiraUserPassword.text;
 
 				window.close();
 			}
@@ -120,5 +126,7 @@ ScopedApplicationWindow
 		var settings = scope.getSettings();
 
 		jiraBaseUrlTextField.text = settings.jiraBaseUrl;
+		jiraUserName.text = settings.jiraUserName;
+		jiraUserPassword.text = settings.jiraUserPassword;
 	}
 }
