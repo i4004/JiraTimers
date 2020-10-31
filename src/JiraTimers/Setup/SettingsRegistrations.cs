@@ -3,7 +3,7 @@ using Simplify.DI;
 
 namespace JiraTimers.Setup
 {
-	public static class JiraSettingsRegistrations
+	public static class SettingsRegistrations
 	{
 		public static IDIRegistrator RegisterJiraTimersSettings(this IDIRegistrator registrator)
 		{

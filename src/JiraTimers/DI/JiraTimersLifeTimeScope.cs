@@ -18,9 +18,9 @@ namespace JiraTimers.DI
 			_scope.Dispose();
 		}
 
-		public WritableAutoSaveSettings GetSettings()
+		public ISettings GetSettings()
 		{
-			return _scope.Resolver.Resolve<CacheableSettings>();
+			return _scope.Resolver.Resolve<ISettings>();
 		}
 	}
 }
