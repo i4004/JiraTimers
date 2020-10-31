@@ -1,6 +1,5 @@
 using System;
 using JiraTimers.Configuration;
-using JiraTimers.Settings;
 using Microsoft.Extensions.Configuration;
 using Simplify.DI;
 
