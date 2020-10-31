@@ -14,7 +14,7 @@ ScopedApplicationWindow
 	title: qsTr("JiraTimers Settings")
 
 	minimumHeight: 500
-	minimumWidth: 320
+	minimumWidth: 350
 	maximumHeight: minimumHeight
 	maximumWidth: minimumWidth
 
@@ -91,11 +91,42 @@ ScopedApplicationWindow
 		}
 	}
 
-	footer: DialogButtonBox
+	footer: ToolBar
 	{
+		Material.background: parent.Material.background
+
 		Button
 		{
+			text: qsTr("Test connection")
+
+			anchors.left: parent.left
+			anchors.leftMargin: Theme.paddingMedium
+
+			highlighted: true
+			enabled: false
+		}
+
+		Button
+		{
+			text: qsTr("Close")
+
+			anchors.right: saveButton.left
+			anchors.rightMargin: Theme.paddingMedium
+
+			highlighted: true
+
+			DialogButtonBox.buttonRole: DialogButtonBox.DestructiveRole
+
+			onClicked: window.close()
+		}
+
+		Button
+		{
+			id: saveButton
 			text: qsTr("Save")
+
+			anchors.right: parent.right
+			anchors.rightMargin: Theme.paddingMedium
 
 			highlighted: true
 
@@ -115,18 +146,7 @@ ScopedApplicationWindow
 				window.close();
 			}
 		}
-		Button
-		{
-			text: qsTr("Close")
-
-			highlighted: true
-
-			DialogButtonBox.buttonRole: DialogButtonBox.DestructiveRole
-
-			onClicked: window.close()
-		}
 	}
-
 
 	Component.onCompleted:
 	{
