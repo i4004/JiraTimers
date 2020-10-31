@@ -26,7 +26,7 @@ namespace JiraTimers
 
 		private static void SetupQT()
 		{
-			Console.WriteLine("Checking and downloading QT Runtime if unavailable...");
+			Console.WriteLine("Checking and downloading QT Runtime if not installed...");
 
 			RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
 
