@@ -1,4 +1,5 @@
-﻿using JiraTimers.JiraIntegration;
+﻿using JiraTimers.IssueTrackingSystem;
+using JiraTimers.JiraIntegration;
 using Simplify.DI;
 
 namespace JiraTimers.Setup
@@ -7,7 +8,8 @@ namespace JiraTimers.Setup
 	{
 		public static IDIRegistrator RegisterJira(this IDIRegistrator registrator)
 		{
-			return registrator.Register<JiraClientStore>();
+			return registrator.Register<JiraClientStore>()
+				.Register<IItsClientStore>(r => r.Resolve<JiraClientStore>(), LifetimeType.Singleton);
 		}
 	}
 }

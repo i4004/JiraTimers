@@ -6,6 +6,9 @@ import QtQuick.Layouts 1.3
 import jira.timers.theme 1.0
 import "../Controls"
 
+import "../WindowsManager.js"
+as WindowsManager
+
 import JiraTimers.Net.Components 1.0
 
 ScopedApplicationWindow
@@ -68,6 +71,8 @@ ScopedApplicationWindow
 
 			Layout.preferredWidth: parent.width
 
+			echoMode: TextInput.PasswordEchoOnEdit
+			passwordCharacter: "*"
 			placeholderText: qsTr("Jira user password")
 		}
 
@@ -103,7 +108,21 @@ ScopedApplicationWindow
 			anchors.leftMargin: Theme.paddingMedium
 
 			highlighted: true
-			enabled: false
+			enabled: jiraBaseUrlTextField.text != "" && jiraUserName.text != "" && jiraUserPassword.text != ""
+
+			onClicked:
+			{
+				var itsClientStore = scope.getItsClientStore();
+
+				var result = itsClientStore.testConnection(jiraBaseUrlTextField.text, jiraUserName.text, jiraUserPassword.text);
+
+				var window = WindowsManager.openWindow("Controls/MessageDialog.qml", parent);
+
+				if (result == null)
+					window.text = "Connection is OK!";
+				else
+					window.text = result;
+			}
 		}
 
 		Button
