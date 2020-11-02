@@ -9,14 +9,12 @@ ApplicationWindow
 {
 	id: messageDialog
 
-	property alias text: messageBoxLabel.text
+	property alias text: messageBoxText.text
 
 	title: qsTr("Information")
 
-	minimumHeight: 200
-	minimumWidth: 350
-	maximumHeight: minimumHeight
-	maximumWidth: minimumWidth
+	minimumHeight: 300
+	minimumWidth: 500
 
 	flags: Qt.Dialog
 	modality: Qt.ApplicationModal
@@ -29,19 +27,30 @@ ApplicationWindow
 
 	visible: true
 
-	Label
+	ScrollView
 	{
-		id: messageBoxLabel
+		anchors.fill: parent
+		contentWidth: -1
 
-		anchors.margins: Theme.paddingMedium
+		ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-		anchors.top: parent.top
-		anchors.left: parent.left
-		anchors.right: parent.right
-		anchors.bottom: toolBar.top
+		TextEdit
+		{
+			id: messageBoxText
 
-		horizontalAlignment: Text.AlignHCenter
-		wrapMode: Text.WordWrap
+			rightPadding: Theme.paddingMedium
+			anchors.fill: parent
+
+			horizontalAlignment: TextEdit.AlignHCenter
+
+			color: parent.Material.foreground
+			selectionColor: parent.Material.accent
+			font.pointSize: 12
+
+			readOnly: true
+			wrapMode: Text.WordWrap
+			selectByMouse: true
+		}
 	}
 
 	footer: ToolBar
