@@ -22,6 +22,9 @@ namespace JiraTimers.JiraIntegration
 			}
 			catch (Exception e)
 			{
+				if (e.Message.Contains("Unauthorized (401)"))
+					return "Authentication error, check your login or password.";
+
 				Console.WriteLine(e);
 				return e.Message;
 			}
