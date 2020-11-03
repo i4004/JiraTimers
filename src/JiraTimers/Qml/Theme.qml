@@ -31,7 +31,6 @@ QtObject
 	{
 		app.Material.theme = Material.Dark;
 		app.Material.primary = "#3B3A3D";
-		app.Material.foreground = "#EEEEEE";
 		app.Material.background = "#2D2D2D";
 	}
 }
