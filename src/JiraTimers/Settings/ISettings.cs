@@ -8,5 +8,7 @@ namespace JiraTimers.Settings
 
 		public bool MinimizeToSystemTray { get; }
 		public bool MinimizeOnClose { get; }
+
+		public bool IsDarkTheme { get; }
 	}
 }

@@ -94,6 +94,18 @@ ScopedApplicationWindow
 
 			text: qsTr("Minimize on close")
 		}
+
+		SubHeader
+		{
+			text: qsTr("Appearance")
+		}
+
+		CheckBox
+		{
+			id: isDarkTheme
+
+			text: qsTr("Dark Theme (need restart)")
+		}
 	}
 
 	footer: ToolBar
@@ -162,6 +174,8 @@ ScopedApplicationWindow
 				settings.minimizeToSystemTray = minimizeToSystemTray.checked;
 				settings.minimizeOnClose = minimizeOnClose.checked;
 
+				settings.isDarkTheme = isDarkTheme.checked;
+
 				window.close();
 			}
 		}
@@ -177,5 +191,7 @@ ScopedApplicationWindow
 
 		minimizeToSystemTray.checked = settings.minimizeToSystemTray;
 		minimizeOnClose.checked = settings.minimizeOnClose;
+
+		isDarkTheme.checked = settings.isDarkTheme;
 	}
 }

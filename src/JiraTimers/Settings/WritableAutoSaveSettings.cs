@@ -39,6 +39,12 @@ namespace JiraTimers.Settings
 			set => Configuration[nameof(MinimizeOnClose)] = value.ToString();
 		}
 
+		public bool IsDarkTheme
+		{
+			get => Configuration.GetValue<bool?>(nameof(IsDarkTheme)) ?? true;
+			set => Configuration[nameof(IsDarkTheme)] = value.ToString();
+		}
+
 		protected IConfiguration Configuration { get; }
 	}
 }
