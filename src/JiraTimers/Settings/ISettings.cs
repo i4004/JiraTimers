@@ -10,5 +10,12 @@ namespace JiraTimers.Settings
 		public bool MinimizeOnClose { get; }
 
 		public bool IsDarkTheme { get; }
+
+		public bool SaveMainWindowPositionAndSize { get; }
+
+		public int? MainWindowX { get; }
+		public int? MainWindowY { get; }
+		public int? MainWindowWidth { get; }
+		public int? MainWindowHeight { get; }
 	}
 }

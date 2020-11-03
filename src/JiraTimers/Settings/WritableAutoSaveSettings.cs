@@ -45,6 +45,36 @@ namespace JiraTimers.Settings
 			set => Configuration[nameof(IsDarkTheme)] = value.ToString();
 		}
 
+		public bool SaveMainWindowPositionAndSize
+		{
+			get => Configuration.GetValue<bool?>(nameof(SaveMainWindowPositionAndSize)) ?? true;
+			set => Configuration[nameof(SaveMainWindowPositionAndSize)] = value.ToString();
+		}
+
+		public int? MainWindowX
+		{
+			get => Configuration.GetValue<int?>(nameof(MainWindowX));
+			set => Configuration[nameof(MainWindowX)] = value.ToString();
+		}
+
+		public int? MainWindowY
+		{
+			get => Configuration.GetValue<int?>(nameof(MainWindowY));
+			set => Configuration[nameof(MainWindowY)] = value.ToString();
+		}
+
+		public int? MainWindowWidth
+		{
+			get => Configuration.GetValue<int?>(nameof(MainWindowWidth));
+			set => Configuration[nameof(MainWindowWidth)] = value.ToString();
+		}
+
+		public int? MainWindowHeight
+		{
+			get => Configuration.GetValue<int?>(nameof(MainWindowHeight));
+			set => Configuration[nameof(MainWindowHeight)] = value.ToString();
+		}
+
 		protected IConfiguration Configuration { get; }
 	}
 }

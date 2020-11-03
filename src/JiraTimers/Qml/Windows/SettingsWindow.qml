@@ -95,6 +95,13 @@ ScopedApplicationWindow
 			text: qsTr("Minimize on close")
 		}
 
+		CheckBox
+		{
+			id: saveMainWindowPositionAndSize
+
+			text: qsTr("Save main window position and size")
+		}
+
 		SubHeader
 		{
 			text: qsTr("Appearance")
@@ -173,6 +180,7 @@ ScopedApplicationWindow
 
 				settings.minimizeToSystemTray = minimizeToSystemTray.checked;
 				settings.minimizeOnClose = minimizeOnClose.checked;
+				settings.saveMainWindowPositionAndSize = saveMainWindowPositionAndSize.checked;
 
 				settings.isDarkTheme = isDarkTheme.checked;
 
@@ -191,6 +199,7 @@ ScopedApplicationWindow
 
 		minimizeToSystemTray.checked = settings.minimizeToSystemTray;
 		minimizeOnClose.checked = settings.minimizeOnClose;
+		saveMainWindowPositionAndSize.checked = settings.saveMainWindowPositionAndSize;
 
 		isDarkTheme.checked = settings.isDarkTheme;
 	}

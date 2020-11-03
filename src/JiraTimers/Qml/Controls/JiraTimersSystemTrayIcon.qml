@@ -43,6 +43,8 @@ SystemTrayIcon
 			onTriggered:
 			{
 				sysTray.visible = false;
+
+				app.saveWindowPositionAndSize();
 				Qt.quit();
 			}
 		}

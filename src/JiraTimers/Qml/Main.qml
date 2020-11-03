@@ -10,12 +10,15 @@ ScopedApplicationWindow
 	id: app
 	title: Qt.application.name
 
+	minimumWidth: 400
+	minimumHeight: 300
+
 	width: 520
 	height: 520
 
 	flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
 
-	visible: true
+	visible: false
 
 	property
 	var settings;
@@ -35,12 +38,17 @@ ScopedApplicationWindow
 		settings = scope.getSettings();
 
 		Theme.setTheme(app, settings.isDarkTheme);
+		loadWindowPositionAndSize();
+
+		visible = true;
 	}
 
 	onClosing:
 	{
 		if (processMinimizeInsteadOfClose())
 			close.accepted = false;
+		else
+			saveWindowPositionAndSize();
 	}
 
 	onVisibilityChanged: processHideInsteadOfMinimize()
@@ -66,5 +74,35 @@ ScopedApplicationWindow
 			visible = false;
 
 		customMinimize = false;
+	}
+
+	function loadWindowPositionAndSize()
+	{
+		if (!settings.saveMainWindowPositionAndSize)
+			return;
+
+		var mainWindowX = settings.mainWindowX;
+		var mainWindowY = settings.mainWindowY;
+		var mainWindowWidth = settings.mainWindowWidth;
+		var mainWindowHeight = settings.mainWindowHeight;
+
+		if (mainWindowX == null || mainWindowY == null || mainWindowWidth == null || mainWindowHeight == null)
+			return;
+
+		x = mainWindowX;
+		y = mainWindowY;
+		width = mainWindowWidth;
+		height = mainWindowHeight;
+	}
+
+	function saveWindowPositionAndSize()
+	{
+		if (!settings.saveMainWindowPositionAndSize)
+			return;
+
+		settings.mainWindowX = x;;
+		settings.mainWindowY = y;
+		settings.mainWindowWidth = width;
+		settings.mainWindowHeight = height;
 	}
 }
