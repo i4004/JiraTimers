@@ -1,7 +1,9 @@
-﻿namespace JiraTimers.IssueTrackingSystem
+﻿using System.Threading.Tasks;
+
+namespace JiraTimers.IssueTrackingSystem
 {
 	public interface IItsClientFactory
 	{
-		public IItsClient Create(string url, string userName, string userPassword);
+		public Task<IItsClient> CreateAsync(string url, string userName, string userPassword);
 	}
 }

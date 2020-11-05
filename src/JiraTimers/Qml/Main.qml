@@ -8,7 +8,7 @@ import "Controls"
 import "WindowsManager.js"
 as WindowsManager
 
-ScopedApplicationWindow
+ThemedWindow
 {
 	id: app
 	title: Qt.application.name
@@ -29,7 +29,9 @@ ScopedApplicationWindow
 	property bool customMinimize: false;
 
 	footer: JiraTimersToolbar
-	{}
+	{
+		id: toolBar
+	}
 
 	JiraTimersSystemTrayIcon
 	{
@@ -113,18 +115,31 @@ ScopedApplicationWindow
 
 	function tryCreateCreateItsClient()
 	{
+		toolBar.runBusyIndicator();
+		toolBar.text = "Connecting...";
+
 		var itsClientStore = scope.getItsClientStore();
 
 		if (!itsClientStore.readyToConnect())
 			return;
 
-		var result = itsClientStore.tryCreateItsClient();
+		var task = itsClientStore.tryCreateItsClientAsync();
 
-		if (result == null)
-			return;
+		Net.await(task, function(result)
+		{
+			toolBar.stopBusyIndicator();
 
-		var window = WindowsManager.openWindow("Controls/MessageDialog.qml", parent);
+			if (result == null)
+			{
+				toolBar.text = "Connected";
 
-		window.text = result;
+				return;
+			}
+
+			toolBar.text = "Not connected";
+
+			var window = WindowsManager.openWindow("Controls/MessageDialog.qml", app);
+			window.text = result;
+		})
 	}
 }

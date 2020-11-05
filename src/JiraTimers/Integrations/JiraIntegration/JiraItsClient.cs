@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Atlassian.Jira;
 using JiraTimers.IssueTrackingSystem;
 
@@ -13,11 +14,11 @@ namespace JiraTimers.Integrations.JiraIntegration
 			_client = client;
 		}
 
-		public string CheckConnection()
+		public async Task<string> CheckConnectionAsync()
 		{
 			try
 			{
-				_client.ServerInfo.GetServerInfoAsync().Wait();
+				await _client.ServerInfo.GetServerInfoAsync();
 			}
 			catch (Exception e)
 			{

@@ -9,9 +9,7 @@ import "../Controls"
 import "../WindowsManager.js"
 as WindowsManager
 
-import JiraTimers.Net.Components 1.0
-
-ScopedApplicationWindow
+ThemedWindow
 {
 	id: window
 	title: qsTr("JiraTimers Settings")
@@ -23,12 +21,6 @@ ScopedApplicationWindow
 
 	flags: Qt.Dialog
 	modality: Qt.ApplicationModal
-
-	Material.theme: parent.Material.theme
-	Material.primary: parent.Material.primary
-	Material.accent: parent.Material.accent
-	Material.foreground: parent.Material.foreground
-	Material.background: parent.Material.background
 
 	visible: true
 
@@ -115,12 +107,24 @@ ScopedApplicationWindow
 		}
 	}
 
+	BusyIndicator
+	{
+		id: busyIndicator
+
+		anchors.centerIn: parent
+
+		running: false
+	}
+
 	footer: ToolBar
 	{
+		Material.foreground: parent.Material.foreground
 		Material.background: parent.Material.background
 
 		Button
 		{
+			id: testConnectionButton
+
 			text: qsTr("Test connection")
 
 			anchors.left: parent.left
@@ -131,16 +135,25 @@ ScopedApplicationWindow
 
 			onClicked:
 			{
+				testConnectionButton.enabled = false;
+				busyIndicator.running = true;
+
 				var itsClientStore = scope.getItsClientStore();
 
-				var result = itsClientStore.testConnection(jiraBaseUrlTextField.text, jiraUserName.text, jiraUserPassword.text);
+				var task = itsClientStore.testConnectionAsync(jiraBaseUrlTextField.text, jiraUserName.text, jiraUserPassword.text);
 
-				var window = WindowsManager.openWindow("Controls/MessageDialog.qml", parent);
+				Net.await(task, function(result)
+				{
+					busyIndicator.running = false;
+					testConnectionButton.enabled = true;
 
-				if (result == null)
-					window.text = "Connection is OK!";
-				else
-					window.text = result;
+					var window = WindowsManager.openWindow("Controls/MessageDialog.qml", parent);
+
+					if (result == null)
+						window.text = "Connection is OK!";
+					else
+						window.text = result;
+				})
 			}
 		}
 

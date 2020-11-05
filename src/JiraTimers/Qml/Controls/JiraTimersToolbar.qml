@@ -4,27 +4,53 @@ import QtQuick.Controls.Material 2.1
 import QtQuick.Layouts 1.3
 
 import jira.timers.theme 1.0
+
 import "../WindowsManager.js"
 as WindowsManager
 
-import JiraTimers.Net.Components 1.0
-
 ToolBar
 {
-	// id: toolBar
 	Material.foreground: parent.Material.foreground
 
-	property
-	var itsClientStore
+	property alias text: toolbarMNessage.text
+
+	function runBusyIndicator()
+	{
+		busyIndicator.run();
+	}
+
+	function stopBusyIndicator()
+	{
+		busyIndicator.stop();
+	}
 
 	RowLayout
 	{
 		anchors.fill: parent
 
+		BusyIndicator
+		{
+			id: busyIndicator
+
+			running: false
+			visible: false
+
+			function run()
+			{
+				running = true;
+				visible = true;
+			}
+
+			function stop()
+			{
+				visible = false;
+				running = false;
+			}
+		}
+
 		Label
 		{
 			id: toolbarMNessage
-			// text: jiraClientStore.isConnected
 
 			font.pixelSize: Theme.fontSize
 
@@ -47,17 +73,4 @@ ToolBar
 			}
 		}
 	}
-
-	JiraTimersLifeTimeScope
-	{
-		id: scope
-	}
-
-	Component.onCompleted:
-	{
-		itsClientStore = scope.getItsClientStore();
-		toolbarMNessage.text = itsClientStore.isConnected ? "Connected" : "Not connected";
-	}
-
-	Component.onDestruction: scope.dispose()
 }

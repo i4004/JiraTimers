@@ -1,4 +1,6 @@
-﻿namespace JiraTimers.IssueTrackingSystem
+﻿using System.Threading.Tasks;
+
+namespace JiraTimers.IssueTrackingSystem
 {
 	public interface IItsClientStore
 	{
@@ -6,8 +8,8 @@
 
 		public bool ReadyToConnect();
 
-		public string TryCreateItsClient();
+		public Task<string> TryCreateItsClientAsync();
 
-		public string TestConnection(string url, string userName, string userPassword);
+		public Task<string> TestConnectionAsync(string url, string userName, string userPassword);
 	}
 }

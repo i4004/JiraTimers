@@ -1,7 +1,9 @@
-﻿namespace JiraTimers.IssueTrackingSystem
+﻿using System.Threading.Tasks;
+
+namespace JiraTimers.IssueTrackingSystem
 {
 	public interface IItsClient
 	{
-		string CheckConnection();
+		Task<string> CheckConnectionAsync();
 	}
 }
