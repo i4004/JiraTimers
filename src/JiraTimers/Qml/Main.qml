@@ -1,35 +1,108 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.3
-import QtQuick.Controls.Material 2.1
-import QtQuick.Layouts 1.3
+import QtQuick.Window 2.1
 
 import jira.timers.theme 1.0
 import "Controls"
 
-ApplicationWindow
+ScopedApplicationWindow
 {
 	id: app
 	title: Qt.application.name
+
+	minimumWidth: 400
+	minimumHeight: 300
 
 	width: 520
 	height: 520
 
 	flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
 
-	// Material.theme: Material.Light
-	// Material.primary: "#DAD4E0"
+	visible: false
 
-	Material.theme: Material.Dark
-	Material.primary: "#3B3A3D"
-	Material.foreground: "white"
+	property
+	var settings;
 
-	Material.accent: "#3A6686"
-
-	visible: true
+	property bool customMinimize: false;
 
 	footer: JiraTimersToolbar
 	{}
 
 	JiraTimersSystemTrayIcon
-	{}
+	{
+		id: systemTrayIcon
+	}
+
+	Component.onCompleted:
+	{
+		settings = scope.getSettings();
+
+		Theme.setTheme(app, settings.isDarkTheme);
+		loadWindowPositionAndSize();
+
+		visible = true;
+	}
+
+	onClosing:
+	{
+		if (processMinimizeInsteadOfClose())
+			close.accepted = false;
+		else
+			saveWindowPositionAndSize();
+	}
+
+	onVisibilityChanged: processHideInsteadOfMinimize()
+
+	function processMinimizeInsteadOfClose()
+	{
+		if (settings.minimizeOnClose)
+		{
+			customMinimize = true;
+			showMinimized();
+
+			return true;
+		}
+		else
+			systemTrayIcon.visible = false;
+
+		return false;
+	}
+
+	function processHideInsteadOfMinimize()
+	{
+		if (customMinimize != true && visibility == Window.Minimized && settings.minimizeToSystemTray)
+			visible = false;
+
+		customMinimize = false;
+	}
+
+	function loadWindowPositionAndSize()
+	{
+		if (!settings.saveMainWindowPositionAndSize)
+			return;
+
+		var mainWindowX = settings.mainWindowX;
+		var mainWindowY = settings.mainWindowY;
+		var mainWindowWidth = settings.mainWindowWidth;
+		var mainWindowHeight = settings.mainWindowHeight;
+
+		if (mainWindowX == null || mainWindowY == null || mainWindowWidth == null || mainWindowHeight == null)
+			return;
+
+		x = mainWindowX;
+		y = mainWindowY;
+		width = mainWindowWidth;
+		height = mainWindowHeight;
+	}
+
+	function saveWindowPositionAndSize()
+	{
+		if (!settings.saveMainWindowPositionAndSize)
+			return;
+
+		settings.mainWindowX = x;;
+		settings.mainWindowY = y;
+		settings.mainWindowWidth = width;
+		settings.mainWindowHeight = height;
+	}
 }

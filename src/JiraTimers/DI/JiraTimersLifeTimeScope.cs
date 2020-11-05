@@ -1,4 +1,5 @@
 ﻿using System;
+using JiraTimers.IssueTrackingSystem;
 using JiraTimers.Settings;
 using Simplify.DI;
 
@@ -21,6 +22,11 @@ namespace JiraTimers.DI
 		public ISettings GetSettings()
 		{
 			return _scope.Resolver.Resolve<ISettings>();
+		}
+
+		public IItsClientStore GetItsClientStore()
+		{
+			return _scope.Resolver.Resolve<IItsClientStore>();
 		}
 	}
 }
