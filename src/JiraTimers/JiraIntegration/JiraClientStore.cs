@@ -1,35 +1,57 @@
 ﻿using System;
 using Atlassian.Jira;
 using JiraTimers.IssueTrackingSystem;
+using JiraTimers.Settings;
 
 namespace JiraTimers.JiraIntegration
 {
 	public class JiraClientStore : IItsClientStore
 	{
-		public Jira Client { get; private set; }
+		private readonly ISettings _settings;
 
-		public void CreateJiraClient(string url, string userName, string password)
+		public JiraClientStore(ISettings settings)
 		{
-			Client = Jira.CreateRestClient(url, userName, password);
+			_settings = settings;
 		}
 
-		public string TestConnection(string url, string userName, string password)
+		public Jira Client { get; private set; }
+
+		public bool IsConnected => Client != null;
+
+		public string CreateJiraClient()
+		{
+			var (client, result) = CreateClient(_settings.JiraBaseUrl, _settings.JiraUserName, _settings.JiraUserPassword);
+
+			if (client != null)
+				Client = client;
+
+			return result;
+		}
+
+		public string TestConnection(string url, string userName, string userPassword)
+		{
+			var (_, result) = CreateClient(url, userName, userPassword);
+
+			return result;
+		}
+
+		private static Tuple<Jira, string> CreateClient(string url, string userName, string userPassword)
 		{
 			try
 			{
-				var client = Jira.CreateRestClient(url, userName, password);
+				var client = Jira.CreateRestClient(url, userName, userPassword);
 				client.ServerInfo.GetServerInfoAsync().Wait();
+
+				return new Tuple<Jira, string>(client, null);
 			}
 			catch (Exception e)
 			{
-				if (e.Message.Contains("Unauthorized (401)"))
-					return "Authentication error, check your login or password.";
+				var message = e.Message.Contains("Unauthorized (401)") ? "Authentication error, check your login or password." : e.Message;
 
-				Console.WriteLine(e);
-				return e.Message;
+				Console.WriteLine(message);
+
+				return new Tuple<Jira, string>(null, message);
 			}
-
-			return null;
 		}
 	}
 }

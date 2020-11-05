@@ -2,6 +2,6 @@
 {
 	public interface IItsClientStore
 	{
-		public string TestConnection(string url, string userName, string password);
+		public string TestConnection(string url, string userName, string userPassword);
 	}
 }
