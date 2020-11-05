@@ -35,6 +35,9 @@ ToolBar
 			running: false
 			visible: false
 
+			Layout.maximumWidth: 45
+			Layout.maximumHeight: 45
+
 			function run()
 			{
 				running = true;
