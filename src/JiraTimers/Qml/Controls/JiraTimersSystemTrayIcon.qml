@@ -1,3 +1,4 @@
+import QtQuick.Window 2.1
 import Qt.labs.platform 1.1
 
 SystemTrayIcon
@@ -12,7 +13,26 @@ SystemTrayIcon
 	onActivated:
 	{
 		if (reason == SystemTrayIcon.Trigger)
-			app.visible = !app.visible
+			processVisibility();
+	}
+
+	function processVisibility()
+	{
+		if (app.visible == false)
+		{
+			app.customMinimize = true;
+			app.visible = true;
+
+			if (app.visibility == Window.Minimized)
+				app.visibility = Window.Windowed;
+		}
+		else
+		{
+			if (app.visibility == Window.Windowed)
+				app.visible = false;
+			else
+				app.visibility = Window.Windowed;
+		}
 	}
 
 	menu: Menu
@@ -20,7 +40,13 @@ SystemTrayIcon
 		MenuItem
 		{
 			text: qsTr("Quit")
-			onTriggered: Qt.quit()
+			onTriggered:
+			{
+				sysTray.visible = false;
+
+				app.saveWindowPositionAndSize();
+				Qt.quit();
+			}
 		}
 	}
 }
