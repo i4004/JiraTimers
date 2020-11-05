@@ -5,6 +5,9 @@ import QtQuick.Window 2.1
 import jira.timers.theme 1.0
 import "Controls"
 
+import "WindowsManager.js"
+as WindowsManager
+
 ScopedApplicationWindow
 {
 	id: app
@@ -41,6 +44,8 @@ ScopedApplicationWindow
 		loadWindowPositionAndSize();
 
 		visible = true;
+
+		tryCreateCreateItsClient();
 	}
 
 	onClosing:
@@ -104,5 +109,22 @@ ScopedApplicationWindow
 		settings.mainWindowY = y;
 		settings.mainWindowWidth = width;
 		settings.mainWindowHeight = height;
+	}
+
+	function tryCreateCreateItsClient()
+	{
+		var itsClientStore = scope.getItsClientStore();
+
+		if (!itsClientStore.readyToConnect())
+			return;
+
+		var result = itsClientStore.tryCreateItsClient();
+
+		if (result == null)
+			return;
+
+		var window = WindowsManager.openWindow("Controls/MessageDialog.qml", parent);
+
+		window.text = result;
 	}
 }

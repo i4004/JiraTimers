@@ -7,9 +7,15 @@ import jira.timers.theme 1.0
 import "../WindowsManager.js"
 as WindowsManager
 
+import JiraTimers.Net.Components 1.0
+
 ToolBar
 {
+	// id: toolBar
 	Material.foreground: parent.Material.foreground
+
+	property
+	var itsClientStore
 
 	RowLayout
 	{
@@ -17,7 +23,8 @@ ToolBar
 
 		Label
 		{
-			text: qsTr("Status bar")
+			id: toolbarMNessage
+			// text: jiraClientStore.isConnected
 
 			font.pixelSize: Theme.fontSize
 
@@ -40,4 +47,17 @@ ToolBar
 			}
 		}
 	}
+
+	JiraTimersLifeTimeScope
+	{
+		id: scope
+	}
+
+	Component.onCompleted:
+	{
+		itsClientStore = scope.getItsClientStore();
+		toolbarMNessage.text = itsClientStore.isConnected ? "Connected" : "Not connected";
+	}
+
+	Component.onDestruction: scope.dispose()
 }
