@@ -40,7 +40,7 @@ ThemedWindow
 		source: "../Images/GrayIcon.png"
 
 		anchors.centerIn: parent
-		visible: false
+		z: -1
 	}
 
 	footer: JiraTimersToolbar
