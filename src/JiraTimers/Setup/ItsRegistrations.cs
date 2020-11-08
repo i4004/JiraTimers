@@ -10,8 +10,9 @@ namespace JiraTimers.Setup
 		{
 			return
 				registrator.Register<IItsClientFactory, JiraItsClientFactory>()
-				.Register<ItsClientStore>()
-				.Register<IItsClientStore>(r => r.Resolve<ItsClientStore>(), LifetimeType.Singleton);
+					.Register<ItsClientStore>()
+					.Register<IItsClientStore>(r => r.Resolve<ItsClientStore>(), LifetimeType.Singleton)
+					.Register<IItsTrackingIssuesList, ItsTrackingIssuesList>(LifetimeType.Singleton);
 		}
 	}
 }
