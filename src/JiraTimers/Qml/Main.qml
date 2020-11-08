@@ -28,6 +28,13 @@ ThemedWindow
 
 	property bool customMinimize: false;
 
+	Image
+	{
+		source: "../Images/GrayIcon.png"
+
+		anchors.centerIn: parent
+	}
+
 	footer: JiraTimersToolbar
 	{
 		id: toolBar
