@@ -8,7 +8,7 @@ namespace JiraTimers.Setup
 		public static IDIContainerProvider RegisterJiraTimers(this IDIContainerProvider container, string[] args)
 		{
 			container.RegisterConfiguration()
-				.RegisterJira()
+				.RegisterIts()
 				.RegisterQt(args)
 				.RegisterCryptography()
 				.RegisterJiraTimersSettings();

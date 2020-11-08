@@ -4,6 +4,7 @@ import QtQuick.Controls.Material 2.1
 import QtQuick.Layouts 1.3
 
 import jira.timers.theme 1.0
+
 import "../WindowsManager.js"
 as WindowsManager
 
@@ -11,13 +12,48 @@ ToolBar
 {
 	Material.foreground: parent.Material.foreground
 
+	property alias text: toolbarMNessage.text
+
+	function runBusyIndicator()
+	{
+		busyIndicator.run();
+	}
+
+	function stopBusyIndicator()
+	{
+		busyIndicator.stop();
+	}
+
 	RowLayout
 	{
 		anchors.fill: parent
 
+		BusyIndicator
+		{
+			id: busyIndicator
+
+			running: false
+			visible: false
+
+			Layout.maximumWidth: 45
+			Layout.maximumHeight: 45
+
+			function run()
+			{
+				running = true;
+				visible = true;
+			}
+
+			function stop()
+			{
+				visible = false;
+				running = false;
+			}
+		}
+
 		Label
 		{
-			text: qsTr("Status bar")
+			id: toolbarMNessage
 
 			font.pixelSize: Theme.fontSize
 

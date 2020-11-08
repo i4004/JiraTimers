@@ -1,11 +1,10 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.1
-import QtQuick.Layouts 1.3
 
 import jira.timers.theme 1.0
 
-ApplicationWindow
+ThemedWindow
 {
 	id: messageDialog
 
@@ -18,12 +17,6 @@ ApplicationWindow
 
 	flags: Qt.Dialog
 	modality: Qt.ApplicationModal
-
-	Material.theme: parent.Material.theme
-	Material.primary: parent.Material.primary
-	Material.accent: parent.Material.accent
-	Material.foreground: parent.Material.foreground
-	Material.background: parent.Material.background
 
 	visible: true
 
@@ -43,8 +36,8 @@ ApplicationWindow
 
 			horizontalAlignment: TextEdit.AlignHCenter
 
-			color: parent.Material.foreground
-			selectionColor: parent.Material.accent
+			color: Material.foreground
+			selectionColor: Material.accent
 			font.pointSize: 12
 
 			readOnly: true
@@ -57,7 +50,8 @@ ApplicationWindow
 	{
 		id: toolBar
 
-		Material.background: parent.Material.background
+		Material.foreground: messageDialog.Material.foreground
+		Material.background: messageDialog.Material.background
 
 		Button
 		{

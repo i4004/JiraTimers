@@ -5,7 +5,10 @@ import QtQuick.Window 2.1
 import jira.timers.theme 1.0
 import "Controls"
 
-ScopedApplicationWindow
+import "WindowsManager.js"
+as WindowsManager
+
+ThemedWindow
 {
 	id: app
 	title: Qt.application.name
@@ -25,8 +28,17 @@ ScopedApplicationWindow
 
 	property bool customMinimize: false;
 
+	Image
+	{
+		source: "../Images/GrayIcon.png"
+
+		anchors.centerIn: parent
+	}
+
 	footer: JiraTimersToolbar
-	{}
+	{
+		id: toolBar
+	}
 
 	JiraTimersSystemTrayIcon
 	{
@@ -41,6 +53,8 @@ ScopedApplicationWindow
 		loadWindowPositionAndSize();
 
 		visible = true;
+
+		tryCreateCreateItsClient();
 	}
 
 	onClosing:
@@ -104,5 +118,35 @@ ScopedApplicationWindow
 		settings.mainWindowY = y;
 		settings.mainWindowWidth = width;
 		settings.mainWindowHeight = height;
+	}
+
+	function tryCreateCreateItsClient()
+	{
+		toolBar.runBusyIndicator();
+		toolBar.text = "Connecting...";
+
+		var itsClientStore = scope.getItsClientStore();
+
+		if (!itsClientStore.readyToConnect())
+			return;
+
+		var task = itsClientStore.tryCreateItsClientAsync();
+
+		Net.await(task, function(result)
+		{
+			toolBar.stopBusyIndicator();
+
+			if (result == null)
+			{
+				toolBar.text = "Connected";
+
+				return;
+			}
+
+			toolBar.text = "Not connected";
+
+			var window = WindowsManager.openWindow("Controls/MessageDialog.qml", app);
+			window.text = result;
+		})
 	}
 }
