@@ -122,13 +122,13 @@ ThemedWindow
 
 	function tryCreateCreateItsClient()
 	{
-		toolBar.runBusyIndicator();
-		toolBar.text = "Connecting...";
-
 		var itsClientStore = scope.getItsClientStore();
 
 		if (!itsClientStore.readyToConnect())
 			return;
+
+		toolBar.runBusyIndicator();
+		toolBar.text = "Connecting...";
 
 		var task = itsClientStore.tryCreateItsClientAsync();
 
