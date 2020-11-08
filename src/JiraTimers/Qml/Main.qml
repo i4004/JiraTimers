@@ -13,10 +13,10 @@ ThemedWindow
 	id: app
 	title: Qt.application.name
 
-	minimumWidth: 400
+	minimumWidth: 620
 	minimumHeight: 300
 
-	width: 520
+	width: 620
 	height: 520
 
 	flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
@@ -28,18 +28,19 @@ ThemedWindow
 
 	property bool customMinimize: false;
 
-	Image
-	{
-		source: "../Images/GrayIcon.png"
-
-		anchors.centerIn: parent
-	}
-
 	ItsTrackingIssuesList
 	{
 		id: trackingIssuesList
 
 		anchors.fill: parent
+	}
+
+	Image
+	{
+		source: "../Images/GrayIcon.png"
+
+		anchors.centerIn: parent
+		visible: false
 	}
 
 	footer: JiraTimersToolbar

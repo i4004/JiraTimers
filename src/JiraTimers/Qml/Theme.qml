@@ -8,6 +8,9 @@ QtObject
 
 	readonly property int paddingMedium: 10
 
+	readonly property int toolButtonWidth: 50
+	readonly property int toolButtonHeight: 50
+
 	readonly property int fontSize: 20
 
 	function setTheme(app, isDark)

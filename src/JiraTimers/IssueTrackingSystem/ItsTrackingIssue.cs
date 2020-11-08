@@ -6,5 +6,11 @@ namespace JiraTimers.IssueTrackingSystem
 	{
 		[NotifySignal]
 		public string Name { get; set; }
+
+		[NotifySignal]
+		public string Time { get; set; }
+
+		[NotifySignal]
+		public string Description { get; set; }
 	}
 }
