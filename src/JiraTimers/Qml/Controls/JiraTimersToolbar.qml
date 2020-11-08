@@ -12,7 +12,7 @@ ToolBar
 {
 	Material.foreground: parent.Material.foreground
 
-	property alias text: toolbarMNessage.text
+	property alias text: toolbarNessage.text
 
 	function runBusyIndicator()
 	{
@@ -53,7 +53,7 @@ ToolBar
 
 		Label
 		{
-			id: toolbarMNessage
+			id: toolbarNessage
 
 			font.pixelSize: Theme.fontSize
 
