@@ -45,7 +45,7 @@ namespace JiraTimers.IssueTrackingSystem
 
 		public bool ReadyToConnect()
 		{
-			return _settings.JiraBaseUrl != null && _settings.JiraUserName != null && _settings.JiraUserPassword != null;
+			return !string.IsNullOrEmpty(_settings.JiraBaseUrl) && !string.IsNullOrEmpty(_settings.JiraUserName) && !string.IsNullOrEmpty(_settings.JiraUserPassword);
 		}
 
 		public async Task<string> TryCreateItsClientAsync()
