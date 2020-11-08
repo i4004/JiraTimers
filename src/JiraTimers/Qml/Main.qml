@@ -35,6 +35,13 @@ ThemedWindow
 		anchors.centerIn: parent
 	}
 
+	ItsTrackingIssuesList
+	{
+		id: trackingIssuesList
+
+		anchors.fill: parent
+	}
+
 	footer: JiraTimersToolbar
 	{
 		id: toolBar
@@ -53,6 +60,10 @@ ThemedWindow
 		loadWindowPositionAndSize();
 
 		visible = true;
+
+		var list = scope.getItsTrackingIssuesList();
+
+		trackingIssuesList.model = Net.toListModel(list.items);
 
 		tryCreateCreateItsClient();
 	}
