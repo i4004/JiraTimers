@@ -10,6 +10,6 @@ namespace JiraTimers.IssueTrackingSystem
 			Items.Add(new ItsTrackingIssue { Name = "Issue 2" });
 		}
 
-		public IList<IItsTrackingIssue> Items => new List<IItsTrackingIssue>();
+		public IList<IItsTrackingIssue> Items { get; } = new List<IItsTrackingIssue>();
 	}
 }
