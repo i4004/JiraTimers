@@ -37,7 +37,10 @@ Column
 
 					TextEdit
 					{
+						id: textName
+
 						text: modelData.name
+						property string placeholderText: "Enter issue key here and press enter..."
 
 						width: 150
 						height: 50
@@ -47,9 +50,16 @@ Column
 						color: Material.foreground
 						selectionColor: Material.accent
 						font.pointSize: 15
+						font.capitalization: Font.AllUppercase
 
-						readOnly: true
 						selectByMouse: true
+
+						Text
+						{
+							text: textName.placeholderText
+							color: Material.accent
+							visible: !textName.text
+						}
 					}
 				}
 
