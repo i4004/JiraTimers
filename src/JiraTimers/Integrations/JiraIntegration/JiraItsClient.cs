@@ -8,10 +8,12 @@ namespace JiraTimers.Integrations.JiraIntegration
 	public class JiraItsClient : IItsClient
 	{
 		private readonly Jira _client;
+		private readonly JiraBasedItsIssuesFactory _issuesFactory;
 
-		public JiraItsClient(Jira client)
+		public JiraItsClient(Jira client, JiraBasedItsIssuesFactory issuesFactory)
 		{
 			_client = client;
+			_issuesFactory = issuesFactory;
 		}
 
 		public async Task<string> CheckConnectionAsync()
@@ -30,6 +32,14 @@ namespace JiraTimers.Integrations.JiraIntegration
 			}
 
 			return null;
+		}
+
+		public async Task<IItsIssue> GetIssue(string issueKey)
+		{
+			_client.Issues.MaxIssuesPerRequest = 10;
+			var result = await _client.Issues.GetIssueAsync(issueKey);
+
+			return result == null ? null : _issuesFactory.Create(result);
 		}
 	}
 }

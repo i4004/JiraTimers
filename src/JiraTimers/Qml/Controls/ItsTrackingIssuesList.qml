@@ -39,7 +39,7 @@ Column
 					{
 						id: textName
 
-						text: modelData.name
+						text: modelData.issue.key
 						property string placeholderText: "Enter issue key here and press enter..."
 
 						width: 150
@@ -142,7 +142,7 @@ Column
 
 			TextEdit
 			{
-				text: modelData.description
+				text: modelData.issue.summary
 
 				anchors.left: parent.left
 				anchors.leftMargin: Theme.paddingMedium

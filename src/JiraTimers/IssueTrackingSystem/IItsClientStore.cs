@@ -6,6 +6,8 @@ namespace JiraTimers.IssueTrackingSystem
 	{
 		public bool IsConnected { get; }
 
+		public IItsClient Client { get; }
+
 		public bool ReadyToConnect();
 
 		public Task<string> TryCreateItsClientAsync();

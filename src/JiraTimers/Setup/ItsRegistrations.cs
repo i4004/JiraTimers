@@ -9,7 +9,9 @@ namespace JiraTimers.Setup
 		public static IDIRegistrator RegisterIts(this IDIRegistrator registrator)
 		{
 			return
-				registrator.Register<IItsClientFactory, JiraItsClientFactory>()
+				registrator
+					.Register<JiraBasedItsIssuesFactory>(LifetimeType.Singleton)
+					.Register<IItsClientFactory, JiraItsClientFactory>()
 					.Register<ItsClientStore>()
 					.Register<IItsClientStore>(r => r.Resolve<ItsClientStore>(), LifetimeType.Singleton)
 					.Register<IItsTrackingIssuesList, ItsTrackingIssuesList>(LifetimeType.Singleton);
