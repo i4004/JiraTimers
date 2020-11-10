@@ -6,6 +6,6 @@ namespace JiraTimers.IssueTrackingSystem
 	{
 		Task<string> CheckConnectionAsync();
 
-		Task<IItsIssue> GetIssue(string issueKey);
+		Task<IItsIssue> GetIssueAsync(string issueKey);
 	}
 }

@@ -34,7 +34,7 @@ namespace JiraTimers.Integrations.JiraIntegration
 			return null;
 		}
 
-		public async Task<IItsIssue> GetIssue(string issueKey)
+		public async Task<IItsIssue> GetIssueAsync(string issueKey)
 		{
 			_client.Issues.MaxIssuesPerRequest = 10;
 			var result = await _client.Issues.GetIssueAsync(issueKey);

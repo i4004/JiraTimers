@@ -37,7 +37,7 @@ Column
 
 					TextEdit
 					{
-						id: textName
+						id: textKey
 
 						text: modelData.issue.key
 						property string placeholderText: "Enter issue key here and press enter..."
@@ -56,9 +56,20 @@ Column
 
 						Text
 						{
-							text: textName.placeholderText
+							text: textKey.placeholderText
 							color: Material.accent
-							visible: !textName.text
+							visible: !textKey.text
+						}
+
+						Keys.onReturnPressed:
+						{
+							var client = scope.getItsClientStore().client;
+							var task = client.getIssueAsync(textKey.text);
+
+							Net.await(task, function(result)
+							{
+								console.log(result)
+							});
 						}
 					}
 				}
