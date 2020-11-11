@@ -7,8 +7,8 @@ import JiraTimers.Types 1.0
 import "Controls"
 import "Controls/TrackingIssuesList"
 import "Windows"
-import "Windows/WindowsManager.js"
-as WindowsManager
+import "Windows/WindowManager.js"
+as WindowManager
 
 ThemedWindow
 {
@@ -169,7 +169,7 @@ ThemedWindow
 
 			toolBar.text = "Not connected";
 
-			var window = WindowsManager.openWindow("Controls/MessageDialog.qml", app);
+			var window = WindowManager.openWindow("Controls/MessageDialog.qml", app);
 			window.text = result;
 		})
 	}

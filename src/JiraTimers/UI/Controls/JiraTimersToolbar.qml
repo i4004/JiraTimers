@@ -5,8 +5,8 @@ import QtQuick.Layouts 1.3
 
 import JiraTimers.Types 1.0
 
-import "../Windows/WindowsManager.js"
-as WindowsManager
+import "../Windows/WindowManager.js"
+as WindowManager
 
 ToolBar
 {
@@ -72,7 +72,7 @@ ToolBar
 
 			onClicked:
 			{
-				var window = WindowsManager.openWindow("SettingsWindow.qml", parent);
+				var window = WindowManager.openWindow("SettingsWindow.qml", parent);
 			}
 		}
 	}
