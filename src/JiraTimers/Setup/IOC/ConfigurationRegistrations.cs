@@ -3,7 +3,7 @@ using JiraTimers.Configuration;
 using Microsoft.Extensions.Configuration;
 using Simplify.DI;
 
-namespace JiraTimers.Setup
+namespace JiraTimers.Setup.IOC
 {
 	public static class ConfigurationRegistrations
 	{

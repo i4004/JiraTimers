@@ -3,16 +3,16 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.1
 import QtQuick.Layouts 1.3
 
-import jira.timers.theme 1.0
+import JiraTimers.Types 1.0
 
-import "../WindowsManager.js"
+import "../Windows/WindowsManager.js"
 as WindowsManager
 
 ToolBar
 {
 	Material.foreground: parent.Material.foreground
 
-	property alias text: toolbarMNessage.text
+	property alias text: toolbarNessage.text
 
 	function runBusyIndicator()
 	{
@@ -53,7 +53,7 @@ ToolBar
 
 		Label
 		{
-			id: toolbarMNessage
+			id: toolbarNessage
 
 			font.pixelSize: Theme.fontSize
 
@@ -72,7 +72,7 @@ ToolBar
 
 			onClicked:
 			{
-				var window = WindowsManager.openWindow("Windows/SettingsWindow.qml", parent);
+				var window = WindowsManager.openWindow("SettingsWindow.qml", parent);
 			}
 		}
 	}

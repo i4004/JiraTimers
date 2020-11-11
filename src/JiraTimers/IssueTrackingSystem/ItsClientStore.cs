@@ -10,7 +10,6 @@ namespace JiraTimers.IssueTrackingSystem
 		private readonly ISettings _settings;
 		private readonly IItsClientFactory _clientFactory;
 
-		private IItsClient _client;
 		private bool _isConnected;
 
 		public ItsClientStore(ISettings settings, IItsClientFactory clientFactory)
@@ -19,16 +18,8 @@ namespace JiraTimers.IssueTrackingSystem
 			_clientFactory = clientFactory;
 		}
 
-		public IItsClient Client
-		{
-			get => _client;
-			private set
-			{
-				_client = value;
-
-				IsConnected = _client != null;
-			}
-		}
+		[NotifySignal]
+		public IItsClient Client { get; private set; }
 
 		[NotifySignal]
 		public bool IsConnected
@@ -43,9 +34,9 @@ namespace JiraTimers.IssueTrackingSystem
 			}
 		}
 
-		public bool ReadyToConnect()
+		public bool ReadyToCreate()
 		{
-			return _settings.JiraBaseUrl != null && _settings.JiraUserName != null && _settings.JiraUserPassword != null;
+			return !string.IsNullOrEmpty(_settings.JiraBaseUrl) && !string.IsNullOrEmpty(_settings.JiraUserName) && !string.IsNullOrEmpty(_settings.JiraUserPassword);
 		}
 
 		public async Task<string> TryCreateItsClientAsync()
@@ -53,7 +44,10 @@ namespace JiraTimers.IssueTrackingSystem
 			var (client, result) = await CreateClientAsync(_settings.JiraBaseUrl, _settings.JiraUserName, _settings.JiraUserPassword);
 
 			if (client != null)
+			{
 				Client = client;
+				IsConnected = true;
+			}
 
 			return result;
 		}
@@ -70,7 +64,7 @@ namespace JiraTimers.IssueTrackingSystem
 			var client = await _clientFactory.CreateAsync(url, userName, userPassword);
 			var result = await client.CheckConnectionAsync();
 
-			return new Tuple<IItsClient, string>(result != null ? client : null, result);
+			return new Tuple<IItsClient, string>(result == null ? client : null, result);
 		}
 	}
 }
