@@ -2,7 +2,7 @@
 using JiraTimers.IssueTrackingSystem;
 using Simplify.DI;
 
-namespace JiraTimers.Setup
+namespace JiraTimers.Setup.IOC
 {
 	public static class ItsRegistrations
 	{

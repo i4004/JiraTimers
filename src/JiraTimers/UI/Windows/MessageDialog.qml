@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.1
 
-import jira.timers.theme 1.0
+import JiraTimers.Types 1.0
 
 ThemedWindow
 {

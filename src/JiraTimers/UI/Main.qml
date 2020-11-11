@@ -2,16 +2,20 @@
 import QtQuick.Controls 2.3
 import QtQuick.Window 2.1
 
-import jira.timers.theme 1.0
-import "Controls"
+import JiraTimers.Types 1.0
 
-import "WindowsManager.js"
+import "Controls"
+import "Controls/TrackingIssuesList"
+import "Windows"
+import "Windows/WindowsManager.js"
 as WindowsManager
 
 ThemedWindow
 {
+	// Properties
+
 	id: app
-	title: Qt.application.name
+	title: AppInfo.name
 
 	minimumWidth: 620
 	minimumHeight: 300
@@ -27,6 +31,8 @@ ThemedWindow
 	var settings;
 
 	property bool customMinimize: false;
+
+	// Controls
 
 	ItsTrackingIssuesList
 	{
@@ -53,7 +59,23 @@ ThemedWindow
 		id: systemTrayIcon
 	}
 
-	Component.onCompleted:
+	// Events
+
+	Component.onCompleted: initialize()
+
+	onClosing:
+	{
+		if (processMinimizeInsteadOfClose())
+			close.accepted = false;
+		else
+			saveWindowPositionAndSize();
+	}
+
+	onVisibilityChanged: processHideInsteadOfMinimize()
+
+	// Commands
+
+	function initialize()
 	{
 		settings = scope.getSettings();
 
@@ -68,16 +90,6 @@ ThemedWindow
 
 		tryCreateItsClient();
 	}
-
-	onClosing:
-	{
-		if (processMinimizeInsteadOfClose())
-			close.accepted = false;
-		else
-			saveWindowPositionAndSize();
-	}
-
-	onVisibilityChanged: processHideInsteadOfMinimize()
 
 	function processMinimizeInsteadOfClose()
 	{
