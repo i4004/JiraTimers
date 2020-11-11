@@ -66,7 +66,7 @@ ThemedWindow
 
 		trackingIssuesList.model = Net.toListModel(list.items);
 
-		tryCreateCreateItsClient();
+		tryCreateItsClient();
 	}
 
 	onClosing:
@@ -132,7 +132,7 @@ ThemedWindow
 		settings.mainWindowHeight = height;
 	}
 
-	function tryCreateCreateItsClient()
+	function tryCreateItsClient()
 	{
 		var itsClientStore = scope.getItsClientStore();
 
