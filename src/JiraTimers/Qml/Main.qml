@@ -136,7 +136,7 @@ ThemedWindow
 	{
 		var itsClientStore = scope.getItsClientStore();
 
-		if (!itsClientStore.readyToConnect())
+		if (!itsClientStore.readyToCreate())
 			return;
 
 		toolBar.runBusyIndicator();

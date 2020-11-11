@@ -34,7 +34,7 @@ namespace JiraTimers.IssueTrackingSystem
 			}
 		}
 
-		public bool ReadyToConnect()
+		public bool ReadyToCreate()
 		{
 			return !string.IsNullOrEmpty(_settings.JiraBaseUrl) && !string.IsNullOrEmpty(_settings.JiraUserName) && !string.IsNullOrEmpty(_settings.JiraUserPassword);
 		}
