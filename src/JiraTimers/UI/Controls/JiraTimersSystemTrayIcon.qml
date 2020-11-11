@@ -1,12 +1,14 @@
 import QtQuick.Window 2.1
 import Qt.labs.platform 1.1
 
+import JiraTimers.Types 1.0
+
 SystemTrayIcon
 {
 	id: sysTray
 
 	icon.source: "../../Images/Icon.png"
-	tooltip: Qt.application.name
+	tooltip: AppInfo.name
 
 	visible: true
 

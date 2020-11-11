@@ -6,9 +6,32 @@ namespace JiraTimers.IssueTrackingSystem
 	{
 		public ItsTrackingIssuesList()
 		{
-			Items.Add(new ItsTrackingIssue { Name = "DEV-125", Time = "00:01:25", Description = "fix an error in task" });
-			Items.Add(new ItsTrackingIssue { Name = "JIRATM-25", Time = "00:15:40", Description = "Linux (Ubuntu) installation package setup/development" });
-			Items.Add(new ItsTrackingIssue { Name = "JIRATM-26", Time = "02:10:40", Description = "Windows Chocolatey installation package setup/development" });
+			Items.Add(new ItsTrackingIssue(new ItsIssue
+			{
+				Key = "DEV-125",
+				Summary = "fix an error in task"
+			})
+			{
+				Time = "00:01:25"
+			});
+
+			Items.Add(new ItsTrackingIssue(new ItsIssue
+			{
+				Key = "JIRATM-25",
+				Summary = "Linux (Ubuntu) installation package setup/development"
+			})
+			{
+				Time = "00:01:25"
+			});
+
+			Items.Add(new ItsTrackingIssue(new ItsIssue
+			{
+				Key = "JIRATM-26",
+				Summary = "Windows Chocolatey installation package setup/development"
+			})
+			{
+				Time = "00:01:25"
+			});
 		}
 
 		public IList<IItsTrackingIssue> Items { get; } = new List<IItsTrackingIssue>();

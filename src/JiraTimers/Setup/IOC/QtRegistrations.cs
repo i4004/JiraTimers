@@ -1,7 +1,7 @@
 ﻿using Qml.Net;
 using Simplify.DI;
 
-namespace JiraTimers.Setup
+namespace JiraTimers.Setup.IOC
 {
 	public static class QtRegistrations
 	{

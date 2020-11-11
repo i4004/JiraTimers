@@ -2,16 +2,20 @@
 import QtQuick.Controls 2.3
 import QtQuick.Window 2.1
 
-import jira.timers.theme 1.0
-import "Controls"
+import JiraTimers.Types 1.0
 
-import "WindowsManager.js"
-as WindowsManager
+import "Controls"
+import "Controls/TrackingIssuesList"
+import "Windows"
+import "Windows/WindowManager.js"
+as WindowManager
 
 ThemedWindow
 {
+	// Properties
+
 	id: app
-	title: Qt.application.name
+	title: AppInfo.name
 
 	minimumWidth: 620
 	minimumHeight: 300
@@ -27,6 +31,8 @@ ThemedWindow
 	var settings;
 
 	property bool customMinimize: false;
+
+	// Controls
 
 	ItsTrackingIssuesList
 	{
@@ -53,7 +59,23 @@ ThemedWindow
 		id: systemTrayIcon
 	}
 
-	Component.onCompleted:
+	// Events
+
+	Component.onCompleted: initialize()
+
+	onClosing:
+	{
+		if (processMinimizeInsteadOfClose())
+			close.accepted = false;
+		else
+			saveWindowPositionAndSize();
+	}
+
+	onVisibilityChanged: processHideInsteadOfMinimize()
+
+	// Commands
+
+	function initialize()
 	{
 		settings = scope.getSettings();
 
@@ -66,18 +88,8 @@ ThemedWindow
 
 		trackingIssuesList.model = Net.toListModel(list.items);
 
-		tryCreateCreateItsClient();
+		tryCreateItsClient();
 	}
-
-	onClosing:
-	{
-		if (processMinimizeInsteadOfClose())
-			close.accepted = false;
-		else
-			saveWindowPositionAndSize();
-	}
-
-	onVisibilityChanged: processHideInsteadOfMinimize()
 
 	function processMinimizeInsteadOfClose()
 	{
@@ -132,11 +144,11 @@ ThemedWindow
 		settings.mainWindowHeight = height;
 	}
 
-	function tryCreateCreateItsClient()
+	function tryCreateItsClient()
 	{
 		var itsClientStore = scope.getItsClientStore();
 
-		if (!itsClientStore.readyToConnect())
+		if (!itsClientStore.readyToCreate())
 			return;
 
 		toolBar.runBusyIndicator();
@@ -157,7 +169,7 @@ ThemedWindow
 
 			toolBar.text = "Not connected";
 
-			var window = WindowsManager.openWindow("Controls/MessageDialog.qml", app);
+			var window = WindowManager.openWindow("Controls/MessageDialog.qml", app);
 			window.text = result;
 		})
 	}

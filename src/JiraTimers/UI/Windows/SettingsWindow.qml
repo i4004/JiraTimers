@@ -3,11 +3,11 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.1
 import QtQuick.Layouts 1.3
 
-import jira.timers.theme 1.0
-import "../Controls"
+import JiraTimers.Types 1.0
 
-import "../WindowsManager.js"
-as WindowsManager
+import "../Controls"
+import "../Windows/WindowManager.js"
+as WindowManager
 
 ThemedWindow
 {
@@ -147,7 +147,7 @@ ThemedWindow
 					busyIndicator.running = false;
 					testConnectionButton.enabled = true;
 
-					var window = WindowsManager.openWindow("Controls/MessageDialog.qml", parent);
+					var window = WindowManager.openWindow("MessageDialog.qml", parent);
 
 					if (result == null)
 						window.text = "Connection is OK!";

@@ -1,16 +1,18 @@
-﻿using Qml.Net;
+﻿using System;
+using Qml.Net;
 
 namespace JiraTimers.IssueTrackingSystem
 {
 	public class ItsTrackingIssue : IItsTrackingIssue
 	{
-		[NotifySignal]
-		public string Name { get; set; }
+		public ItsTrackingIssue(IItsIssue baseIssue)
+		{
+			Issue = baseIssue ?? throw new ArgumentNullException(nameof(baseIssue));
+		}
+
+		public IItsIssue Issue { get; }
 
 		[NotifySignal]
 		public string Time { get; set; }
-
-		[NotifySignal]
-		public string Description { get; set; }
 	}
 }

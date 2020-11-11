@@ -3,7 +3,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.1
 import QtQuick.Layouts 1.3
 
-import jira.timers.theme 1.0
+import JiraTimers.Types 1.0
 
 Column
 {
@@ -37,9 +37,9 @@ Column
 
 					TextEdit
 					{
-						id: textName
+						id: textKey
 
-						text: modelData.name
+						text: modelData.issue.key
 						property string placeholderText: "Enter issue key here and press enter..."
 
 						width: 150
@@ -56,9 +56,20 @@ Column
 
 						Text
 						{
-							text: textName.placeholderText
+							text: textKey.placeholderText
 							color: Material.accent
-							visible: !textName.text
+							visible: !textKey.text
+						}
+
+						Keys.onReturnPressed:
+						{
+							var client = scope.getItsClientStore().client;
+							var task = client.getIssueAsync(textKey.text);
+
+							Net.await(task, function(result)
+							{
+								console.log(result)
+							});
 						}
 					}
 				}
@@ -142,7 +153,7 @@ Column
 
 			TextEdit
 			{
-				text: modelData.description
+				text: modelData.issue.summary
 
 				anchors.left: parent.left
 				anchors.leftMargin: Theme.paddingMedium
