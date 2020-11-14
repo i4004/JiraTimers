@@ -93,6 +93,9 @@ Column
 						width: Theme.toolButtonWidth
 
 						highlighted: true
+
+						enabled: false
+						// enabled: textKey.text
 					}
 
 					TextEdit
@@ -121,6 +124,9 @@ Column
 						width: Theme.toolButtonWidth
 
 						highlighted: true
+
+						enabled: false
+						// enabled: textKey.text
 					}
 
 					Button
@@ -130,6 +136,8 @@ Column
 						font.pointSize: 12
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
+
+						enabled: false
 					}
 
 					Button
@@ -139,6 +147,8 @@ Column
 						font.pointSize: 18
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
+
+						enabled: false
 					}
 
 					Button
