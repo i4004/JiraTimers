@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.1
+import QtQuick.Dialogs 1.3
 import QtQuick.Layouts 1.3
 
 import JiraTimers.Types 1.0
@@ -18,6 +19,8 @@ Column
 
 	property
 	var list: scope.getItsTrackingIssuesList()
+
+	property string itemToRemoveID
 
 	Repeater
 	{
@@ -160,6 +163,12 @@ Column
 						width: Theme.toolButtonWidth
 
 						highlighted: true
+
+						onClicked:
+						{
+							itemToRemoveID = modelData.issue.iD;
+							deleteConfirmationDialog.open();
+						}
 					}
 				}
 			}
@@ -218,6 +227,22 @@ Column
 		onClicked:
 		{
 			list.createNewItem();
+			refreshModel();
+		}
+	}
+
+	MessageDialog
+	{
+		id: deleteConfirmationDialog
+
+		icon: StandardIcon.Question
+		standardButtons: StandardButton.Yes | StandardButton.No
+
+		informativeText: "Are you sure to delete the item?"
+
+		onYes:
+		{
+			list.removeItem(itemToRemoveID);
 			refreshModel();
 		}
 	}

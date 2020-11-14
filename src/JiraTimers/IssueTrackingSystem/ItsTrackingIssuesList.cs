@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JiraTimers.IssueTrackingSystem
 {
@@ -46,6 +47,14 @@ namespace JiraTimers.IssueTrackingSystem
 			{
 				ID = new Guid().ToString()
 			}));
+		}
+
+		public void RemoveItem(string id)
+		{
+			if (string.IsNullOrEmpty(id))
+				throw new ArgumentException("Value cannot be null or empty.", nameof(id));
+
+			Items.Remove(Items.First(x => x.Issue.ID == id));
 		}
 	}
 }
