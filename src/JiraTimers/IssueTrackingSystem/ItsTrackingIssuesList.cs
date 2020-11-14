@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace JiraTimers.IssueTrackingSystem
 {
@@ -8,6 +9,7 @@ namespace JiraTimers.IssueTrackingSystem
 		{
 			Items.Add(new ItsTrackingIssue(new ItsIssue
 			{
+				ID = new Guid().ToString(),
 				Key = "DEV-125",
 				Summary = "fix an error in task"
 			})
@@ -17,6 +19,7 @@ namespace JiraTimers.IssueTrackingSystem
 
 			Items.Add(new ItsTrackingIssue(new ItsIssue
 			{
+				ID = new Guid().ToString(),
 				Key = "JIRATM-25",
 				Summary = "Linux (Ubuntu) installation package setup/development"
 			})
@@ -26,6 +29,7 @@ namespace JiraTimers.IssueTrackingSystem
 
 			Items.Add(new ItsTrackingIssue(new ItsIssue
 			{
+				ID = new Guid().ToString(),
 				Key = "JIRATM-26",
 				Summary = "Windows Chocolatey installation package setup/development"
 			})
@@ -35,5 +39,13 @@ namespace JiraTimers.IssueTrackingSystem
 		}
 
 		public IList<IItsTrackingIssue> Items { get; } = new List<IItsTrackingIssue>();
+
+		public void CreateNewItem()
+		{
+			Items.Add(new ItsTrackingIssue(new ItsIssue
+			{
+				ID = new Guid().ToString()
+			}));
+		}
 	}
 }
