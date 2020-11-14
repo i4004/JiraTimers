@@ -84,9 +84,7 @@ ThemedWindow
 
 		visible = true;
 
-		var list = scope.getItsTrackingIssuesList();
-
-		trackingIssuesList.model = Net.toListModel(list.items);
+		trackingIssuesList.refreshModel();
 
 		tryCreateItsClient();
 	}

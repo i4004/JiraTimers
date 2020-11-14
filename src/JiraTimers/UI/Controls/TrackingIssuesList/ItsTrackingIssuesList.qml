@@ -16,6 +16,9 @@ Column
 
 	property alias model: repeater.model
 
+	property
+	var list: scope.getItsTrackingIssuesList()
+
 	Repeater
 	{
 		id: repeater
@@ -201,5 +204,16 @@ Column
 		anchors.rightMargin: Theme.paddingMedium
 
 		highlighted: true
+
+		onClicked:
+		{
+			list.createNewItem();
+			refreshModel();
+		}
+	}
+
+	function refreshModel()
+	{
+		model = Net.toListModel(list.items);
 	}
 }
