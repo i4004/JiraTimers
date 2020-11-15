@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using JiraTimers.IssueTrackingSystem;
 
-namespace JiraTimers.Settings
+namespace JiraTimers.IssueTrackingSystem
 {
 	public interface IItsIssuesStore
 	{

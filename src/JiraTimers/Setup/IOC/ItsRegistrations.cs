@@ -1,4 +1,5 @@
-﻿using JiraTimers.Integrations.JiraIntegration;
+﻿using JiraTimers.Configuration;
+using JiraTimers.Integrations.JiraIntegration;
 using JiraTimers.IssueTrackingSystem;
 using Simplify.DI;
 
@@ -14,7 +15,8 @@ namespace JiraTimers.Setup.IOC
 					.Register<ItsClientStore>(LifetimeType.Singleton)
 					.Register<IItsClientStore>(r => r.Resolve<ItsClientStore>(), LifetimeType.Singleton)
 					.Register<IItsTrackingIssuesList, ItsTrackingIssuesList>(LifetimeType.Singleton)
-					.Register<IItsTrackingIssuesListController, ItsTrackingIssuesListController>(LifetimeType.Singleton);
+					.Register<IItsTrackingIssuesListController, ItsTrackingIssuesListController>(LifetimeType.Singleton)
+					.Register<IItsIssuesStore>(r => new ItsIssuesStore(JiraTimersPaths.GetIssuesSettingsFilePath()), LifetimeType.Singleton);
 		}
 	}
 }

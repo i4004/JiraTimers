@@ -1,5 +1,4 @@
-﻿using JiraTimers.Configuration;
-using JiraTimers.Settings;
+﻿using JiraTimers.Settings;
 using Simplify.DI;
 
 namespace JiraTimers.Setup.IOC
@@ -9,8 +8,7 @@ namespace JiraTimers.Setup.IOC
 		public static IDIRegistrator RegisterJiraTimersSettings(this IDIRegistrator registrator)
 		{
 			return registrator.Register<CacheableSettings>(LifetimeType.Singleton)
-				.Register<ISettings>(r => r.Resolve<CacheableSettings>(), LifetimeType.Singleton)
-				.Register<IItsIssuesStore>(r => new ItsIssuesStore(JiraTimersPaths.GetIssuesSettingsFilePath()), LifetimeType.Singleton);
+				.Register<ISettings>(r => r.Resolve<CacheableSettings>(), LifetimeType.Singleton);
 		}
 	}
 }

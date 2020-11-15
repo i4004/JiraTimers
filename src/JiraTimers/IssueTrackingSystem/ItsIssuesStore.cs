@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Linq;
 using System.Text;
-using JiraTimers.IssueTrackingSystem;
 using Newtonsoft.Json;
 
-namespace JiraTimers.Settings
+namespace JiraTimers.IssueTrackingSystem
 {
 	public class ItsIssuesStore : IItsIssuesStore
 	{
