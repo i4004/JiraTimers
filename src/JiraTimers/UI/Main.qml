@@ -52,6 +52,8 @@ ThemedWindow
 	footer: JiraTimersToolbar
 	{
 		id: toolBar
+
+		onSettingsChanged: tryCreateItsClient()
 	}
 
 	JiraTimersSystemTrayIcon
@@ -84,9 +86,7 @@ ThemedWindow
 
 		visible = true;
 
-		var list = scope.getItsTrackingIssuesList();
-
-		trackingIssuesList.model = Net.toListModel(list.items);
+		trackingIssuesList.refreshModel();
 
 		tryCreateItsClient();
 	}
@@ -163,13 +163,12 @@ ThemedWindow
 			if (result == null)
 			{
 				toolBar.text = "Connected";
-
 				return;
 			}
 
 			toolBar.text = "Not connected";
 
-			var window = WindowManager.openWindow("Controls/MessageDialog.qml", app);
+			var window = WindowManager.openWindow("MessageDialog.qml", app);
 			window.text = result;
 		})
 	}

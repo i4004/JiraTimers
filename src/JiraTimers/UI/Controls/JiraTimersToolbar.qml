@@ -14,6 +14,8 @@ ToolBar
 
 	property alias text: toolbarNessage.text
 
+	signal settingsChanged()
+
 	function runBusyIndicator()
 	{
 		busyIndicator.run();
@@ -73,6 +75,8 @@ ToolBar
 			onClicked:
 			{
 				var window = WindowManager.openWindow("SettingsWindow.qml", parent);
+
+				window.settingsChanged.connect(settingsChanged);
 			}
 		}
 	}

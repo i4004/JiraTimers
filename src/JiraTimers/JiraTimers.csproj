@@ -4,6 +4,9 @@
 		<OutputType>exe</OutputType>
 		<Version>0.1</Version>
 		<RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
+		<Authors>Alexander Krylkov</Authors>
+		<Product>JiraTimers</Product>
+		<Copyright>Licensed under LGPL</Copyright>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Atlassian.SDK" Version="12.1.1" />
@@ -19,6 +22,7 @@
 		<PackageReference Include="Qml.Net.LinuxBinaries" Version="0.11.0" />
 		<PackageReference Include="Qml.Net.OSXBinaries" Version="0.11.0" />
 		<PackageReference Include="Qml.Net.WindowsBinaries" Version="0.11.0" />
+		<PackageReference Include="System.IO.Abstractions" Version="12.2.24" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="Images\**\*">
