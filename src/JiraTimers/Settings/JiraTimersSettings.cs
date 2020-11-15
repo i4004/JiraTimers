@@ -5,9 +5,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace JiraTimers.Settings
 {
-	public class Settings : ISettings
+	public class JiraTimersSettings : ISettings
 	{
-		public Settings(IConfiguration configuration)
+		public JiraTimersSettings(IConfiguration configuration)
 		{
 			Configuration = configuration;
 
