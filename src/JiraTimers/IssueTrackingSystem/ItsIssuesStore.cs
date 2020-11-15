@@ -43,11 +43,7 @@ namespace JiraTimers.IssueTrackingSystem
 
 		private void WriteJson(IList<IItsTrackingIssue> items)
 		{
-			FileSystem.File.WriteAllText(_settingsFilePath, JsonConvert.SerializeObject(items, new JsonSerializerSettings
-			{
-				Formatting = Formatting.Indented
-			}
-			), Encoding.UTF8);
+			FileSystem.File.WriteAllText(_settingsFilePath, JsonConvert.SerializeObject(items), Encoding.UTF8);
 		}
 	}
 }
