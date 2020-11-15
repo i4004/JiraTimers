@@ -35,11 +35,7 @@ namespace JiraTimers.Integrations.JiraIntegration
 			}
 			catch (Exception e)
 			{
-				var message = e.Message.Contains("Unauthorized (401)") ? "Authentication error, check your login or password." : e.Message;
-
-				Console.WriteLine(message);
-
-				return message;
+				return e.Message;
 			}
 
 			return null;
@@ -60,11 +56,11 @@ namespace JiraTimers.Integrations.JiraIntegration
 			}
 			catch (ResourceNotFoundException e) when (e.Message.Contains("Issue Does Not Exist"))
 			{
-				return null;
+				LastOperationResult = "Issue does not exist.";
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e);
+				LastOperationResult = e.Message;
 			}
 
 			return null;

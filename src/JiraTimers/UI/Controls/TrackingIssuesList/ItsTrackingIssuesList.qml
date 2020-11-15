@@ -23,6 +23,9 @@ Column
 	property
 	var list: scope.getItsTrackingIssuesList()
 
+	property
+	var listController: scope.getItsTrackingIssuesListController()
+
 	property string itemToRemoveID
 
 	Repeater
@@ -72,20 +75,16 @@ Column
 
 						Keys.onReturnPressed:
 						{
-							var client = scope.getItsClientStore().client;
-							var task = client.getIssueAsync(textKey.text);
+							var task = listController.refreshIssueInfoAsync(modelData.issue.iD, textKey.text);
 
 							Net.await(task, function(result)
 							{
-								if (client.lastOperationStatus)
-								{
-									list.updateItem(modelData.issue.iD, result);
+								if (result)
 									refreshModel();
-								}
 								else
 								{
-									var window = WindowManager.openWindow("Windows/MessageDialog.qml", app);
-									window.text = client.lastOperationResult;
+									var window = WindowManager.openWindow("MessageDialog.qml", app);
+									window.text = scope.getItsClientStore().client.lastOperationResult;
 								}
 							});
 						}

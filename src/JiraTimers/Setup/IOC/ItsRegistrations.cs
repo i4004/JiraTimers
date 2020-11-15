@@ -13,7 +13,8 @@ namespace JiraTimers.Setup.IOC
 					.Register<IItsClientFactory, JiraItsClientFactory>(LifetimeType.Singleton)
 					.Register<ItsClientStore>(LifetimeType.Singleton)
 					.Register<IItsClientStore>(r => r.Resolve<ItsClientStore>(), LifetimeType.Singleton)
-					.Register<IItsTrackingIssuesList, ItsTrackingIssuesList>(LifetimeType.Singleton);
+					.Register<IItsTrackingIssuesList, ItsTrackingIssuesList>(LifetimeType.Singleton)
+					.Register<IItsTrackingIssuesListController, ItsTrackingIssuesListController>(LifetimeType.Singleton);
 		}
 	}
 }
