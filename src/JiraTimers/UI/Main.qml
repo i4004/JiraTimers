@@ -167,7 +167,7 @@ ThemedWindow
 
 			toolBar.text = "Not connected";
 
-			var window = WindowManager.openWindow("Controls/MessageDialog.qml", app);
+			var window = WindowManager.openWindow("MessageDialog.qml", app);
 			window.text = result;
 		})
 	}
