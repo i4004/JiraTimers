@@ -8,13 +8,13 @@ using Newtonsoft.Json;
 
 namespace JiraTimers.Settings
 {
-	public class IssuesStore : IIssuesStore
+	public class ItsIssuesStore : IItsIssuesStore
 	{
 		private static IFileSystem _fileSystem;
 
 		private readonly string _settingsFilePath;
 
-		public IssuesStore(string settingsFilePath)
+		public ItsIssuesStore(string settingsFilePath)
 		{
 			_settingsFilePath = settingsFilePath;
 		}

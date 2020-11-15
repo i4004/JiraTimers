@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using JiraTimers.Settings;
 
 namespace JiraTimers.IssueTrackingSystem
 {
@@ -7,21 +8,15 @@ namespace JiraTimers.IssueTrackingSystem
 	{
 		private readonly IItsTrackingIssuesList _list;
 		private readonly IItsClientStore _clientStore;
+		private readonly IItsIssuesStore _issuesStore;
 
-		public ItsTrackingIssuesListController(IItsTrackingIssuesList list, IItsClientStore clientStore)
+		public ItsTrackingIssuesListController(IItsTrackingIssuesList list, IItsClientStore clientStore, IItsIssuesStore issuesStore)
 		{
 			_list = list;
 			_clientStore = clientStore;
-		}
+			_issuesStore = issuesStore;
 
-		public void LoadList()
-		{
-			throw new NotImplementedException();
-		}
-
-		public void SaveList()
-		{
-			throw new NotImplementedException();
+			LoadList();
 		}
 
 		public void CreateNewIssue()
@@ -40,7 +35,11 @@ namespace JiraTimers.IssueTrackingSystem
 			var issue = await _clientStore.Client.GetIssueAsync(issueKey);
 
 			if (_clientStore.Client.LastOperationStatus)
+			{
 				_list.UpdateItem(issueID, issue);
+
+				SaveList();
+			}
 
 			return _clientStore.Client.LastOperationStatus;
 		}
@@ -48,6 +47,23 @@ namespace JiraTimers.IssueTrackingSystem
 		public void RemoveIssue(string issueID)
 		{
 			_list.RemoveItem(issueID);
+
+			SaveList();
+		}
+
+		private void LoadList()
+		{
+			_list.Items.Clear();
+
+			var issues = _issuesStore.Load();
+
+			foreach (var item in issues)
+				_list.Items.Add(item);
+		}
+
+		private void SaveList()
+		{
+			_issuesStore.Save(_list.Items);
 		}
 	}
 }

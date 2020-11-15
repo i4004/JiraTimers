@@ -38,10 +38,5 @@ namespace JiraTimers.DI
 		{
 			return _scope.Resolver.Resolve<IItsTrackingIssuesListController>();
 		}
-
-		public IIssuesStore GetIssuesStore()
-		{
-			return _scope.Resolver.Resolve<IIssuesStore>();
-		}
 	}
 }

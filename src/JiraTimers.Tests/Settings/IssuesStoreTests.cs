@@ -15,16 +15,16 @@ namespace JiraTimers.Tests.Settings
 	{
 		private const string TestFilePath = "TestData/Issues.json";
 
-		private IIssuesStore _store;
+		private IItsIssuesStore _store;
 		private Mock<IFileSystem> _fileSystem;
 
 		[SetUp]
 		public void Initialize()
 		{
-			_store = new IssuesStore(JiraTimersPaths.GetIssuesSettingsFilePath());
+			_store = new ItsIssuesStore(JiraTimersPaths.GetIssuesSettingsFilePath());
 			_fileSystem = new Mock<IFileSystem>();
 
-			IssuesStore.FileSystem = _fileSystem.Object;
+			ItsIssuesStore.FileSystem = _fileSystem.Object;
 		}
 
 		[Test]

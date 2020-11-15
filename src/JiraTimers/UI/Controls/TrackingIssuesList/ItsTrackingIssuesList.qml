@@ -235,11 +235,7 @@ Column
 
 		highlighted: true
 
-		onClicked:
-		{
-			listController.createNewIssue();
-			refreshModel();
-		}
+		onClicked: createNewIssue()
 	}
 
 	MessageDialog
@@ -251,11 +247,28 @@ Column
 
 		informativeText: "Are you sure to delete the item?"
 
-		onYes:
-		{
-			listController.removeIssue(itemToRemoveID);
-			refreshModel();
-		}
+		onYes: removeIssue()
+	}
+
+	function createNewIssue()
+	{
+		listController.createNewIssue();
+
+		refreshModel();
+	}
+
+	function updateIssue()
+	{
+		listController.removeIssue(itemToRemoveID);
+
+		refreshModel();
+	}
+
+	function removeIssue()
+	{
+		listController.removeIssue(itemToRemoveID);
+
+		refreshModel();
 	}
 
 	function refreshModel()
