@@ -1,9 +1,13 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.1
+import QtQuick.Dialogs 1.3
 import QtQuick.Layouts 1.3
 
 import JiraTimers.Types 1.0
+
+import "../../Windows/WindowManager.js"
+as WindowManager
 
 Column
 {
@@ -15,6 +19,14 @@ Column
 	anchors.topMargin: Theme.paddingMedium - 7
 
 	property alias model: repeater.model
+
+	property
+	var list: scope.getItsTrackingIssuesList()
+
+	property
+	var listController: scope.getItsTrackingIssuesListController()
+
+	property string itemToRemoveID
 
 	Repeater
 	{
@@ -63,12 +75,17 @@ Column
 
 						Keys.onReturnPressed:
 						{
-							var client = scope.getItsClientStore().client;
-							var task = client.getIssueAsync(textKey.text);
+							var task = listController.refreshIssueInfoAsync(modelData.issue.iD, textKey.text);
 
 							Net.await(task, function(result)
 							{
-								console.log(result)
+								if (result)
+									refreshModel();
+								else
+								{
+									var window = WindowManager.openWindow("MessageDialog.qml", app);
+									window.text = scope.getItsClientStore().client.lastOperationResult;
+								}
 							});
 						}
 					}
@@ -90,6 +107,9 @@ Column
 						width: Theme.toolButtonWidth
 
 						highlighted: true
+
+						enabled: false
+						// enabled: textKey.text
 					}
 
 					TextEdit
@@ -118,6 +138,9 @@ Column
 						width: Theme.toolButtonWidth
 
 						highlighted: true
+
+						enabled: false
+						// enabled: textKey.text
 					}
 
 					Button
@@ -127,6 +150,8 @@ Column
 						font.pointSize: 12
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
+
+						enabled: false
 					}
 
 					Button
@@ -136,6 +161,8 @@ Column
 						font.pointSize: 18
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
+
+						enabled: false
 					}
 
 					Button
@@ -147,6 +174,12 @@ Column
 						width: Theme.toolButtonWidth
 
 						highlighted: true
+
+						onClicked:
+						{
+							itemToRemoveID = modelData.issue.iD;
+							deleteConfirmationDialog.open();
+						}
 					}
 				}
 			}
@@ -201,5 +234,45 @@ Column
 		anchors.rightMargin: Theme.paddingMedium
 
 		highlighted: true
+
+		onClicked: createNewIssue()
+	}
+
+	MessageDialog
+	{
+		id: deleteConfirmationDialog
+
+		icon: StandardIcon.Question
+		standardButtons: StandardButton.Yes | StandardButton.No
+
+		informativeText: "Are you sure to delete the item?"
+
+		onYes: removeIssue()
+	}
+
+	function createNewIssue()
+	{
+		listController.createNewIssue();
+
+		refreshModel();
+	}
+
+	function updateIssue()
+	{
+		listController.removeIssue(itemToRemoveID);
+
+		refreshModel();
+	}
+
+	function removeIssue()
+	{
+		listController.removeIssue(itemToRemoveID);
+
+		refreshModel();
+	}
+
+	function refreshModel()
+	{
+		model = Net.toListModel(list.items);
 	}
 }

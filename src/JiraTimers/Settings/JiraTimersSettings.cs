@@ -2,9 +2,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace JiraTimers.Settings
 {
-	public class WritableAutoSaveSettings : ISettings
+	public class JiraTimersSettings : ISettings
 	{
-		public WritableAutoSaveSettings(IConfiguration configuration)
+		public JiraTimersSettings(IConfiguration configuration)
 		{
 			Configuration = configuration;
 		}

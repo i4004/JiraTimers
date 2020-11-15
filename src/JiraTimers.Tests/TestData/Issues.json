@@ -1,0 +1,18 @@
+[
+  {
+    "Issue": {
+      "ID": "1",
+      "Key": "ISS-1",
+      "Summary": "Sum 1"
+    },
+    "Time": null
+  },
+  {
+    "Issue": {
+      "ID": "2",
+      "Key": "ISS-2",
+      "Summary": "Sum 2"
+    },
+    "Time": null
+  }
+]

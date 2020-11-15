@@ -33,5 +33,10 @@ namespace JiraTimers.DI
 		{
 			return _scope.Resolver.Resolve<IItsTrackingIssuesList>();
 		}
+
+		public IItsTrackingIssuesListController GetItsTrackingIssuesListController()
+		{
+			return _scope.Resolver.Resolve<IItsTrackingIssuesListController>();
+		}
 	}
 }

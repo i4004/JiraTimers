@@ -33,8 +33,7 @@ namespace JiraTimers.Configuration.Writable
 
 		private void WriteJson(dynamic jsonObj)
 		{
-			string output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
-			File.WriteAllText(_container.FilePath, output, Encoding.UTF8);
+			File.WriteAllText(_container.FilePath, JsonConvert.SerializeObject(jsonObj, Formatting.Indented), Encoding.UTF8);
 		}
 	}
 }

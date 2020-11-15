@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Atlassian.Jira;
+using Atlassian.Jira.Remote;
 using JiraTimers.IssueTrackingSystem;
 
 namespace JiraTimers.Integrations.JiraIntegration
@@ -14,7 +15,13 @@ namespace JiraTimers.Integrations.JiraIntegration
 		{
 			_client = client;
 			_issuesFactory = issuesFactory;
+
+			_client.Issues.MaxIssuesPerRequest = 10;
 		}
+
+		public bool LastOperationStatus { get; private set; }
+
+		public string LastOperationResult { get; private set; }
 
 		public async Task<string> CheckConnectionAsync()
 		{
@@ -22,13 +29,13 @@ namespace JiraTimers.Integrations.JiraIntegration
 			{
 				await _client.ServerInfo.GetServerInfoAsync();
 			}
+			catch (Exception e) when (e.Message.Contains("Unauthorized (401)"))
+			{
+				return "Authentication error, check your login or password.";
+			}
 			catch (Exception e)
 			{
-				var message = e.Message.Contains("Unauthorized (401)") ? "Authentication error, check your login or password." : e.Message;
-
-				Console.WriteLine(message);
-
-				return message;
+				return e.Message;
 			}
 
 			return null;
@@ -36,10 +43,27 @@ namespace JiraTimers.Integrations.JiraIntegration
 
 		public async Task<IItsIssue> GetIssueAsync(string issueKey)
 		{
-			_client.Issues.MaxIssuesPerRequest = 10;
-			var result = await _client.Issues.GetIssueAsync(issueKey);
+			LastOperationResult = null;
+			LastOperationStatus = false;
 
-			return result == null ? null : _issuesFactory.Create(result);
+			try
+			{
+				var result = await _client.Issues.GetIssueAsync(issueKey);
+
+				LastOperationStatus = true;
+
+				return _issuesFactory.Create(result);
+			}
+			catch (ResourceNotFoundException e) when (e.Message.Contains("Issue Does Not Exist"))
+			{
+				LastOperationResult = "Issue does not exist.";
+			}
+			catch (Exception e)
+			{
+				LastOperationResult = e.Message;
+			}
+
+			return null;
 		}
 	}
 }
