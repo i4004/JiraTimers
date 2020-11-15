@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace JiraTimers.IssueTrackingSystem
 {
@@ -13,6 +14,14 @@ namespace JiraTimers.IssueTrackingSystem
 			_clientStore = clientStore;
 		}
 
+		public void CreateNewIssue()
+		{
+			_list.AddItem(new ItsTrackingIssue(new ItsIssue
+			{
+				ID = Guid.NewGuid().ToString()
+			}));
+		}
+
 		public async Task<bool> RefreshIssueInfoAsync(string issueID, string issueKey)
 		{
 			var issue = await _clientStore.Client.GetIssueAsync(issueKey);
@@ -21,6 +30,11 @@ namespace JiraTimers.IssueTrackingSystem
 				_list.UpdateItem(issueID, issue);
 
 			return _clientStore.Client.LastOperationStatus;
+		}
+
+		public void RemoveIssue(string issueID)
+		{
+			_list.RemoveItem(issueID);
 		}
 	}
 }

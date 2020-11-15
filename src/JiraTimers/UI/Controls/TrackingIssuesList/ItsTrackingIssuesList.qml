@@ -237,7 +237,7 @@ Column
 
 		onClicked:
 		{
-			list.createNewItem();
+			listController.createNewIssue();
 			refreshModel();
 		}
 	}
@@ -253,7 +253,7 @@ Column
 
 		onYes:
 		{
-			list.removeItem(itemToRemoveID);
+			listController.removeIssue(itemToRemoveID);
 			refreshModel();
 		}
 	}

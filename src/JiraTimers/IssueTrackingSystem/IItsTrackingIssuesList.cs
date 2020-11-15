@@ -6,7 +6,7 @@ namespace JiraTimers.IssueTrackingSystem
 	{
 		public IList<IItsTrackingIssue> Items { get; }
 
-		void CreateNewItem();
+		public void AddItem(IItsTrackingIssue issue);
 
 		void UpdateItem(string id, IItsIssue issue);
 
