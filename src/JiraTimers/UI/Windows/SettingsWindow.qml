@@ -24,6 +24,8 @@ ThemedWindow
 
 	visible: true
 
+	signal settingsChanged()
+
 	ColumnLayout
 	{
 		anchors.top: parent.top
@@ -196,6 +198,8 @@ ThemedWindow
 				settings.saveMainWindowPositionAndSize = saveMainWindowPositionAndSize.checked;
 
 				settings.isDarkTheme = isDarkTheme.checked;
+
+				settingsChanged();
 
 				window.close();
 			}

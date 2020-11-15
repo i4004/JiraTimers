@@ -52,6 +52,8 @@ ThemedWindow
 	footer: JiraTimersToolbar
 	{
 		id: toolBar
+
+		onSettingsChanged: tryCreateItsClient()
 	}
 
 	JiraTimersSystemTrayIcon
