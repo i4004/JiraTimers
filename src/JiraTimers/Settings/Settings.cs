@@ -1,12 +1,17 @@
+using System;
+using System.Collections.Generic;
+using JiraTimers.IssueTrackingSystem;
 using Microsoft.Extensions.Configuration;
 
 namespace JiraTimers.Settings
 {
-	public class WritableAutoSaveSettings : ISettings
+	public class Settings : ISettings
 	{
-		public WritableAutoSaveSettings(IConfiguration configuration)
+		public Settings(IConfiguration configuration)
 		{
 			Configuration = configuration;
+
+			var s = configuration.GetSection("Issues");
 		}
 
 		public virtual string JiraBaseUrl
@@ -73,6 +78,14 @@ namespace JiraTimers.Settings
 		{
 			get => Configuration.GetValue<int?>(nameof(MainWindowHeight));
 			set => Configuration[nameof(MainWindowHeight)] = value.ToString();
+		}
+
+		public IList<IItsTrackingIssue> Issues
+		{
+			get => throw new NotFiniteNumberException();
+			set => Configuration[nameof(Issues)] = value.ToString();
+			//get => Configuration.GetSection(Issues).);
+			//set => Configuration[nameof(Issues)] = value;
 		}
 
 		protected IConfiguration Configuration { get; }

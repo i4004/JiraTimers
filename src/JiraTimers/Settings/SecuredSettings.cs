@@ -5,7 +5,7 @@ using Simplify.Extensions;
 
 namespace JiraTimers.Settings
 {
-	public class SecuredSettings : WritableAutoSaveSettings
+	public class SecuredSettings : Settings
 	{
 		private const string KeyFieldName = "CryptoKey";
 

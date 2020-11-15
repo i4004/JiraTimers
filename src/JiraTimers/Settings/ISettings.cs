@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using JiraTimers.IssueTrackingSystem;
+
 namespace JiraTimers.Settings
 {
 	public interface ISettings
@@ -17,5 +20,7 @@ namespace JiraTimers.Settings
 		public int? MainWindowY { get; }
 		public int? MainWindowWidth { get; }
 		public int? MainWindowHeight { get; }
+
+		public IList<IItsTrackingIssue> Issues { get; }
 	}
 }
