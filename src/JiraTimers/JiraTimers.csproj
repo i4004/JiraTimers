@@ -4,6 +4,9 @@
 		<OutputType>exe</OutputType>
 		<Version>0.1</Version>
 		<RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
+		<Authors>Alexander Krylkov</Authors>
+		<Product>JiraTimers</Product>
+		<Copyright>Licensed under LGPL</Copyright>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Atlassian.SDK" Version="12.1.1" />
