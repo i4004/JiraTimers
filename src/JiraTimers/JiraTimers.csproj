@@ -22,6 +22,7 @@
 		<PackageReference Include="Qml.Net.LinuxBinaries" Version="0.11.0" />
 		<PackageReference Include="Qml.Net.OSXBinaries" Version="0.11.0" />
 		<PackageReference Include="Qml.Net.WindowsBinaries" Version="0.11.0" />
+		<PackageReference Include="System.IO.Abstractions" Version="12.2.24" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="Images\**\*">

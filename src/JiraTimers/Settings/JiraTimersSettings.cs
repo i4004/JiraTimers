@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using JiraTimers.IssueTrackingSystem;
 using Microsoft.Extensions.Configuration;
 
 namespace JiraTimers.Settings
@@ -10,8 +7,6 @@ namespace JiraTimers.Settings
 		public JiraTimersSettings(IConfiguration configuration)
 		{
 			Configuration = configuration;
-
-			var s = configuration.GetSection("Issues");
 		}
 
 		public virtual string JiraBaseUrl
@@ -78,12 +73,6 @@ namespace JiraTimers.Settings
 		{
 			get => Configuration.GetValue<int?>(nameof(MainWindowHeight));
 			set => Configuration[nameof(MainWindowHeight)] = value.ToString();
-		}
-
-		public IList<IItsTrackingIssue> Issues
-		{
-			get => throw new NotImplementedException();
-			set => throw new NotImplementedException();
 		}
 
 		protected IConfiguration Configuration { get; }

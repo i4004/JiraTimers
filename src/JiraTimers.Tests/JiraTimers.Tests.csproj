@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<Version>0.1</Version>
 		<Authors>Alexander Krylkov</Authors>
 		<Product>JiraTimers</Product>
-		<Description>JiraTimers integration tests</Description>
+		<Description>JiraTimers unit tests</Description>
 		<Copyright>Licensed under LGPL</Copyright>
 	</PropertyGroup>
 	<ItemGroup>
@@ -15,8 +15,15 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Moq" Version="4.14.5" />
+		<PackageReference Include="Simplify.Templates" Version="2.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\JiraTimers\JiraTimers.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="TestData\Issues.json" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="TestData\Issues.json" />
 	</ItemGroup>
 </Project>

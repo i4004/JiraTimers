@@ -26,10 +26,13 @@ namespace JiraTimers.IssueTrackingSystem
 
 		public void CreateNewIssue()
 		{
-			_list.AddItem(new ItsTrackingIssue(new ItsIssue
+			_list.AddItem(new ItsTrackingIssue
 			{
-				ID = Guid.NewGuid().ToString()
-			}));
+				Issue = new ItsIssue
+				{
+					ID = Guid.NewGuid().ToString()
+				}
+			});
 		}
 
 		public async Task<bool> RefreshIssueInfoAsync(string issueID, string issueKey)
