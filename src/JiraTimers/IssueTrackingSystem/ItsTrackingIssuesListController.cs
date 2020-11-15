@@ -14,6 +14,16 @@ namespace JiraTimers.IssueTrackingSystem
 			_clientStore = clientStore;
 		}
 
+		public void LoadList()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SaveList()
+		{
+			throw new NotImplementedException();
+		}
+
 		public void CreateNewIssue()
 		{
 			_list.AddItem(new ItsTrackingIssue(new ItsIssue

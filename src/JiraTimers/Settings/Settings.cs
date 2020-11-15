@@ -82,10 +82,8 @@ namespace JiraTimers.Settings
 
 		public IList<IItsTrackingIssue> Issues
 		{
-			get => throw new NotFiniteNumberException();
-			set => Configuration[nameof(Issues)] = value.ToString();
-			//get => Configuration.GetSection(Issues).);
-			//set => Configuration[nameof(Issues)] = value;
+			get => throw new NotImplementedException();
+			set => throw new NotImplementedException();
 		}
 
 		protected IConfiguration Configuration { get; }
