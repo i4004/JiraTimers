@@ -2,21 +2,25 @@
 import QtQuick.Controls 2.3
 import QtQuick.Window 2.1
 
-import jira.timers.theme 1.0
-import "Controls"
+import JiraTimers.Types 1.0
 
-import "WindowsManager.js"
-as WindowsManager
+import "Controls"
+import "Controls/TrackingIssuesList"
+import "Windows"
+import "Windows/WindowManager.js"
+as WindowManager
 
 ThemedWindow
 {
-	id: app
-	title: Qt.application.name
+	// Properties
 
-	minimumWidth: 400
+	id: app
+	title: AppInfo.name
+
+	minimumWidth: 620
 	minimumHeight: 300
 
-	width: 520
+	width: 620
 	height: 520
 
 	flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
@@ -28,16 +32,28 @@ ThemedWindow
 
 	property bool customMinimize: false;
 
+	// Controls
+
+	ItsTrackingIssuesList
+	{
+		id: trackingIssuesList
+
+		anchors.fill: parent
+	}
+
 	Image
 	{
 		source: "../Images/GrayIcon.png"
 
 		anchors.centerIn: parent
+		z: -1
 	}
 
 	footer: JiraTimersToolbar
 	{
 		id: toolBar
+
+		onSettingsChanged: tryCreateItsClient()
 	}
 
 	JiraTimersSystemTrayIcon
@@ -45,17 +61,9 @@ ThemedWindow
 		id: systemTrayIcon
 	}
 
-	Component.onCompleted:
-	{
-		settings = scope.getSettings();
+	// Events
 
-		Theme.setTheme(app, settings.isDarkTheme);
-		loadWindowPositionAndSize();
-
-		visible = true;
-
-		tryCreateCreateItsClient();
-	}
+	Component.onCompleted: initialize()
 
 	onClosing:
 	{
@@ -66,6 +74,22 @@ ThemedWindow
 	}
 
 	onVisibilityChanged: processHideInsteadOfMinimize()
+
+	// Commands
+
+	function initialize()
+	{
+		settings = scope.getSettings();
+
+		Theme.setTheme(app, settings.isDarkTheme);
+		loadWindowPositionAndSize();
+
+		visible = true;
+
+		trackingIssuesList.refreshModel();
+
+		tryCreateItsClient();
+	}
 
 	function processMinimizeInsteadOfClose()
 	{
@@ -120,15 +144,15 @@ ThemedWindow
 		settings.mainWindowHeight = height;
 	}
 
-	function tryCreateCreateItsClient()
+	function tryCreateItsClient()
 	{
-		toolBar.runBusyIndicator();
-		toolBar.text = "Connecting...";
-
 		var itsClientStore = scope.getItsClientStore();
 
-		if (!itsClientStore.readyToConnect())
+		if (!itsClientStore.readyToCreate())
 			return;
+
+		toolBar.runBusyIndicator();
+		toolBar.text = "Connecting...";
 
 		var task = itsClientStore.tryCreateItsClientAsync();
 
@@ -139,13 +163,12 @@ ThemedWindow
 			if (result == null)
 			{
 				toolBar.text = "Connected";
-
 				return;
 			}
 
 			toolBar.text = "Not connected";
 
-			var window = WindowsManager.openWindow("Controls/MessageDialog.qml", app);
+			var window = WindowManager.openWindow("MessageDialog.qml", app);
 			window.text = result;
 		})
 	}

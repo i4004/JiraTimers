@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraTimers", "JiraTimers\JiraTimers.csproj", "{8C2EDA79-4DC8-41F0-A0C8-0B0A03C7D8F0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraTimers.IntegrationTests", "JiraTimers.IntegrationTests\JiraTimers.IntegrationTests.csproj", "{295729D0-2912-426D-B79A-F951AFE1E449}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraTimers.Tests", "JiraTimers.Tests\JiraTimers.Tests.csproj", "{DF481AEB-A8E3-4222-B3CB-3480E5D30F6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{8C2EDA79-4DC8-41F0-A0C8-0B0A03C7D8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C2EDA79-4DC8-41F0-A0C8-0B0A03C7D8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C2EDA79-4DC8-41F0-A0C8-0B0A03C7D8F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{295729D0-2912-426D-B79A-F951AFE1E449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{295729D0-2912-426D-B79A-F951AFE1E449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{295729D0-2912-426D-B79A-F951AFE1E449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{295729D0-2912-426D-B79A-F951AFE1E449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF481AEB-A8E3-4222-B3CB-3480E5D30F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF481AEB-A8E3-4222-B3CB-3480E5D30F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF481AEB-A8E3-4222-B3CB-3480E5D30F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF481AEB-A8E3-4222-B3CB-3480E5D30F6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
