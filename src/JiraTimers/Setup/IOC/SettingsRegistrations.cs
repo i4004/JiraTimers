@@ -10,7 +10,7 @@ namespace JiraTimers.Setup.IOC
 		{
 			return registrator.Register<CacheableSettings>(LifetimeType.Singleton)
 				.Register<ISettings>(r => r.Resolve<CacheableSettings>(), LifetimeType.Singleton)
-				.Register<IIssuesSettings>(r => new IssuesSettings(JiraTimersPaths.GetIssuesSettingsFilePath()), LifetimeType.Singleton);
+				.Register<IIssuesStore>(r => new IssuesStore(JiraTimersPaths.GetIssuesSettingsFilePath()), LifetimeType.Singleton);
 		}
 	}
 }

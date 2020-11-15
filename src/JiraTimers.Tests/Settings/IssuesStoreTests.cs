@@ -11,24 +11,24 @@ using Simplify.Templates;
 namespace JiraTimers.Tests.Settings
 {
 	[TestFixture]
-	public class IssuesSettingsTests
+	public class IssuesStoreTests
 	{
 		private const string TestFilePath = "TestData/Issues.json";
 
-		private IIssuesSettings _settings;
+		private IIssuesStore _store;
 		private Mock<IFileSystem> _fileSystem;
 
 		[SetUp]
 		public void Initialize()
 		{
-			_settings = new IssuesSettings(JiraTimersPaths.GetIssuesSettingsFilePath());
+			_store = new IssuesStore(JiraTimersPaths.GetIssuesSettingsFilePath());
 			_fileSystem = new Mock<IFileSystem>();
 
-			IssuesSettings.FileSystem = _fileSystem.Object;
+			IssuesStore.FileSystem = _fileSystem.Object;
 		}
 
 		[Test]
-		public void Load_IssuesList_AllPropertiesParsed()
+		public void Load_TwoIssues_AllPropertiesParsed()
 		{
 			// Arrange
 			_fileSystem.Setup(x => x.File.ReadAllText(It.IsAny<string>(), It.IsAny<Encoding>()))
@@ -38,15 +38,18 @@ namespace JiraTimers.Tests.Settings
 					.Get());
 
 			// Act
-			var result = _settings.Load();
+			var result = _store.Load();
 
 			// Asset
 
 			Assert.AreEqual(2, result.Count);
+			Assert.AreEqual("1", result[0].Issue.ID);
+			Assert.AreEqual("ISS-1", result[0].Issue.Key);
+			Assert.AreEqual("Sum 1", result[0].Issue.Summary);
 		}
 
 		[Test]
-		public void Save_IssuesList_CorrectJsonGenerated()
+		public void Save_TwoIssues_CorrectJsonGenerated()
 		{
 			// Arrange
 
@@ -76,7 +79,7 @@ namespace JiraTimers.Tests.Settings
 			};
 
 			// Act
-			_settings.Save(items);
+			_store.Save(items);
 
 			// Asset
 			Assert.AreEqual(expected, actual);

@@ -3,7 +3,7 @@ using JiraTimers.IssueTrackingSystem;
 
 namespace JiraTimers.Settings
 {
-	public interface IIssuesSettings
+	public interface IIssuesStore
 	{
 		IList<IItsTrackingIssue> Load();
 
