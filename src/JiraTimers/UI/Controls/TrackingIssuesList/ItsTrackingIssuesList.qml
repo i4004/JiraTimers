@@ -6,6 +6,9 @@ import QtQuick.Layouts 1.3
 
 import JiraTimers.Types 1.0
 
+import "../../Windows/WindowManager.js"
+as WindowManager
+
 Column
 {
 	id: column
@@ -74,7 +77,16 @@ Column
 
 							Net.await(task, function(result)
 							{
-								console.log(result)
+								if (client.lastOperationStatus)
+								{
+									list.updateItem(modelData.issue.iD, result);
+									refreshModel();
+								}
+								else
+								{
+									var window = WindowManager.openWindow("Windows/MessageDialog.qml", app);
+									window.text = client.lastOperationResult;
+								}
 							});
 						}
 					}

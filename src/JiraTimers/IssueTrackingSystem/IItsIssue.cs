@@ -4,8 +4,8 @@
 	{
 		public string ID { get; }
 
-		public string Key { get; }
+		public string Key { get; set; }
 
-		public string Summary { get; }
+		public string Summary { get; set; }
 	}
 }

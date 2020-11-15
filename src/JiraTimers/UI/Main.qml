@@ -163,7 +163,6 @@ ThemedWindow
 			if (result == null)
 			{
 				toolBar.text = "Connected";
-
 				return;
 			}
 

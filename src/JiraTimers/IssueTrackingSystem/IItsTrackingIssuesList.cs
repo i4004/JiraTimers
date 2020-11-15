@@ -8,6 +8,8 @@ namespace JiraTimers.IssueTrackingSystem
 
 		void CreateNewItem();
 
+		void UpdateItem(string id, IItsIssue issue);
+
 		void RemoveItem(string id);
 	}
 }

@@ -8,35 +8,6 @@ namespace JiraTimers.IssueTrackingSystem
 	{
 		public ItsTrackingIssuesList()
 		{
-			Items.Add(new ItsTrackingIssue(new ItsIssue
-			{
-				ID = new Guid().ToString(),
-				Key = "DEV-125",
-				Summary = "fix an error in task"
-			})
-			{
-				Time = "00:01:25"
-			});
-
-			Items.Add(new ItsTrackingIssue(new ItsIssue
-			{
-				ID = new Guid().ToString(),
-				Key = "JIRATM-25",
-				Summary = "Linux (Ubuntu) installation package setup/development"
-			})
-			{
-				Time = "00:01:25"
-			});
-
-			Items.Add(new ItsTrackingIssue(new ItsIssue
-			{
-				ID = new Guid().ToString(),
-				Key = "JIRATM-26",
-				Summary = "Windows Chocolatey installation package setup/development"
-			})
-			{
-				Time = "00:01:25"
-			});
 		}
 
 		public IList<IItsTrackingIssue> Items { get; } = new List<IItsTrackingIssue>();
@@ -45,8 +16,19 @@ namespace JiraTimers.IssueTrackingSystem
 		{
 			Items.Add(new ItsTrackingIssue(new ItsIssue
 			{
-				ID = new Guid().ToString()
+				ID = Guid.NewGuid().ToString()
 			}));
+		}
+
+		public void UpdateItem(string id, IItsIssue issue)
+		{
+			if (string.IsNullOrEmpty(id))
+				throw new ArgumentException("Value cannot be null or empty.", nameof(id));
+
+			var existingIssue = Items.First(x => x.Issue.ID == id);
+
+			existingIssue.Issue.Key = issue.Key;
+			existingIssue.Issue.Summary = issue.Summary;
 		}
 
 		public void RemoveItem(string id)
