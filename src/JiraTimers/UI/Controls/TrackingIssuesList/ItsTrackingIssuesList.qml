@@ -28,6 +28,8 @@ Column
 
 	property string itemToRemoveID
 
+	property bool hasIssues
+
 	Repeater
 	{
 		id: repeater
@@ -274,6 +276,8 @@ Column
 
 	function refreshModel()
 	{
+		hasIssues = list.items.count > 0;
+
 		model = Net.toListModel(list.items);
 	}
 
