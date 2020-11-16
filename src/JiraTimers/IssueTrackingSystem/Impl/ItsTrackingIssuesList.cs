@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JiraTimers.IssueTrackingSystem
+namespace JiraTimers.IssueTrackingSystem.Impl
 {
 	public class ItsTrackingIssuesList : IItsTrackingIssuesList
 	{

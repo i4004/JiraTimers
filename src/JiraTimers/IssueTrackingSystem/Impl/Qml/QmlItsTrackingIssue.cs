@@ -2,11 +2,11 @@
 using Newtonsoft.Json;
 using Qml.Net;
 
-namespace JiraTimers.IssueTrackingSystem
+namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 {
-	public class ItsTrackingIssue : IItsTrackingIssue
+	public class QmlItsTrackingIssue : IItsTrackingIssue
 	{
-		[JsonConverter(typeof(ConcreteConverter<ItsIssue>))]
+		[JsonConverter(typeof(ConcreteConverter<QmlItsIssue>))]
 		public IItsIssue Issue { get; set; }
 
 		[NotifySignal]

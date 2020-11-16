@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace JiraTimers.IssueTrackingSystem
+namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 {
-	public class ItsTrackingIssuesListController : IItsTrackingIssuesListController
+	public class QmlItsTrackingIssuesListController : IItsTrackingIssuesListController
 	{
 		private readonly IItsTrackingIssuesList _list;
 		private readonly IItsClientStore _clientStore;
 		private readonly IItsIssuesStore _issuesStore;
 
-		public ItsTrackingIssuesListController(IItsTrackingIssuesList list, IItsClientStore clientStore, IItsIssuesStore issuesStore)
+		public QmlItsTrackingIssuesListController(IItsTrackingIssuesList list, IItsClientStore clientStore, IItsIssuesStore issuesStore)
 		{
 			_list = list;
 			_clientStore = clientStore;
@@ -20,9 +20,9 @@ namespace JiraTimers.IssueTrackingSystem
 
 		public void CreateNewIssue()
 		{
-			_list.AddItem(new ItsTrackingIssue
+			_list.AddItem(new QmlItsTrackingIssue
 			{
-				Issue = new ItsIssue
+				Issue = new QmlItsIssue
 				{
 					ID = Guid.NewGuid().ToString()
 				}

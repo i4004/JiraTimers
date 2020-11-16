@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Linq;
 using System.Text;
+using JiraTimers.IssueTrackingSystem.Impl.Qml;
 using Newtonsoft.Json;
 
-namespace JiraTimers.IssueTrackingSystem
+namespace JiraTimers.IssueTrackingSystem.Impl
 {
-	public class ItsIssuesStore : IItsIssuesStore
+	public class FileBasedItsIssuesStore : IItsIssuesStore
 	{
 		private static IFileSystem _fileSystem;
 
 		private readonly string _settingsFilePath;
 
-		public ItsIssuesStore(string settingsFilePath)
+		public FileBasedItsIssuesStore(string settingsFilePath)
 		{
 			_settingsFilePath = settingsFilePath;
 		}
@@ -28,7 +29,7 @@ namespace JiraTimers.IssueTrackingSystem
 		{
 			CreateStoreFileIfNotExists();
 
-			var result = JsonConvert.DeserializeObject<List<ItsTrackingIssue>>(ReadJson());
+			var result = JsonConvert.DeserializeObject<List<QmlItsTrackingIssue>>(ReadJson());
 
 			return result.Cast<IItsTrackingIssue>().ToList();
 		}

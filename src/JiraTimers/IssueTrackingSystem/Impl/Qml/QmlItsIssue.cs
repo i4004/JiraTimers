@@ -1,8 +1,8 @@
 ﻿using Qml.Net;
 
-namespace JiraTimers.IssueTrackingSystem
+namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 {
-	public class ItsIssue : IItsIssue
+	public class QmlItsIssue : IItsIssue
 	{
 		public string ID { get; set; }
 

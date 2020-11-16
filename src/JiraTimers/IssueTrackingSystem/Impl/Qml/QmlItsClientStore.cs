@@ -3,16 +3,16 @@ using System.Threading.Tasks;
 using JiraTimers.Settings;
 using Qml.Net;
 
-namespace JiraTimers.IssueTrackingSystem
+namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 {
-	public class ItsClientStore : IItsClientStore
+	public class QmlItsClientStore : IItsClientStore
 	{
 		private readonly ISettings _settings;
 		private readonly IItsClientFactory _clientFactory;
 
 		private bool _isConnected;
 
-		public ItsClientStore(ISettings settings, IItsClientFactory clientFactory)
+		public QmlItsClientStore(ISettings settings, IItsClientFactory clientFactory)
 		{
 			_settings = settings;
 			_clientFactory = clientFactory;
