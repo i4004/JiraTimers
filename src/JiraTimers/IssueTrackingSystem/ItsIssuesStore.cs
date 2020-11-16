@@ -26,6 +26,8 @@ namespace JiraTimers.IssueTrackingSystem
 
 		public IList<IItsTrackingIssue> Load()
 		{
+			CreateStoreFileIfNotExists();
+
 			var result = JsonConvert.DeserializeObject<List<ItsTrackingIssue>>(ReadJson());
 
 			return result.Cast<IItsTrackingIssue>().ToList();
@@ -44,6 +46,12 @@ namespace JiraTimers.IssueTrackingSystem
 		private void WriteJson(IList<IItsTrackingIssue> items)
 		{
 			FileSystem.File.WriteAllText(_settingsFilePath, JsonConvert.SerializeObject(items), Encoding.UTF8);
+		}
+
+		private void CreateStoreFileIfNotExists()
+		{
+			if (!FileSystem.File.Exists(_settingsFilePath))
+				FileSystem.File.AppendAllText(_settingsFilePath, "[]", Encoding.UTF8);
 		}
 	}
 }
