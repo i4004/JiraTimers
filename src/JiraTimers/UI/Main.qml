@@ -47,6 +47,8 @@ ThemedWindow
 
 		anchors.centerIn: parent
 		z: -1
+
+		visible: !trackingIssuesList.hasIssues
 	}
 
 	footer: JiraTimersToolbar
