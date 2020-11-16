@@ -1,5 +1,9 @@
 # JiraTimers
 
+
+![Simplify](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/Logo128x128.png)
+
+
 [![Issues board](https://dxssrr2j0sq4w.cloudfront.net/3.2.0/img/external/zenhub-badge.svg)](https://app.zenhub.com/workspaces/jiratimers-5d8f719fbe90910001987cdc/board?repos=211514366)
 [![AppVeyor branch](https://img.shields.io/appveyor/ci/i4004/jiratimers)](https://ci.appveyor.com/project/i4004/jiratimers)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/i4004/JiraTimers)](https://www.codefactor.io/repository/github/i4004/JiraTimers)
