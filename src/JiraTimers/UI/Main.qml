@@ -43,7 +43,7 @@ ThemedWindow
 
 	Image
 	{
-		source: "../Images/GrayIcon.png"
+		id: backgroundIcon
 
 		anchors.centerIn: parent
 		z: -1
@@ -81,16 +81,22 @@ ThemedWindow
 
 	function initialize()
 	{
-		settings = scope.getSettings();
-
-		Theme.setTheme(app, settings.isDarkTheme);
-		loadWindowPositionAndSize();
-
+		initializeAppearance();
 		visible = true;
 
 		trackingIssuesList.refreshModel();
 
 		tryCreateItsClient();
+	}
+
+	function initializeAppearance()
+	{
+		settings = scope.getSettings();
+
+		Theme.setTheme(app, settings.isDarkTheme);
+		backgroundIcon.source = settings.isDarkTheme ? "../Images/DarkBackgroundIcon.png" : "../Images/LightBackgroundIcon.png";
+
+		loadWindowPositionAndSize();
 	}
 
 	function processMinimizeInsteadOfClose()

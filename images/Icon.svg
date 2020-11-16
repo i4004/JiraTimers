@@ -13,10 +13,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
-   sodipodi:docname="icon.svg"
-   inkscape:export-filename="F:\Projects\JiraTimers\src\JiraTimers\Images\GrayIcon.png"
-   inkscape:export-xdpi="12.287999"
-   inkscape:export-ydpi="12.287999">
+   sodipodi:docname="Icon2.svg"
+   inkscape:export-filename="F:\Projects\JiraTimers\src\JiraTimers\Images\LightBackgroundIcon.png"
+   inkscape:export-xdpi="12.288"
+   inkscape:export-ydpi="12.288">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -66,7 +66,7 @@
        type="xygrid"
        id="grid957" />
     <sodipodi:guide
-       position="264.58333,296.33333"
+       position="264.58333,317.5"
        orientation="1,0"
        id="guide959" />
     <sodipodi:guide
@@ -159,7 +159,7 @@
     <g
        inkscape:groupmode="layer"
        id="layer5"
-       inkscape:label="White Lines"
+       inkscape:label="Lines"
        style="display:inline">
       <rect
          style="display:inline;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke-width:0.205662"
@@ -216,11 +216,11 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Gray icon"
-     style="display:inline"
+     inkscape:label="Dark background icon"
+     style="display:none"
      sodipodi:insensitive="true">
     <g
-       inkscape:label="Circle dark"
+       inkscape:label="Circle"
        inkscape:groupmode="layer"
        id="g891"
        style="display:inline">
@@ -235,7 +235,7 @@
     <g
        inkscape:groupmode="layer"
        id="g905"
-       inkscape:label="White Lines Dark"
+       inkscape:label="Lines"
        style="display:inline">
       <rect
          style="display:inline;fill:#2d2d2d;fill-opacity:1;fill-rule:nonzero;stroke-width:0.205662"
@@ -288,5 +288,98 @@
          y="338.66666"
          ry="31.911171" />
     </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="g902"
+     inkscape:label="Light background icon"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <g
+       inkscape:label="Circle"
+       inkscape:groupmode="layer"
+       id="g885"
+       style="display:inline">
+      <ellipse
+         style="fill:#cccccc;fill-opacity:1;stroke-width:0.577869"
+         id="ellipse883"
+         cx="264.57788"
+         cy="264.58633"
+         rx="253.99968"
+         ry="254.0005" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="g900"
+       inkscape:label="Lines"
+       style="display:inline">
+      <rect
+         style="display:inline;opacity:0.994;fill:#dfdfdf;fill-opacity:1;fill-rule:nonzero;stroke-width:0.205662"
+         id="rect887"
+         width="264.58334"
+         height="63.822342"
+         x="179.91667"
+         y="127"
+         ry="31.911171" />
+      <rect
+         style="display:inline;opacity:0.994;fill:#dfdfdf;fill-opacity:1;fill-rule:nonzero;stroke-width:0.20532"
+         id="rect889"
+         width="264.58334"
+         height="63.609592"
+         x="179.91667"
+         y="232.83333"
+         ry="31.804796" />
+      <rect
+         style="display:inline;opacity:0.994;fill:#dfdfdf;fill-opacity:1;fill-rule:nonzero;stroke-width:0.205662"
+         id="rect891"
+         width="264.58334"
+         height="63.822323"
+         x="179.91667"
+         y="338.66666"
+         ry="31.911163"
+         inkscape:export-xdpi="24"
+         inkscape:export-ydpi="24" />
+      <rect
+         style="display:inline;opacity:0.994;fill:#dfdfdf;fill-opacity:1;fill-rule:nonzero;stroke-width:0.108826"
+         id="rect894"
+         width="74.083344"
+         height="63.822342"
+         x="74.083336"
+         y="127"
+         ry="31.911171" />
+      <rect
+         style="display:inline;opacity:0.994;fill:#dfdfdf;fill-opacity:1;fill-rule:nonzero;stroke-width:0.108826"
+         id="rect896"
+         width="74.083344"
+         height="63.822342"
+         x="74.083336"
+         y="232.83333"
+         ry="31.911171" />
+      <rect
+         style="display:inline;opacity:0.994;fill:#dfdfdf;fill-opacity:1;fill-rule:nonzero;stroke-width:0.108826"
+         id="rect898"
+         width="74.083344"
+         height="63.822342"
+         x="74.083336"
+         y="338.66666"
+         ry="31.911171" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="Logo Letter"
+     style="display:none">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:352.778px;line-height:1.25;font-family:'Trajan Pro';-inkscape-font-specification:'Trajan Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#800000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="236.57166"
+       y="352.95422"
+       id="text869"><tspan
+         sodipodi:role="line"
+         id="tspan867"
+         x="236.57166"
+         y="352.95422"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:352.778px;font-family:'Trajan Pro';-inkscape-font-specification:'Trajan Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#800000;fill-opacity:1;stroke-width:0.264583">J</tspan></text>
   </g>
 </svg>
