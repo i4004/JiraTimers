@@ -108,8 +108,9 @@ Column
 
 						highlighted: true
 
-						enabled: false
-						// enabled: textKey.text
+						enabled: textKey.text
+
+						onClicked: Qt.openUrlExternally(formatIssueUrl(textKey.text))
 					}
 
 					TextEdit
@@ -274,5 +275,10 @@ Column
 	function refreshModel()
 	{
 		model = Net.toListModel(list.items);
+	}
+
+	function formatIssueUrl(issueKey)
+	{
+		return (scope.getSettings().jiraBaseUrl + "/browse/" + issueKey).replace("//", "/");
 	}
 }
