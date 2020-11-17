@@ -134,7 +134,7 @@ Column
 
 					Button
 					{
-						text: "▶"
+						text: modelData.isTimerRunning ? "⏸️" : "▶"
 
 						font.pointSize: 25
 						height: Theme.toolButtonHeight
@@ -142,8 +142,7 @@ Column
 
 						highlighted: true
 
-						enabled: false
-						// enabled: textKey.text
+						onClicked: startStopIssueTimer(modelData)
 					}
 
 					Button
@@ -165,7 +164,9 @@ Column
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
 
-						enabled: false
+						highlighted: true
+
+						onClicked: resetIssueTimer(modelData)
 					}
 
 					Button
@@ -284,5 +285,22 @@ Column
 	function formatIssueUrl(issueKey)
 	{
 		return (scope.getSettings().jiraBaseUrl + "/browse/" + issueKey).replace("//", "/");
+	}
+
+	function startStopIssueTimer(issue)
+	{
+		if (issue.isTimerRunning)
+			issue.stopTimer();
+		else
+			issue.startTimer()
+
+		refreshModel();
+	}
+
+	function resetIssueTimer(issue)
+	{
+		issue.resetTimer();
+
+		refreshModel();
 	}
 }

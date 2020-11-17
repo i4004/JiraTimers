@@ -9,6 +9,8 @@ namespace JiraTimers.IssueTrackingSystem
 		public DateTime TimerStartTime { get; set; }
 		public TimeSpan ElapsedTime { get; set; }
 
+		public bool isTimerRunning { get; }
+
 		void StartTimer();
 
 		void StopTimer();

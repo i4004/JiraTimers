@@ -31,6 +31,8 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 		[NotifySignal]
 		public string Time { get; set; }
 
+		public bool isTimerRunning => Stopwatch.IsRunning;
+
 		private Stopwatch Stopwatch
 		{
 			get
