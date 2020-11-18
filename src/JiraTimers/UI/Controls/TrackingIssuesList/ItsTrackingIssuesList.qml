@@ -117,7 +117,7 @@ Column
 
 					TextEdit
 					{
-						text: modelData.time
+						text: modelData.formattedElapsedTime
 
 						height: 50
 						width: 82
@@ -254,16 +254,18 @@ Column
 		onYes: removeIssue()
 	}
 
+	Timer
+	{
+		interval: 60000
+		running: true
+		repeat: true
+
+		onTriggered: refreshModel()
+	}
+
 	function createNewIssue()
 	{
 		listController.createNewIssue();
-
-		refreshModel();
-	}
-
-	function updateIssue()
-	{
-		listController.removeIssue(itemToRemoveID);
 
 		refreshModel();
 	}

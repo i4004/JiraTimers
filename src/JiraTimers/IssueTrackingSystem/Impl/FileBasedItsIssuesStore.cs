@@ -10,7 +10,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl
 {
 	public class FileBasedItsIssuesStore : IItsIssuesStore
 	{
-		private static IFileSystem _fileSystem;
+		private static IFileSystem? _fileSystem;
 
 		private readonly string _settingsFilePath;
 

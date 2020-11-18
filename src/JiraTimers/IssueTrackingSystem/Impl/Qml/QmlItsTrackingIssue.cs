@@ -1,64 +1,51 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Threading;
 using JiraTimers.Json;
 using Newtonsoft.Json;
 using Qml.Net;
-using Simplify.System.Diagnostics;
 
 namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 {
 	public class QmlItsTrackingIssue : IItsTrackingIssue
 	{
-		private OffsetStopwatch _stopwatch;
-
-		public QmlItsTrackingIssue()
-		{
-		}
+		private Timer? _timer;
 
 		[JsonConverter(typeof(ConcreteConverter<QmlItsIssue>))]
-		public IItsIssue Issue { get; set; }
+		public IItsIssue? Issue { get; set; }
 
-		[NotifySignal]
 		public DateTime TimerStartTime { get; set; }
 
-		[NotifySignal]
-		public TimeSpan ElapsedTime
-		{
-			get => Stopwatch.Elapsed;
-			set => _stopwatch = new OffsetStopwatch(value);
-		}
+		public TimeSpan ElapsedTime { get; set; }
 
 		[NotifySignal]
-		public string Time { get; set; }
+		public string FormattedElapsedTime => ElapsedTime.ToString("hh\\:mm");
 
-		public bool isTimerRunning => Stopwatch.IsRunning;
-
-		private Stopwatch Stopwatch
-		{
-			get
-			{
-				return _stopwatch ??= _stopwatch = new OffsetStopwatch();
-			}
-		}
+		public bool IsTimerRunning => _timer != null;
 
 		public void StartTimer()
 		{
+			_timer = new Timer(OnTimer, null, 0, 1000);
+
 			if (TimerStartTime == default)
 				TimerStartTime = DateTime.Now;
-
-			Stopwatch.Start();
 		}
 
 		public void StopTimer()
 		{
-			Stopwatch.Stop();
+			_timer = null;
 		}
 
 		public void ResetTimer()
 		{
-			TimerStartTime = default;
+			_timer = null;
 
-			Stopwatch.Reset();
+			TimerStartTime = default;
+			ElapsedTime = default;
+		}
+
+		private void OnTimer(object? state)
+		{
+			ElapsedTime = ElapsedTime.Add(TimeSpan.FromSeconds(1));
 		}
 	}
 }
