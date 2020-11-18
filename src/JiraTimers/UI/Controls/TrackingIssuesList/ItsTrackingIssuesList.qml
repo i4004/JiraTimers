@@ -134,9 +134,9 @@ Column
 
 					Button
 					{
-						text: modelData.isTimerRunning ? "⏸️" : "▶"
+						text: modelData.isTimerRunning ? "▌▌" : "▶"
+						font.pointSize: modelData.isTimerRunning ? 9 : 25
 
-						font.pointSize: 25
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
 
