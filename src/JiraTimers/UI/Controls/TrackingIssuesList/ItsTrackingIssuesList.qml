@@ -292,16 +292,16 @@ Column
 	function startStopIssueTimer(issue)
 	{
 		if (issue.isTimerRunning)
-			issue.stopTimer();
+			listController.stopIssueTimer(issue.issue.iD);
 		else
-			issue.startTimer()
+			listController.startIssueTimer(issue.issue.iD);
 
 		refreshModel();
 	}
 
 	function resetIssueTimer(issue)
 	{
-		issue.resetTimer();
+		listController.resetIssueTimer(issue.issue.iD);
 
 		refreshModel();
 	}

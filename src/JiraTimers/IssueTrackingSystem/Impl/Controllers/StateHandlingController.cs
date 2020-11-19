@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 {
-	public class StateHandlingController : IItsTrackingIssuesListController
+	public class StateHandlingController : IItsTrackingIssuesListController, IDisposable
 	{
 		private readonly IItsTrackingIssuesListController _baseController;
 		private readonly IItsTrackingIssuesList _list;
@@ -36,6 +37,32 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 		{
 			_baseController.RemoveIssue(issueID);
 
+			SaveList();
+		}
+
+		public void StartIssueTimer(string issueID)
+		{
+			_baseController.StartIssueTimer(issueID);
+
+			SaveList();
+		}
+
+		public void StopIssueTimer(string issueID)
+		{
+			_baseController.StopIssueTimer(issueID);
+
+			SaveList();
+		}
+
+		public void ResetIssueTimer(string issueID)
+		{
+			_baseController.ResetIssueTimer(issueID);
+
+			SaveList();
+		}
+
+		public void Dispose()
+		{
 			SaveList();
 		}
 

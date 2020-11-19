@@ -13,6 +13,11 @@ namespace JiraTimers.IssueTrackingSystem.Impl
 			Items.Add(issue);
 		}
 
+		public IItsTrackingIssue GetIssueByID(string issueID)
+		{
+			return Items.Single(x => x.Issue?.ID == issueID);
+		}
+
 		public void UpdateItem(string id, IItsIssue issue)
 		{
 			if (string.IsNullOrEmpty(id))

@@ -38,5 +38,20 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 		{
 			_list.RemoveItem(issueID);
 		}
+
+		public void StartIssueTimer(string issueID)
+		{
+			_list.GetIssueByID(issueID).StartTimer();
+		}
+
+		public void StopIssueTimer(string issueID)
+		{
+			_list.GetIssueByID(issueID).StopTimer();
+		}
+
+		public void ResetIssueTimer(string issueID)
+		{
+			_list.GetIssueByID(issueID).ResetTimer();
+		}
 	}
 }

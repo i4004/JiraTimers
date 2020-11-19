@@ -22,7 +22,11 @@ namespace JiraTimers
 			NetTypesToQml.Register();
 			QtUI.Setup();
 
-			return LaunchApp();
+			var result = LaunchApp();
+
+			DIContainer.Current.Dispose();
+
+			return result;
 		}
 
 		private static int LaunchApp()

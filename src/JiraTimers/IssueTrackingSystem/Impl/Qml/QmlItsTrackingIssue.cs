@@ -20,7 +20,15 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 		[NotifySignal]
 		public string FormattedElapsedTime => ElapsedTime.ToString("hh\\:mm");
 
-		public bool IsTimerRunning => _timer != null;
+		public bool IsTimerRunning
+		{
+			get => _timer != null;
+			set
+			{
+				if (value)
+					StartTimer();
+			}
+		}
 
 		public void StartTimer()
 		{
@@ -32,12 +40,13 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 
 		public void StopTimer()
 		{
+			_timer?.Dispose();
 			_timer = null;
 		}
 
 		public void ResetTimer()
 		{
-			_timer = null;
+			StopTimer();
 
 			TimerStartTime = default;
 			ElapsedTime = default;
