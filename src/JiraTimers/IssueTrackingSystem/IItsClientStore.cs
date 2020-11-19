@@ -6,12 +6,12 @@ namespace JiraTimers.IssueTrackingSystem
 	{
 		public bool IsConnected { get; }
 
-		public IItsClient Client { get; }
+		public IItsClient? Client { get; }
 
 		public bool ReadyToCreate();
 
-		public Task<string> TryCreateItsClientAsync();
+		public Task<string?> TryCreateItsClientAsync();
 
-		public Task<string> TestConnectionAsync(string url, string userName, string userPassword);
+		public Task<string?> TestConnectionAsync(string url, string userName, string userPassword);
 	}
 }

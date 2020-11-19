@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 {
@@ -22,9 +23,12 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 
 		public async Task<bool> RefreshIssueInfoAsync(string issueID, string issueKey)
 		{
+			if (_clientStore.Client == null)
+				throw new InvalidOperationException("Client is null");
+
 			var issue = await _clientStore.Client.GetIssueAsync(issueKey);
 
-			if (_clientStore.Client.LastOperationStatus)
+			if (_clientStore.Client.LastOperationStatus && issue != null)
 				_list.UpdateItem(issueID, issue);
 
 			return _clientStore.Client.LastOperationStatus;
@@ -33,6 +37,21 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 		public void RemoveIssue(string issueID)
 		{
 			_list.RemoveItem(issueID);
+		}
+
+		public void StartIssueTimer(string issueID)
+		{
+			_list.GetIssueByID(issueID).StartTimer();
+		}
+
+		public void StopIssueTimer(string issueID)
+		{
+			_list.GetIssueByID(issueID).StopTimer();
+		}
+
+		public void ResetIssueTimer(string issueID)
+		{
+			_list.GetIssueByID(issueID).ResetTimer();
 		}
 	}
 }

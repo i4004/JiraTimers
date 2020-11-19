@@ -19,7 +19,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 		}
 
 		[NotifySignal]
-		public IItsClient Client { get; private set; }
+		public IItsClient? Client { get; private set; }
 
 		[NotifySignal]
 		public bool IsConnected
@@ -39,32 +39,41 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 			return !string.IsNullOrEmpty(_settings.JiraBaseUrl) && !string.IsNullOrEmpty(_settings.JiraUserName) && !string.IsNullOrEmpty(_settings.JiraUserPassword);
 		}
 
-		public async Task<string> TryCreateItsClientAsync()
+		public async Task<string?> TryCreateItsClientAsync()
 		{
+			if (_settings.JiraBaseUrl == null)
+				throw new ArgumentNullException(nameof(_settings.JiraBaseUrl));
+
+			if (_settings.JiraUserName == null)
+				throw new ArgumentNullException(nameof(_settings.JiraUserName));
+
+			if (_settings.JiraUserPassword == null)
+				throw new ArgumentNullException(nameof(_settings.JiraUserPassword));
+
 			var (client, result) = await CreateClientAsync(_settings.JiraBaseUrl, _settings.JiraUserName, _settings.JiraUserPassword);
 
-			if (client != null)
-			{
-				Client = client;
-				IsConnected = true;
-			}
+			if (client == null)
+				return result;
+
+			Client = client;
+			IsConnected = true;
 
 			return result;
 		}
 
-		public async Task<string> TestConnectionAsync(string url, string userName, string userPassword)
+		public async Task<string?> TestConnectionAsync(string url, string userName, string userPassword)
 		{
 			var (_, result) = await CreateClientAsync(url, userName, userPassword);
 
 			return result;
 		}
 
-		private async Task<Tuple<IItsClient, string>> CreateClientAsync(string url, string userName, string userPassword)
+		private async Task<Tuple<IItsClient?, string?>> CreateClientAsync(string url, string userName, string userPassword)
 		{
 			var client = await _clientFactory.CreateAsync(url, userName, userPassword);
 			var result = await client.CheckConnectionAsync();
 
-			return new Tuple<IItsClient, string>(result == null ? client : null, result);
+			return new Tuple<IItsClient?, string?>(result == null ? client : null, result);
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace JiraTimers.Json
 			return true;
 		}
 
-		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+		public override object? ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 		{
 			return serializer.Deserialize<TConcrete>(reader);
 		}

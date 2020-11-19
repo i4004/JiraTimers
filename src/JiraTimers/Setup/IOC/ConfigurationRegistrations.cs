@@ -7,7 +7,7 @@ namespace JiraTimers.Setup.IOC
 {
 	public static class ConfigurationRegistrations
 	{
-		public static IDIRegistrator RegisterConfiguration(this IDIRegistrator registrator, Action<IConfiguration> config = null)
+		public static IDIRegistrator RegisterConfiguration(this IDIRegistrator registrator, Action<IConfiguration>? config = null)
 		{
 			var configuration = JiraTimersConfigurationBuilder.Build();
 

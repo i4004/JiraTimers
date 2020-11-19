@@ -4,7 +4,7 @@ namespace JiraTimers.IO
 {
 	public static class Path
 	{
-		private static string _currentDirectory;
+		private static string? _currentDirectory;
 
 		/// <summary>
 		/// Gets the multi-platform current directory.

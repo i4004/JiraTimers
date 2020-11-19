@@ -19,7 +19,7 @@ namespace JiraTimers.Settings
 			_keyMaterial = LoadKey(configuration);
 		}
 
-		public override string JiraUserPassword
+		public override string? JiraUserPassword
 		{
 			get
 			{
@@ -27,7 +27,7 @@ namespace JiraTimers.Settings
 
 				return password != null ? Decrypt(password) : null;
 			}
-			set => base.JiraUserPassword = Encrypt(value);
+			set => base.JiraUserPassword = value == null ? null : Encrypt(value);
 		}
 
 		private static byte[] LoadKey(IConfiguration configuration)

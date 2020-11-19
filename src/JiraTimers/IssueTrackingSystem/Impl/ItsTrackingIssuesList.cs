@@ -13,12 +13,20 @@ namespace JiraTimers.IssueTrackingSystem.Impl
 			Items.Add(issue);
 		}
 
+		public IItsTrackingIssue GetIssueByID(string issueID)
+		{
+			return Items.Single(x => x.Issue?.ID == issueID);
+		}
+
 		public void UpdateItem(string id, IItsIssue issue)
 		{
 			if (string.IsNullOrEmpty(id))
 				throw new ArgumentException("Value cannot be null or empty.", nameof(id));
 
-			var existingIssue = Items.First(x => x.Issue.ID == id);
+			var existingIssue = Items.First(x => x.Issue?.ID == id);
+
+			if (existingIssue.Issue == null)
+				throw new InvalidOperationException("Issue is null");
 
 			existingIssue.Issue.Key = issue.Key;
 			existingIssue.Issue.Summary = issue.Summary;
@@ -29,7 +37,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl
 			if (string.IsNullOrEmpty(id))
 				throw new ArgumentException("Value cannot be null or empty.", nameof(id));
 
-			Items.Remove(Items.First(x => x.Issue.ID == id));
+			Items.Remove(Items.First(x => x.Issue?.ID == id));
 		}
 	}
 }
