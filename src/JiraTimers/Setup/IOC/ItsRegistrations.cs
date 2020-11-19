@@ -1,6 +1,9 @@
 ﻿using JiraTimers.Configuration;
 using JiraTimers.Integrations.JiraIntegration;
 using JiraTimers.IssueTrackingSystem;
+using JiraTimers.IssueTrackingSystem.Impl;
+using JiraTimers.IssueTrackingSystem.Impl.Controllers;
+using JiraTimers.IssueTrackingSystem.Impl.Qml;
 using Simplify.DI;
 
 namespace JiraTimers.Setup.IOC
@@ -9,14 +12,24 @@ namespace JiraTimers.Setup.IOC
 	{
 		public static IDIRegistrator RegisterIts(this IDIRegistrator registrator)
 		{
-			return
-				registrator.Register<JiraBasedItsIssuesFactory>(LifetimeType.Singleton)
-					.Register<IItsClientFactory, JiraItsClientFactory>(LifetimeType.Singleton)
-					.Register<ItsClientStore>(LifetimeType.Singleton)
-					.Register<IItsClientStore>(r => r.Resolve<ItsClientStore>(), LifetimeType.Singleton)
-					.Register<IItsTrackingIssuesList, ItsTrackingIssuesList>(LifetimeType.Singleton)
-					.Register<IItsTrackingIssuesListController, ItsTrackingIssuesListController>(LifetimeType.Singleton)
-					.Register<IItsIssuesStore>(r => new ItsIssuesStore(JiraTimersPaths.GetIssuesSettingsFilePath()), LifetimeType.Singleton);
+			registrator.Register<JiraBasedItsIssuesFactory>(LifetimeType.Singleton)
+				.Register<IItsTrackingIssuesFactory, QmlItsTrackingIssuesFactory>(LifetimeType.Singleton);
+
+			registrator.Register<IItsClientFactory, JiraItsClientFactory>(LifetimeType.Singleton)
+				.Register<QmlItsClientStore>(LifetimeType.Singleton)
+				.Register<IItsClientStore>(r => r.Resolve<QmlItsClientStore>(), LifetimeType.Singleton);
+
+			registrator.Register<IItsTrackingIssuesList, ItsTrackingIssuesList>(LifetimeType.Singleton);
+
+			registrator.Register<IItsIssuesStore>(r => new FileBasedItsIssuesStore(JiraTimersPaths.GetIssuesSettingsFilePath()),
+				LifetimeType.Singleton);
+
+			registrator.Register<ItsTrackingIssuesListController>(LifetimeType.Singleton)
+				.Register<IItsTrackingIssuesListController>(
+					r => new StateHandlingController(r.Resolve<ItsTrackingIssuesListController>(), r.Resolve<IItsTrackingIssuesList>(),
+						r.Resolve<IItsIssuesStore>()), LifetimeType.Singleton);
+
+			return registrator;
 		}
 	}
 }

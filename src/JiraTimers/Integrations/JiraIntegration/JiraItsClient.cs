@@ -21,9 +21,9 @@ namespace JiraTimers.Integrations.JiraIntegration
 
 		public bool LastOperationStatus { get; private set; }
 
-		public string LastOperationResult { get; private set; }
+		public string? LastOperationResult { get; private set; }
 
-		public async Task<string> CheckConnectionAsync()
+		public async Task<string?> CheckConnectionAsync()
 		{
 			try
 			{
@@ -41,7 +41,7 @@ namespace JiraTimers.Integrations.JiraIntegration
 			return null;
 		}
 
-		public async Task<IItsIssue> GetIssueAsync(string issueKey)
+		public async Task<IItsIssue?> GetIssueAsync(string issueKey)
 		{
 			LastOperationResult = null;
 			LastOperationStatus = false;

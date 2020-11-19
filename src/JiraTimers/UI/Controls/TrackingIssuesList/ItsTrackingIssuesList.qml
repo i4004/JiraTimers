@@ -117,7 +117,7 @@ Column
 
 					TextEdit
 					{
-						text: modelData.time
+						text: modelData.formattedElapsedTime
 
 						height: 50
 						width: 82
@@ -134,16 +134,15 @@ Column
 
 					Button
 					{
-						text: "▶"
+						text: modelData.isTimerRunning ? "▌▌" : "▶"
+						font.pointSize: modelData.isTimerRunning ? 9 : 25
 
-						font.pointSize: 25
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
 
 						highlighted: true
 
-						enabled: false
-						// enabled: textKey.text
+						onClicked: startStopIssueTimer(modelData)
 					}
 
 					Button
@@ -165,7 +164,9 @@ Column
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
 
-						enabled: false
+						highlighted: true
+
+						onClicked: resetIssueTimer(modelData)
 					}
 
 					Button
@@ -253,16 +254,18 @@ Column
 		onYes: removeIssue()
 	}
 
+	Timer
+	{
+		interval: 60000
+		running: true
+		repeat: true
+
+		onTriggered: refreshModel()
+	}
+
 	function createNewIssue()
 	{
 		listController.createNewIssue();
-
-		refreshModel();
-	}
-
-	function updateIssue()
-	{
-		listController.removeIssue(itemToRemoveID);
 
 		refreshModel();
 	}
@@ -284,5 +287,22 @@ Column
 	function formatIssueUrl(issueKey)
 	{
 		return (scope.getSettings().jiraBaseUrl + "/browse/" + issueKey).replace("//", "/");
+	}
+
+	function startStopIssueTimer(issue)
+	{
+		if (issue.isTimerRunning)
+			listController.stopIssueTimer(issue.issue.iD);
+		else
+			listController.startIssueTimer(issue.issue.iD);
+
+		refreshModel();
+	}
+
+	function resetIssueTimer(issue)
+	{
+		listController.resetIssueTimer(issue.issue.iD);
+
+		refreshModel();
 	}
 }

@@ -3,6 +3,8 @@ using System.IO.Abstractions;
 using System.Text;
 using JiraTimers.Configuration;
 using JiraTimers.IssueTrackingSystem;
+using JiraTimers.IssueTrackingSystem.Impl;
+using JiraTimers.IssueTrackingSystem.Impl.Qml;
 using JiraTimers.Settings;
 using Moq;
 using NUnit.Framework;
@@ -21,10 +23,10 @@ namespace JiraTimers.Tests.Settings
 		[SetUp]
 		public void Initialize()
 		{
-			_store = new ItsIssuesStore(JiraTimersPaths.GetIssuesSettingsFilePath());
+			_store = new FileBasedItsIssuesStore(JiraTimersPaths.GetIssuesSettingsFilePath());
 			_fileSystem = new Mock<IFileSystem>();
 
-			ItsIssuesStore.FileSystem = _fileSystem.Object;
+			FileBasedItsIssuesStore.FileSystem = _fileSystem.Object;
 		}
 
 		[Test]
@@ -64,13 +66,13 @@ namespace JiraTimers.Tests.Settings
 
 			var items = new List<IItsTrackingIssue>
 			{
-				new ItsTrackingIssue{Issue = new ItsIssue
+				new QmlItsTrackingIssue{Issue = new QmlItsIssue
 				{
 					ID = "1",
 					Key = "ISS-1",
 					Summary = "Sum 1"
 				}},
-				new ItsTrackingIssue{Issue = new ItsIssue
+				new QmlItsTrackingIssue{Issue = new QmlItsIssue
 				{
 					ID = "2",
 					Key = "ISS-2",

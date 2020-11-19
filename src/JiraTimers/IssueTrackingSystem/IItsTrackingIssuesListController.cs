@@ -9,5 +9,11 @@ namespace JiraTimers.IssueTrackingSystem
 		Task<bool> RefreshIssueInfoAsync(string issueID, string issueKey);
 
 		void RemoveIssue(string issueID);
+
+		void StartIssueTimer(string issueID);
+
+		void StopIssueTimer(string issueID);
+
+		void ResetIssueTimer(string issueID);
 	}
 }
