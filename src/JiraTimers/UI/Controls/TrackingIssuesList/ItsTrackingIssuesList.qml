@@ -153,7 +153,9 @@ Column
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
 
-						enabled: false
+						highlighted: isIssueContainsTimeToLog(modelData)
+
+						enabled: modelData.issue.summary
 					}
 
 					Button
@@ -164,7 +166,7 @@ Column
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
 
-						highlighted: true
+						enabled: isIssueContainsTimeToLog(modelData)
 
 						onClicked: resetIssueTimer(modelData)
 					}
@@ -177,7 +179,7 @@ Column
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
 
-						highlighted: true
+						highlighted: false
 
 						onClicked:
 						{
@@ -304,5 +306,10 @@ Column
 		listController.resetIssueTimer(issue.issue.iD);
 
 		refreshModel();
+	}
+
+	function isIssueContainsTimeToLog(model)
+	{
+		return model.formattedElapsedTime != "00:00"
 	}
 }
