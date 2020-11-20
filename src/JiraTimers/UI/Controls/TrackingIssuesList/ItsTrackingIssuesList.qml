@@ -11,6 +11,8 @@ as WindowManager
 
 Column
 {
+	// Properties
+
 	id: column
 
 	anchors.top: parent.top
@@ -29,6 +31,8 @@ Column
 	property string itemToRemoveID
 
 	property bool hasIssues
+
+	// Controls
 
 	Repeater
 	{
@@ -264,6 +268,8 @@ Column
 
 		onTriggered: refreshModel()
 	}
+
+	// Commands
 
 	function createNewIssue()
 	{
