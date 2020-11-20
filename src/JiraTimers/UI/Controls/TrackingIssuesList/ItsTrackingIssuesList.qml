@@ -160,6 +160,12 @@ Column
 						highlighted: isIssueContainsTimeToLog(modelData)
 
 						enabled: modelData.issue.summary
+
+						onClicked:
+						{
+							var window = WindowManager.openWindow("LogWorkWindow.qml", app);
+							window.issue = modelData;
+						}
 					}
 
 					Button
