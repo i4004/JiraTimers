@@ -57,10 +57,15 @@ ThemedWindow
 			focus: true
 		}
 
-		// SubHeader
-		// {
-		// 	text: qsTr("Start Time")
-		// }
+		SubHeader
+		{
+			text: qsTr("Start Time")
+		}
+
+		Label
+		{
+			id: timeStartTimeLabel
+		}
 
 		// Row
 		// {
@@ -130,7 +135,6 @@ ThemedWindow
 	{
 		issue = item;
 
-		// dateSelector: issue.timerStartTime;
-		// timeSelector.set(issue.timerStartTime);
+		timeStartTimeLabel.text = issue.formattedTimerStartTime;
 	}
 }

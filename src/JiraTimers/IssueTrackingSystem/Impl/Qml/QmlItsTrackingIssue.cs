@@ -15,6 +15,9 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 
 		public DateTime TimerStartTime { get; set; }
 
+		[NotifySignal]
+		public string FormattedTimerStartTime => TimerStartTime.ToString("yyyy-MM-dd HH:mm");
+
 		public TimeSpan ElapsedTime { get; set; }
 
 		[NotifySignal]
