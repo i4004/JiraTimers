@@ -164,7 +164,7 @@ Column
 						onClicked:
 						{
 							var window = WindowManager.openWindow("LogWorkWindow.qml", app);
-							window.issue = modelData;
+							window.setIssue(modelData);
 						}
 					}
 

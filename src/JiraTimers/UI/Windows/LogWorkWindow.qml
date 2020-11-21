@@ -15,7 +15,7 @@ ThemedWindow
 	title: qsTr("Submit worklog")
 
 	minimumHeight: 500
-	minimumWidth: 350
+	minimumWidth: 440
 	maximumHeight: minimumHeight
 	maximumWidth: minimumWidth
 
@@ -36,6 +36,56 @@ ThemedWindow
 		anchors.leftMargin: Theme.paddingMedium
 		anchors.bottomMargin: Theme.paddingMedium
 		anchors.rightMargin: Theme.paddingMedium
+
+		SubHeader
+		{
+			text: qsTr("Work log comment (optional)")
+		}
+
+		TextEdit
+		{
+			id: commentsField
+
+			Layout.preferredWidth: parent.width
+
+			color: Material.foreground
+			selectionColor: Material.accent
+			font.pointSize: 12
+
+			wrapMode: Text.WordWrap
+			selectByMouse: true
+			focus: true
+		}
+
+		// SubHeader
+		// {
+		// 	text: qsTr("Start Time")
+		// }
+
+		// Row
+		// {
+		// 	Layout.preferredWidth: parent.width
+		// 	height: 100
+
+		// 	DatePicker
+		// 	{
+		// 		id: dateSelector
+		// 		width: window.minimumWidth / 2
+		// 	}
+
+		// 	TimePicker
+		// 	{
+		// 		id: timeSelector
+
+		// 		width: window.minimumWidth / 2
+		// 		height: 100
+		// 	}
+		// }
+
+		SubHeader
+		{
+			text: qsTr("Remaining Estimate")
+		}
 	}
 
 	footer: ToolBar
@@ -74,5 +124,13 @@ ThemedWindow
 				window.close();
 			}
 		}
+	}
+
+	function setIssue(item)
+	{
+		issue = item;
+
+		// dateSelector: issue.timerStartTime;
+		// timeSelector.set(issue.timerStartTime);
 	}
 }
