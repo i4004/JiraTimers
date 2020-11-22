@@ -10,7 +10,39 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](http://makeapullrequest.com)
 
-JiraTimers is a desktop tool for recording time spent on different Jira issues.
+JiraTimers is a desktop cross-platform tool written in C# + QML for recording time spent on different Jira issues.
+
+## Screenshots
+
+### Main window
+
+#### Dark
+
+![Main Window Dark](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/main-window.png)
+
+#### Light
+
+![Main Window Light](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/main-window-light.png)
+
+### Settings Window
+
+#### Dark
+
+![Settings Window Dark](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/settings-window.png)
+
+#### Light
+
+![Settings Window Light](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/settings-window-light.png)
+
+### Submit Work Log Window
+
+#### Dark
+
+![Submit Work Log Window Dark](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/submit-work-log-window.png)
+
+#### Light
+
+![Submit Work Log Window Light](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/submit-work-log-window-light.png)
 
 ## Contributing
 

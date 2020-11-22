@@ -7,7 +7,7 @@ SystemTrayIcon
 {
 	id: sysTray
 
-	icon.source: "../../Images/Icon.png"
+	icon.source: "../../Images/SystemTrayIcon.png"
 	tooltip: AppInfo.name
 
 	visible: true

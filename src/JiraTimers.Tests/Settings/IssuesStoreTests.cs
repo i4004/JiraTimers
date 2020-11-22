@@ -5,7 +5,6 @@ using JiraTimers.Configuration;
 using JiraTimers.IssueTrackingSystem;
 using JiraTimers.IssueTrackingSystem.Impl;
 using JiraTimers.IssueTrackingSystem.Impl.Qml;
-using JiraTimers.Settings;
 using Moq;
 using NUnit.Framework;
 using Simplify.Templates;
