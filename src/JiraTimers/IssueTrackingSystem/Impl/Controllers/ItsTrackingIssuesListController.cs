@@ -25,10 +25,10 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 
 			var issue = await _clientStore.Client.GetIssueAsync(issueKey);
 
-			if (_clientStore.Client.LastOperationStatus && issue != null)
+			if (issue != null)
 				_list.UpdateItem(issueID, issue);
 
-			return _clientStore.Client.LastOperationStatus;
+			return issue != null;
 		}
 
 		public void RemoveIssue(string issueID) => _list.RemoveItem(issueID);
@@ -39,7 +39,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 
 		public void ResetIssueTimer(string issueID) => _list.GetIssueByID(issueID).ResetTimer();
 
-		public async Task LogWork(string issueID)
+		public async Task<bool> LogWork(string issueID, WorkLog workLog)
 		{
 			if (_clientStore.Client == null)
 				throw new InvalidOperationException("Client is null");
@@ -49,7 +49,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 			if (issue.Issue?.Key == null)
 				throw new InvalidOperationException("Issue key is null");
 
-			await _clientStore.Client.LogWork(issue.Issue.Key);
+			return await _clientStore.Client.LogWork(issue.Issue.Key, workLog);
 		}
 	}
 }
