@@ -12,6 +12,38 @@
 
 JiraTimers is a desktop tool for recording time spent on different Jira issues.
 
+## Screenshots
+
+### Main window
+
+#### Dark
+
+![Main Window Dark](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/main-window.png)
+
+#### Light
+
+![Main Window Light](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/main-window-light.png)
+
+### Settings Window
+
+#### Dark
+
+![Settings Window Dark](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/settings-window.png)
+
+#### Light
+
+![Settings Window Light](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/settings-window-light.png)
+
+### Submit Work Log Window
+
+#### Dark
+
+![Submit Work Log Window Dark](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/submit-work-log-window.png)
+
+#### Light
+
+![Submit Work Log Window Light](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/submit-work-log-window-light.png)
+
 ## Contributing
 
 There are many ways in which you can participate in the project. Like most open-source software projects, contributing code is just one of many outlets where you can help improve. Some of the things that you could help out with are:
