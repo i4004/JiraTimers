@@ -9,34 +9,16 @@ namespace JiraTimers.DI
 	{
 		private readonly ILifetimeScope _scope;
 
-		public JiraTimersLifeTimeScope()
-		{
-			_scope = DIContainer.Current.BeginLifetimeScope();
-		}
+		public JiraTimersLifeTimeScope() => _scope = DIContainer.Current.BeginLifetimeScope();
 
-		public void Dispose()
-		{
-			_scope.Dispose();
-		}
+		public void Dispose() => _scope.Dispose();
 
-		public ISettings GetSettings()
-		{
-			return _scope.Resolver.Resolve<ISettings>();
-		}
+		public ISettings GetSettings() => _scope.Resolver.Resolve<ISettings>();
 
-		public IItsClientStore GetItsClientStore()
-		{
-			return _scope.Resolver.Resolve<IItsClientStore>();
-		}
+		public IItsClientStore GetItsClientStore() => _scope.Resolver.Resolve<IItsClientStore>();
 
-		public IItsTrackingIssuesList GetItsTrackingIssuesList()
-		{
-			return _scope.Resolver.Resolve<IItsTrackingIssuesList>();
-		}
+		public IItsTrackingIssuesList GetItsTrackingIssuesList() => _scope.Resolver.Resolve<IItsTrackingIssuesList>();
 
-		public IItsTrackingIssuesListController GetItsTrackingIssuesListController()
-		{
-			return _scope.Resolver.Resolve<IItsTrackingIssuesListController>();
-		}
+		public IItsTrackingIssuesListController GetItsTrackingIssuesListController() => _scope.Resolver.Resolve<IItsTrackingIssuesListController>();
 	}
 }

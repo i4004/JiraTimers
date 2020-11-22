@@ -18,10 +18,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 			LoadList();
 		}
 
-		public void CreateNewIssue()
-		{
-			_baseController.CreateNewIssue();
-		}
+		public void CreateNewIssue() => _baseController.CreateNewIssue();
 
 		public async Task<bool> RefreshIssueInfoAsync(string issueID, string issueKey)
 		{
@@ -61,10 +58,21 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 			SaveList();
 		}
 
-		public void Dispose()
+		public async Task<bool> LogWork(string issueID, IWorkLog workLog)
 		{
+			var result = await _baseController.LogWork(issueID, workLog);
+
+			if (!result)
+				return false;
+
+			ResetIssueTimer(issueID);
+
 			SaveList();
+
+			return true;
 		}
+
+		public void Dispose() => SaveList();
 
 		private void LoadList()
 		{
@@ -76,9 +84,6 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 				_list.Items.Add(item);
 		}
 
-		private void SaveList()
-		{
-			_issuesStore.Save(_list.Items);
-		}
+		private void SaveList() => _issuesStore.Save(_list.Items);
 	}
 }

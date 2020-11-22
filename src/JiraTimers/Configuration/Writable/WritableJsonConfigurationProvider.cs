@@ -11,10 +11,7 @@ namespace JiraTimers.Configuration.Writable
 	{
 		private readonly IFilePathContainer _container;
 
-		public WritableJsonConfigurationProvider(T source) : base(source)
-		{
-			_container = source;
-		}
+		public WritableJsonConfigurationProvider(T source) : base(source) => _container = source;
 
 		public override void Set(string key, string value)
 		{
@@ -26,14 +23,8 @@ namespace JiraTimers.Configuration.Writable
 			WriteJson(jsonObj);
 		}
 
-		private string ReadJson()
-		{
-			return File.ReadAllText(_container.FilePath, Encoding.UTF8);
-		}
+		private string ReadJson() => File.ReadAllText(_container.FilePath, Encoding.UTF8);
 
-		private void WriteJson(dynamic jsonObj)
-		{
-			File.WriteAllText(_container.FilePath, JsonConvert.SerializeObject(jsonObj, Formatting.Indented), Encoding.UTF8);
-		}
+		private void WriteJson(dynamic jsonObj) => File.WriteAllText(_container.FilePath, JsonConvert.SerializeObject(jsonObj, Formatting.Indented), Encoding.UTF8);
 	}
 }

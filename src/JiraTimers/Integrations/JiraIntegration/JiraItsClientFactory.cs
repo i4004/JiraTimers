@@ -14,8 +14,6 @@ namespace JiraTimers.Integrations.JiraIntegration
 		}
 
 		public Task<IItsClient> CreateAsync(string url, string userName, string userPassword)
-		{
-			return Task.FromResult((IItsClient)new JiraItsClient(Jira.CreateRestClient(url, userName, userPassword), _issuesFactory));
-		}
+			=> Task.FromResult((IItsClient)new JiraItsClient(Jira.CreateRestClient(url, userName, userPassword), _issuesFactory));
 	}
 }

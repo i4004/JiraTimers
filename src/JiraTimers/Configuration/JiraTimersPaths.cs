@@ -16,9 +16,6 @@ namespace JiraTimers.Configuration
 			return System.IO.Path.Combine(appDataPath, AppSettingsDirectoryName);
 		}
 
-		public static string GetIssuesSettingsFilePath()
-		{
-			return System.IO.Path.Combine(GetAppSettingsDirectoryPath(), IssuesSettingsFileName);
-		}
+		public static string GetIssuesSettingsFilePath() => System.IO.Path.Combine(GetAppSettingsDirectoryPath(), IssuesSettingsFileName);
 	}
 }
