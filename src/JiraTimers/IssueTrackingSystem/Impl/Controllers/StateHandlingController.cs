@@ -58,7 +58,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 			SaveList();
 		}
 
-		public async Task<bool> LogWork(string issueID, WorkLog workLog)
+		public async Task<bool> LogWork(string issueID, IWorkLog workLog)
 		{
 			var result = await _baseController.LogWork(issueID, workLog);
 

@@ -44,7 +44,7 @@ ThemedWindow
 
 		TextEdit
 		{
-			id: commentsField
+			id: commentTextEdit
 
 			Layout.preferredWidth: parent.width
 
@@ -74,7 +74,7 @@ ThemedWindow
 
 		Label
 		{
-			id: timeStartTimeLabel
+			id: startTimeLabel
 		}
 
 		// Row
@@ -105,18 +105,17 @@ ThemedWindow
 		ButtonGroup
 		{
 			id: radioGroup
-			// buttons: radioButtons.children
 		}
 
 		RadioButton
 		{
-			// id: adjustAutomaticallyRadioButton
-
 			text: "Adjust automatically"
 
 			ButtonGroup.group: radioGroup
 
 			checked: true
+
+			onClicked: workLog.strategy = WorkLogStrategy.autoAdjustRemainingEstimate;
 		}
 
 		RadioButton
@@ -124,6 +123,8 @@ ThemedWindow
 			text: "Leave Unchanged"
 
 			ButtonGroup.group: radioGroup
+
+			onClicked: workLog.strategy = WorkLogStrategy.retainRemainingEstimate;
 		}
 
 		Row
@@ -133,28 +134,30 @@ ThemedWindow
 				text: "Set to"
 
 				ButtonGroup.group: radioGroup
+
+				onClicked: workLog.strategy = WorkLogStrategy.newRemainingEstimate;
 			}
 
 			TextField
 			{
-				id: setToTextField
+				id: newEstimateTextField
 			}
 		}
 
-		Row
-		{
-			RadioButton
-			{
-				text: "Reduce by"
+		// Row
+		// {
+		// 	RadioButton
+		// 	{
+		// 		text: "Reduce by"
 
-				ButtonGroup.group: radioGroup
-			}
+		// 		ButtonGroup.group: radioGroup
+		// 	}
 
-			TextField
-			{
-				id: reducedByTextField
-			}
-		}
+		// 	TextField
+		// 	{
+		// 		id: reducedByTextField
+		// 	}
+		// }
 	}
 
 	footer: ToolBar
@@ -191,12 +194,30 @@ ThemedWindow
 			DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
 
 			enabled: timeSpentTextField.text
+				&& (workLog.strategy != WorkLogStrategy.newRemainingEstimate
+					|| (workLog.strategy == WorkLogStrategy.newRemainingEstimate && newEstimateTextField.text))
 
 			onClicked:
 			{
+				var controller = scope.getItsTrackingIssuesListController();
+
+				workLog.timeSpent = timeSpentTextField.text;
+				workLog.startDate = issue.startTime;
+				workLog.comment = commentTextEdit.text;
+
+				if (workLog.strategy == WorkLogStrategy.newRemainingEstimate)
+					workLog.newEstimate = newEstimateTextField.text;
+
+				controller.logWork(issue.iD, workLog);
+
 				window.close();
 			}
 		}
+	}
+
+	WorkLog
+	{
+		id: workLog
 	}
 
 	function setIssue(item)
@@ -204,6 +225,6 @@ ThemedWindow
 		issue = item;
 
 		timeSpentTextField.text = issue.textElapsedTime;
-		timeStartTimeLabel.text = issue.formattedTimerStartTime;
+		startTimeLabel.text = issue.formattedStartTime;
 	}
 }

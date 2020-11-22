@@ -10,6 +10,6 @@ namespace JiraTimers.IssueTrackingSystem
 
 		Task<IItsIssue?> GetIssueAsync(string issueKey);
 
-		Task<bool> LogWork(string issueKey, WorkLog workLog);
+		Task<bool> LogWork(string issueKey, IWorkLog workLog);
 	}
 }

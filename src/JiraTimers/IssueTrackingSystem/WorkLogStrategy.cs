@@ -2,8 +2,8 @@
 {
 	public enum WorkLogStrategy
 	{
-		AutoAdjustRemainingEstimate,
-		RetainRemainingEstimate,
-		NewRemainingEstimate,
+		AutoAdjustRemainingEstimate = 0,
+		RetainRemainingEstimate = 1,
+		NewRemainingEstimate = 2
 	}
 }

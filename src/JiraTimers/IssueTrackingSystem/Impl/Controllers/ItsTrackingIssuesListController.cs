@@ -39,7 +39,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 
 		public void ResetIssueTimer(string issueID) => _list.GetIssueByID(issueID).ResetTimer();
 
-		public async Task<bool> LogWork(string issueID, WorkLog workLog)
+		public async Task<bool> LogWork(string issueID, IWorkLog workLog)
 		{
 			if (_clientStore.Client == null)
 				throw new InvalidOperationException("Client is null");

@@ -61,7 +61,7 @@ namespace JiraTimers.Integrations.JiraIntegration
 			return null;
 		}
 
-		public async Task<bool> LogWork(string issueKey, WorkLog workLog)
+		public async Task<bool> LogWork(string issueKey, IWorkLog workLog)
 		{
 			LastOperationResult = null;
 

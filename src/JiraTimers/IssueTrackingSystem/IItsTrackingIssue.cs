@@ -6,8 +6,8 @@ namespace JiraTimers.IssueTrackingSystem
 	{
 		public IItsIssue? Issue { get; }
 
-		public DateTime TimerStartTime { get; set; }
-		public string FormattedTimerStartTime { get; }
+		public DateTime StartTime { get; set; }
+		public string FormattedStartTime { get; }
 
 		public TimeSpan ElapsedTime { get; set; }
 		public string FormattedElapsedTime { get; }
