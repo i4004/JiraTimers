@@ -201,9 +201,7 @@ ThemedWindow
 			{
 				var controller = scope.getItsTrackingIssuesListController();
 
-				workLog.timeSpent = timeSpentTextField.text;
 				workLog.startDate = issue.startTime;
-				workLog.comment = commentTextEdit.text;
 
 				if (workLog.strategy == WorkLogStrategy.newRemainingEstimate)
 					workLog.newEstimate = newEstimateTextField.text;
@@ -218,6 +216,9 @@ ThemedWindow
 	WorkLog
 	{
 		id: workLog
+
+		timeSpent: timeSpentTextField.text;
+		comment: commentTextEdit.text;
 	}
 
 	function setIssue(item)
