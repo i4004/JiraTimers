@@ -224,19 +224,18 @@ ThemedWindow
 				{
 					busyIndicator.running = false;
 
-					console.log(result);
-
 					if (result)
 					{
 						window.close();
-						return;
 					}
+					else
+					{
+						var messageDialog = WindowManager.openWindow("MessageDialog.qml", app);
+						messageDialog.text = scope.getItsClientStore().client.lastOperationResult;
 
-					var window = WindowManager.openWindow("MessageDialog.qml", app);
-					window.text = scope.getItsClientStore().client.lastOperationResult;
-
-					submitButton.enabled = true;
-				})
+						submitButton.enabled = true;
+					}
+				});
 			}
 		}
 	}
