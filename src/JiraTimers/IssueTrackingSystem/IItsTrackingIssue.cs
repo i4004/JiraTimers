@@ -11,6 +11,7 @@ namespace JiraTimers.IssueTrackingSystem
 
 		public TimeSpan ElapsedTime { get; set; }
 		public string FormattedElapsedTime { get; }
+		public string TextElapsedTime { get; }
 
 		public bool IsTimerRunning { get; }
 

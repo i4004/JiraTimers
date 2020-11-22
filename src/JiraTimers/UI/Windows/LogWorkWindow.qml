@@ -1,5 +1,5 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.3
+import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.1
 import QtQuick.Layouts 1.3
 
@@ -59,6 +59,16 @@ ThemedWindow
 
 		SubHeader
 		{
+			text: qsTr("Time Spent")
+		}
+
+		TextField
+		{
+			id: timeSpentTextField
+		}
+
+		SubHeader
+		{
 			text: qsTr("Start Time")
 		}
 
@@ -91,6 +101,60 @@ ThemedWindow
 		{
 			text: qsTr("Remaining Estimate")
 		}
+
+		ButtonGroup
+		{
+			id: radioGroup
+			// buttons: radioButtons.children
+		}
+
+		RadioButton
+		{
+			// id: adjustAutomaticallyRadioButton
+
+			text: "Adjust automatically"
+
+			ButtonGroup.group: radioGroup
+
+			checked: true
+		}
+
+		RadioButton
+		{
+			text: "Leave Unchanged"
+
+			ButtonGroup.group: radioGroup
+		}
+
+		Row
+		{
+			RadioButton
+			{
+				text: "Set to"
+
+				ButtonGroup.group: radioGroup
+			}
+
+			TextField
+			{
+				id: setToTextField
+			}
+		}
+
+		Row
+		{
+			RadioButton
+			{
+				text: "Reduce by"
+
+				ButtonGroup.group: radioGroup
+			}
+
+			TextField
+			{
+				id: reducedByTextField
+			}
+		}
 	}
 
 	footer: ToolBar
@@ -115,14 +179,18 @@ ThemedWindow
 		Button
 		{
 			id: saveButton
+
 			text: qsTr("Submit")
 
 			anchors.right: parent.right
 			anchors.rightMargin: Theme.paddingMedium
 
 			highlighted: true
+			font.weight: Font.Bold
 
 			DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
+
+			enabled: timeSpentTextField.text
 
 			onClicked:
 			{
@@ -135,6 +203,7 @@ ThemedWindow
 	{
 		issue = item;
 
+		timeSpentTextField.text = issue.textElapsedTime;
 		timeStartTimeLabel.text = issue.formattedTimerStartTime;
 	}
 }

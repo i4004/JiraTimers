@@ -23,6 +23,11 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 		[NotifySignal]
 		public string FormattedElapsedTime => ElapsedTime.ToString("hh\\:mm");
 
+		public string TextElapsedTime => ((ElapsedTime.Days > 0 ? $"{ElapsedTime.Days}d" : "")
+										  + (ElapsedTime.Hours > 0 ? $" {ElapsedTime.Hours}h" : "")
+										  + (ElapsedTime.Minutes > 0 ? $" {ElapsedTime.Minutes}m" : ""))
+			.Trim();
+
 		public bool IsTimerRunning
 		{
 			get => _timer != null;
