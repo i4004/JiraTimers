@@ -160,6 +160,15 @@ ThemedWindow
 		// }
 	}
 
+	BusyIndicator
+	{
+		id: busyIndicator
+
+		anchors.centerIn: parent
+
+		running: false
+	}
+
 	footer: ToolBar
 	{
 		Material.foreground: parent.Material.foreground
@@ -169,7 +178,7 @@ ThemedWindow
 		{
 			text: qsTr("Close")
 
-			anchors.right: saveButton.left
+			anchors.right: submitButton.left
 			anchors.rightMargin: Theme.paddingMedium
 
 			highlighted: true
@@ -181,7 +190,7 @@ ThemedWindow
 
 		Button
 		{
-			id: saveButton
+			id: submitButton
 
 			text: qsTr("Submit")
 
@@ -199,6 +208,9 @@ ThemedWindow
 
 			onClicked:
 			{
+				submitButton.enabled = false;
+				busyIndicator.running = true;
+
 				var controller = scope.getItsTrackingIssuesListController();
 
 				workLog.startDate = issue.startTime;
@@ -206,9 +218,25 @@ ThemedWindow
 				if (workLog.strategy == WorkLogStrategy.newRemainingEstimate)
 					workLog.newEstimate = newEstimateTextField.text;
 
-				controller.logWork(issue.iD, workLog);
+				var task = controller.logWork(issue.issue.iD, workLog);
 
-				window.close();
+				Net.await(task, function(result)
+				{
+					busyIndicator.running = false;
+
+					console.log(result);
+
+					if (result)
+					{
+						window.close();
+						return;
+					}
+
+					var window = WindowManager.openWindow("MessageDialog.qml", app);
+					window.text = scope.getItsClientStore().client.lastOperationResult;
+
+					submitButton.enabled = true;
+				})
 			}
 		}
 	}
