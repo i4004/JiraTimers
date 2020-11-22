@@ -61,6 +61,15 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 			SaveList();
 		}
 
+		public async Task LogWork(string issueID)
+		{
+			await _baseController.LogWork(issueID);
+
+			ResetIssueTimer(issueID);
+
+			SaveList();
+		}
+
 		public void Dispose()
 		{
 			SaveList();

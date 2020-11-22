@@ -53,5 +53,18 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 		{
 			_list.GetIssueByID(issueID).ResetTimer();
 		}
+
+		public async Task LogWork(string issueID)
+		{
+			if (_clientStore.Client == null)
+				throw new InvalidOperationException("Client is null");
+
+			var issue = _list.GetIssueByID(issueID);
+
+			if (issue.Issue?.Key == null)
+				throw new InvalidOperationException("Issue key is null");
+
+			await _clientStore.Client.LogWork(issue.Issue.Key);
+		}
 	}
 }

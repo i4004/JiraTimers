@@ -65,5 +65,10 @@ namespace JiraTimers.Integrations.JiraIntegration
 
 			return null;
 		}
+
+		public Task LogWork(string issueKey)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

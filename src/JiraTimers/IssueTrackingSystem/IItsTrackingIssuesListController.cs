@@ -15,5 +15,7 @@ namespace JiraTimers.IssueTrackingSystem
 		void StopIssueTimer(string issueID);
 
 		void ResetIssueTimer(string issueID);
+
+		Task LogWork(string issueID);
 	}
 }
