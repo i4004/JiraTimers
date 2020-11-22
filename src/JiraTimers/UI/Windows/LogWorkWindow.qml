@@ -27,6 +27,8 @@ ThemedWindow
 	property
 	var issue
 
+	signal workLogged()
+
 	ColumnLayout
 	{
 		anchors.top: parent.top
@@ -226,6 +228,7 @@ ThemedWindow
 
 					if (result)
 					{
+						workLogged();
 						window.close();
 					}
 					else

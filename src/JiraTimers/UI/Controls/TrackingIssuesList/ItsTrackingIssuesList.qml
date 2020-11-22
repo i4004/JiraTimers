@@ -164,7 +164,9 @@ Column
 						onClicked:
 						{
 							var window = WindowManager.openWindow("LogWorkWindow.qml", app);
+
 							window.setIssue(modelData);
+							window.workLogged.connect(refreshModel);
 						}
 					}
 
