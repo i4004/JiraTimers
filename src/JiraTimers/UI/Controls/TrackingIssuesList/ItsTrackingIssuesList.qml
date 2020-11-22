@@ -11,6 +11,8 @@ as WindowManager
 
 Column
 {
+	// Properties
+
 	id: column
 
 	anchors.top: parent.top
@@ -29,6 +31,8 @@ Column
 	property string itemToRemoveID
 
 	property bool hasIssues
+
+	// Controls
 
 	Repeater
 	{
@@ -153,7 +157,17 @@ Column
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
 
-						enabled: false
+						highlighted: isIssueContainsTimeToLog(modelData)
+
+						enabled: modelData.issue.summary
+
+						onClicked:
+						{
+							var window = WindowManager.openWindow("LogWorkWindow.qml", app);
+
+							window.setIssue(modelData);
+							window.workLogged.connect(refreshModel);
+						}
 					}
 
 					Button
@@ -164,7 +178,7 @@ Column
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
 
-						highlighted: true
+						enabled: isIssueContainsTimeToLog(modelData)
 
 						onClicked: resetIssueTimer(modelData)
 					}
@@ -177,7 +191,7 @@ Column
 						height: Theme.toolButtonHeight
 						width: Theme.toolButtonWidth
 
-						highlighted: true
+						highlighted: false
 
 						onClicked:
 						{
@@ -263,6 +277,8 @@ Column
 		onTriggered: refreshModel()
 	}
 
+	// Commands
+
 	function createNewIssue()
 	{
 		listController.createNewIssue();
@@ -304,5 +320,10 @@ Column
 		listController.resetIssueTimer(issue.issue.iD);
 
 		refreshModel();
+	}
+
+	function isIssueContainsTimeToLog(model)
+	{
+		return model.formattedElapsedTime != "00:00"
 	}
 }

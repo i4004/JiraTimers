@@ -60,6 +60,7 @@ ThemedWindow
 			anchors.centerIn: parent
 
 			highlighted: true
+			focus: true
 
 			onClicked: messageDialog.close()
 		}

@@ -13,12 +13,20 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 		[JsonConverter(typeof(ConcreteConverter<QmlItsIssue>))]
 		public IItsIssue? Issue { get; set; }
 
-		public DateTime TimerStartTime { get; set; }
+		public DateTime StartTime { get; set; }
+
+		[NotifySignal]
+		public string FormattedStartTime => StartTime.ToString("yyyy-MM-dd HH:mm");
 
 		public TimeSpan ElapsedTime { get; set; }
 
 		[NotifySignal]
 		public string FormattedElapsedTime => ElapsedTime.ToString("hh\\:mm");
+
+		public string TextElapsedTime => ((ElapsedTime.Days > 0 ? $"{ElapsedTime.Days}d" : "")
+										  + (ElapsedTime.Hours > 0 ? $" {ElapsedTime.Hours}h" : "")
+										  + (ElapsedTime.Minutes > 0 ? $" {ElapsedTime.Minutes}m" : ""))
+			.Trim();
 
 		public bool IsTimerRunning
 		{
@@ -34,8 +42,8 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 		{
 			_timer = new Timer(OnTimer, null, 0, 1000);
 
-			if (TimerStartTime == default)
-				TimerStartTime = DateTime.Now;
+			if (StartTime == default)
+				StartTime = DateTime.Now;
 		}
 
 		public void StopTimer()
@@ -48,13 +56,10 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 		{
 			StopTimer();
 
-			TimerStartTime = default;
+			StartTime = default;
 			ElapsedTime = default;
 		}
 
-		private void OnTimer(object? state)
-		{
-			ElapsedTime = ElapsedTime.Add(TimeSpan.FromSeconds(1));
-		}
+		private void OnTimer(object? state) => ElapsedTime = ElapsedTime.Add(TimeSpan.FromSeconds(1));
 	}
 }

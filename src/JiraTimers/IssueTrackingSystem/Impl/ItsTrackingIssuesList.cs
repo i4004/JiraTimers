@@ -8,15 +8,9 @@ namespace JiraTimers.IssueTrackingSystem.Impl
 	{
 		public IList<IItsTrackingIssue> Items { get; } = new List<IItsTrackingIssue>();
 
-		public void AddItem(IItsTrackingIssue issue)
-		{
-			Items.Add(issue);
-		}
+		public void AddItem(IItsTrackingIssue issue) => Items.Add(issue);
 
-		public IItsTrackingIssue GetIssueByID(string issueID)
-		{
-			return Items.Single(x => x.Issue?.ID == issueID);
-		}
+		public IItsTrackingIssue GetIssueByID(string issueID) => Items.Single(x => x.Issue?.ID == issueID);
 
 		public void UpdateItem(string id, IItsIssue issue)
 		{

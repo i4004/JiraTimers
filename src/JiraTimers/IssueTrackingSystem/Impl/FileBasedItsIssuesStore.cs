@@ -34,20 +34,11 @@ namespace JiraTimers.IssueTrackingSystem.Impl
 			return result.Cast<IItsTrackingIssue>().ToList();
 		}
 
-		public void Save(IList<IItsTrackingIssue> items)
-		{
-			WriteJson(items);
-		}
+		public void Save(IList<IItsTrackingIssue> items) => WriteJson(items);
 
-		private string ReadJson()
-		{
-			return FileSystem.File.ReadAllText(_settingsFilePath, Encoding.UTF8);
-		}
+		private string ReadJson() => FileSystem.File.ReadAllText(_settingsFilePath, Encoding.UTF8);
 
-		private void WriteJson(IList<IItsTrackingIssue> items)
-		{
-			FileSystem.File.WriteAllText(_settingsFilePath, JsonConvert.SerializeObject(items), Encoding.UTF8);
-		}
+		private void WriteJson(IList<IItsTrackingIssue> items) => FileSystem.File.WriteAllText(_settingsFilePath, JsonConvert.SerializeObject(items), Encoding.UTF8);
 
 		private void CreateStoreFileIfNotExists()
 		{

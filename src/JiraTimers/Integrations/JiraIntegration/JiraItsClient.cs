@@ -19,8 +19,6 @@ namespace JiraTimers.Integrations.JiraIntegration
 			_client.Issues.MaxIssuesPerRequest = 10;
 		}
 
-		public bool LastOperationStatus { get; private set; }
-
 		public string? LastOperationResult { get; private set; }
 
 		public async Task<string?> CheckConnectionAsync()
@@ -44,13 +42,10 @@ namespace JiraTimers.Integrations.JiraIntegration
 		public async Task<IItsIssue?> GetIssueAsync(string issueKey)
 		{
 			LastOperationResult = null;
-			LastOperationStatus = false;
 
 			try
 			{
 				var result = await _client.Issues.GetIssueAsync(issueKey);
-
-				LastOperationStatus = true;
 
 				return _issuesFactory.Create(result);
 			}
@@ -65,5 +60,34 @@ namespace JiraTimers.Integrations.JiraIntegration
 
 			return null;
 		}
+
+		public async Task<bool> LogWork(string issueKey, IWorkLog workLog)
+		{
+			LastOperationResult = null;
+
+			var jiraWorkLog = new Worklog(workLog.TimeSpent, workLog.StartDate, workLog.Comment);
+
+			try
+			{
+				await _client.Issues.AddWorklogAsync(issueKey, jiraWorkLog, GetJiraWorkLogStrategy(workLog.Strategy), workLog.NewEstimate);
+			}
+			catch (Exception e)
+			{
+				LastOperationResult = e.Message;
+
+				return false;
+			}
+
+			return true;
+		}
+
+		private static WorklogStrategy GetJiraWorkLogStrategy(WorkLogStrategy strategy) =>
+			strategy switch
+			{
+				WorkLogStrategy.AutoAdjustRemainingEstimate => WorklogStrategy.AutoAdjustRemainingEstimate,
+				WorkLogStrategy.RetainRemainingEstimate => WorklogStrategy.RetainRemainingEstimate,
+				WorkLogStrategy.NewRemainingEstimate => WorklogStrategy.NewRemainingEstimate,
+				_ => throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null)
+			};
 	}
 }
