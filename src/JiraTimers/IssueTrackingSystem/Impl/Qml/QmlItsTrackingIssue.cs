@@ -60,9 +60,6 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 			ElapsedTime = default;
 		}
 
-		private void OnTimer(object? state)
-		{
-			ElapsedTime = ElapsedTime.Add(TimeSpan.FromSeconds(1));
-		}
+		private void OnTimer(object? state) => ElapsedTime = ElapsedTime.Add(TimeSpan.FromSeconds(1));
 	}
 }

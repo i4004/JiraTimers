@@ -6,13 +6,11 @@ namespace JiraTimers.Integrations.JiraIntegration
 {
 	public class JiraBasedItsIssuesFactory
 	{
-		public IItsIssue Create(Issue sourceIssue)
-		{
-			return new QmlItsIssue
+		public IItsIssue Create(Issue sourceIssue) =>
+			new QmlItsIssue
 			{
 				Key = sourceIssue.Key.Value,
 				Summary = sourceIssue.Summary
 			};
-		}
 	}
 }

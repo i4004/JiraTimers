@@ -16,10 +16,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 			_clientStore = clientStore;
 		}
 
-		public void CreateNewIssue()
-		{
-			_list.AddItem(_issuesFactory.Create());
-		}
+		public void CreateNewIssue() => _list.AddItem(_issuesFactory.Create());
 
 		public async Task<bool> RefreshIssueInfoAsync(string issueID, string issueKey)
 		{
@@ -34,25 +31,13 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Controllers
 			return _clientStore.Client.LastOperationStatus;
 		}
 
-		public void RemoveIssue(string issueID)
-		{
-			_list.RemoveItem(issueID);
-		}
+		public void RemoveIssue(string issueID) => _list.RemoveItem(issueID);
 
-		public void StartIssueTimer(string issueID)
-		{
-			_list.GetIssueByID(issueID).StartTimer();
-		}
+		public void StartIssueTimer(string issueID) => _list.GetIssueByID(issueID).StartTimer();
 
-		public void StopIssueTimer(string issueID)
-		{
-			_list.GetIssueByID(issueID).StopTimer();
-		}
+		public void StopIssueTimer(string issueID) => _list.GetIssueByID(issueID).StopTimer();
 
-		public void ResetIssueTimer(string issueID)
-		{
-			_list.GetIssueByID(issueID).ResetTimer();
-		}
+		public void ResetIssueTimer(string issueID) => _list.GetIssueByID(issueID).ResetTimer();
 
 		public async Task LogWork(string issueID)
 		{
