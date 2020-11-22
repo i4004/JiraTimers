@@ -8,6 +8,7 @@
 		<Authors>Alexander Krylkov</Authors>
 		<Product>JiraTimers</Product>
 		<Copyright>Licensed under LGPL</Copyright>
+		<ApplicationIcon>Images/Icon.ico</ApplicationIcon>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Atlassian.SDK" Version="12.1.1" />
