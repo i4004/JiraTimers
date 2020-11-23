@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>jiratimers</id>
+		<version>0.9</version>
+		<title>JiraTimers</title>
+		<authors>Alexander Krylkov</authors>
+		<owners>Alexander Krylkov</owners>
+		<description>JiraTimers is a desktop cross-platform tool written in C# + QML for recording time spent on different Jira issues.</description>
+		<summary>JiraTimers is a desktop cross-platform tool written in C# + QML for recording time spent on different Jira issues.</summary>
+		<releaseNotes>https://github.com/i4004/JiraTimers/releases</releaseNotes>
+		<projectUrl>https://github.com/i4004/JiraTimers</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/i4004/JiraTimers/master/images/Logo128x128.png</iconUrl>
+		<packageSourceUrl>hhttps://github.com/i4004/JiraTimers/tree/master/src</packageSourceUrl>
+		<licenseUrl>https://github.com/i4004/JiraTimers/blob/master/LICENSE</licenseUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<copyright>Licensed under LGPL</copyright>
+		<tags>jira issue-management its issue-tracking-system cross-platform qml desktop qmlnet desktop-cross-platform</tags>
+	</metadata>
+</package>
