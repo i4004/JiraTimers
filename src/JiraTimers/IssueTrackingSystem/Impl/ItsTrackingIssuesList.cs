@@ -24,6 +24,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl
 
 			existingIssue.Issue.Key = issue.Key;
 			existingIssue.Issue.Summary = issue.Summary;
+			existingIssue.Issue.Assignee = issue.Assignee;
 		}
 
 		public void RemoveItem(string id)

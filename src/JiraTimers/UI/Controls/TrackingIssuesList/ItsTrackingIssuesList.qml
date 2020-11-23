@@ -223,19 +223,46 @@ Flickable
 					}
 				}
 
-				TextEdit
+				GridLayout
 				{
-					text: modelData.issue.summary
-
 					anchors.left: parent.left
-					anchors.leftMargin: Theme.paddingMedium
+					anchors.right: parent.right
 
-					color: Material.foreground
-					selectionColor: Material.accent
-					font.pointSize: 10
+					Flow
+					{
+						Layout.alignment: Qt.AlignLeft
+						Layout.leftMargin: Theme.paddingMedium
 
-					readOnly: true
-					selectByMouse: true
+						TextEdit
+						{
+							text: modelData.issue.summary
+
+							color: Material.foreground
+							selectionColor: Material.accent
+							font.pointSize: 10
+
+							readOnly: true
+							selectByMouse: true
+						}
+					}
+
+					Flow
+					{
+						Layout.alignment: Qt.AlignRight
+						Layout.rightMargin: Theme.paddingMedium
+
+						TextEdit
+						{
+							text: modelData.issue.assignee
+
+							color: Material.foreground
+							selectionColor: Material.accent
+							font.pointSize: 10
+
+							readOnly: true
+							selectByMouse: true
+						}
+					}
 				}
 
 				Rectangle
