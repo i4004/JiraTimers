@@ -124,7 +124,6 @@ Column
 						text: modelData.formattedElapsedTime
 
 						height: 50
-						width: 82
 
 						verticalAlignment: TextEdit.AlignVCenter
 
