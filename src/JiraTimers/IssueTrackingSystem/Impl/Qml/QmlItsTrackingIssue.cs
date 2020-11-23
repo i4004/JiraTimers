@@ -13,10 +13,10 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 		[JsonConverter(typeof(ConcreteConverter<QmlItsIssue>))]
 		public IItsIssue? Issue { get; set; }
 
-		public DateTime StartTime { get; set; }
+		public DateTime? StartTime { get; set; }
 
 		[NotifySignal]
-		public string FormattedStartTime => StartTime.ToString("yyyy-MM-dd HH:mm");
+		public string FormattedStartTime => (StartTime ?? DateTime.Now).ToString("yyyy-MM-dd HH:mm");
 
 		public TimeSpan ElapsedTime { get; set; }
 
