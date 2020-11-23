@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Text;
 using JiraTimers.Configuration;
@@ -70,13 +71,17 @@ namespace JiraTimers.Tests.Settings
 					ID = "1",
 					Key = "ISS-1",
 					Summary = "Sum 1"
-				}},
+				},
+					StartTime = new DateTime(2020, 11, 11)
+				},
 				new QmlItsTrackingIssue{Issue = new QmlItsIssue
 				{
 					ID = "2",
 					Key = "ISS-2",
 					Summary = "Sum 2"
-				}}
+				},
+					StartTime = new DateTime(2020, 11, 5)
+				}
 			};
 
 			// Act

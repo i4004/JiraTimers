@@ -11,5 +11,8 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 
 		[NotifySignal]
 		public string? Summary { get; set; }
+
+		[NotifySignal]
+		public string? Assignee { get; set; }
 	}
 }

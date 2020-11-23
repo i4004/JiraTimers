@@ -10,7 +10,8 @@ namespace JiraTimers.Integrations.JiraIntegration
 			new QmlItsIssue
 			{
 				Key = sourceIssue.Key.Value,
-				Summary = sourceIssue.Summary
+				Summary = sourceIssue.Summary,
+				Assignee = sourceIssue.Assignee
 			};
 	}
 }
