@@ -9,16 +9,9 @@ import JiraTimers.Types 1.0
 import "../../Windows/WindowManager.js"
 as WindowManager
 
-Column
+Flickable
 {
 	// Properties
-
-	id: column
-
-	anchors.top: parent.top
-	anchors.left: parent.left
-	anchors.right: parent.right
-	anchors.topMargin: Theme.paddingMedium - 7
 
 	property alias model: repeater.model
 
@@ -32,248 +25,278 @@ Column
 
 	property bool hasIssues
 
-	// Controls
+	// Parameters
 
-	Repeater
+	id: root
+
+	anchors.top: parent.top
+	anchors.left: parent.left
+	anchors.right: parent.right
+	anchors.topMargin: Theme.paddingMedium - 7
+
+	contentHeight: column.height
+
+	clip: true
+
+	ScrollBar.vertical: ScrollBar
 	{
-		id: repeater
+		id: scrollBar
 
-		Column
+		policy: ScrollBar.AlwaysOn
+		visible: root.contentHeight > root.height
+	}
+
+	Column
+	{
+		id: column
+
+		anchors.left: parent.left
+		anchors.right: parent.right
+		anchors.rightMargin: scrollBar.visible ? scrollBar.width : 0
+
+		// Controls
+
+		Repeater
 		{
-			anchors.left: column.left
-			anchors.right: column.right
+			id: repeater
 
-			GridLayout
+			Column
 			{
 				anchors.left: parent.left
 				anchors.right: parent.right
 
-				Flow
+				GridLayout
 				{
-					Layout.alignment: Qt.AlignLeft
-					Layout.leftMargin: Theme.paddingMedium
+					anchors.left: parent.left
+					anchors.right: parent.right
 
-					TextEdit
+					Flow
 					{
-						id: textKey
+						Layout.alignment: Qt.AlignLeft
+						Layout.leftMargin: Theme.paddingMedium
 
-						text: modelData.issue.key
-						property string placeholderText: "Enter issue key here and press enter..."
-
-						width: 150
-						height: 50
-
-						verticalAlignment: TextEdit.AlignVCenter
-
-						color: Material.foreground
-						selectionColor: Material.accent
-						font.pointSize: 15
-						font.capitalization: Font.AllUppercase
-
-						selectByMouse: true
-
-						Text
+						TextEdit
 						{
-							text: textKey.placeholderText
-							color: Material.accent
-							visible: !textKey.text
-						}
+							id: textKey
 
-						Keys.onReturnPressed:
-						{
-							var task = listController.refreshIssueInfoAsync(modelData.issue.iD, textKey.text);
+							text: modelData.issue.key
+							property string placeholderText: "Enter issue key here and press enter..."
 
-							Net.await(task, function(result)
+							width: 150
+							height: 50
+
+							verticalAlignment: TextEdit.AlignVCenter
+
+							color: Material.foreground
+							selectionColor: Material.accent
+							font.pointSize: 15
+							font.capitalization: Font.AllUppercase
+
+							selectByMouse: true
+
+							Text
 							{
-								if (result)
-									refreshModel();
-								else
+								text: textKey.placeholderText
+								color: Material.accent
+								visible: !textKey.text
+							}
+
+							Keys.onReturnPressed:
+							{
+								var task = listController.refreshIssueInfoAsync(modelData.issue.iD, textKey.text);
+
+								Net.await(task, function(result)
 								{
-									var window = WindowManager.openWindow("MessageDialog.qml", app);
-									window.text = scope.getItsClientStore().client.lastOperationResult;
-								}
-							});
+									if (result)
+										refreshModel();
+									else
+									{
+										var window = WindowManager.openWindow("MessageDialog.qml", app);
+										window.text = scope.getItsClientStore().client.lastOperationResult;
+									}
+								});
+							}
+						}
+					}
+
+					Flow
+					{
+						spacing: Theme.paddingMedium
+
+						Layout.alignment: Qt.AlignRight
+						Layout.rightMargin: Theme.paddingMedium
+
+						Button
+						{
+							text: "↪"
+
+							font.pointSize: 25
+							height: Theme.toolButtonHeight
+							width: Theme.toolButtonWidth
+
+							highlighted: true
+
+							enabled: textKey.text
+
+							onClicked: Qt.openUrlExternally(formatIssueUrl(textKey.text))
+						}
+
+						TextEdit
+						{
+							text: modelData.formattedElapsedTime
+
+							height: 50
+
+							verticalAlignment: TextEdit.AlignVCenter
+
+							color: Material.foreground
+							selectionColor: Material.accent
+							font.pointSize: 15
+
+							readOnly: true
+							selectByMouse: true
+						}
+
+						Button
+						{
+							text: modelData.isTimerRunning ? "▌▌" : "▶"
+							font.pointSize: modelData.isTimerRunning ? 9 : 25
+
+							height: Theme.toolButtonHeight
+							width: Theme.toolButtonWidth
+
+							highlighted: true
+
+							onClicked: startStopIssueTimer(modelData)
+						}
+
+						Button
+						{
+							text: "📅"
+
+							font.pointSize: 12
+							height: Theme.toolButtonHeight
+							width: Theme.toolButtonWidth
+
+							highlighted: isIssueContainsTimeToLog(modelData)
+
+							enabled: modelData.issue.summary
+
+							onClicked:
+							{
+								var window = WindowManager.openWindow("LogWorkWindow.qml", app);
+
+								window.setIssue(modelData);
+								window.workLogged.connect(refreshModel);
+							}
+						}
+
+						Button
+						{
+							text: "↺"
+
+							font.pointSize: 18
+							height: Theme.toolButtonHeight
+							width: Theme.toolButtonWidth
+
+							enabled: isIssueContainsTimeToLog(modelData)
+
+							onClicked: resetIssueTimer(modelData)
+						}
+
+						Button
+						{
+							text: "🗑"
+
+							font.pointSize: 13
+							height: Theme.toolButtonHeight
+							width: Theme.toolButtonWidth
+
+							highlighted: false
+
+							onClicked:
+							{
+								itemToRemoveID = modelData.issue.iD;
+								deleteConfirmationDialog.open();
+							}
 						}
 					}
 				}
 
-				Flow
+				TextEdit
 				{
-					spacing: Theme.paddingMedium
+					text: modelData.issue.summary
 
-					Layout.alignment: Qt.AlignRight
-					Layout.rightMargin: Theme.paddingMedium
+					anchors.left: parent.left
+					anchors.leftMargin: Theme.paddingMedium
 
-					Button
-					{
-						text: "↪"
+					color: Material.foreground
+					selectionColor: Material.accent
+					font.pointSize: 10
 
-						font.pointSize: 25
-						height: Theme.toolButtonHeight
-						width: Theme.toolButtonWidth
-
-						highlighted: true
-
-						enabled: textKey.text
-
-						onClicked: Qt.openUrlExternally(formatIssueUrl(textKey.text))
-					}
-
-					TextEdit
-					{
-						text: modelData.formattedElapsedTime
-
-						height: 50
-
-						verticalAlignment: TextEdit.AlignVCenter
-
-						color: Material.foreground
-						selectionColor: Material.accent
-						font.pointSize: 15
-
-						readOnly: true
-						selectByMouse: true
-					}
-
-					Button
-					{
-						text: modelData.isTimerRunning ? "▌▌" : "▶"
-						font.pointSize: modelData.isTimerRunning ? 9 : 25
-
-						height: Theme.toolButtonHeight
-						width: Theme.toolButtonWidth
-
-						highlighted: true
-
-						onClicked: startStopIssueTimer(modelData)
-					}
-
-					Button
-					{
-						text: "📅"
-
-						font.pointSize: 12
-						height: Theme.toolButtonHeight
-						width: Theme.toolButtonWidth
-
-						highlighted: isIssueContainsTimeToLog(modelData)
-
-						enabled: modelData.issue.summary
-
-						onClicked:
-						{
-							var window = WindowManager.openWindow("LogWorkWindow.qml", app);
-
-							window.setIssue(modelData);
-							window.workLogged.connect(refreshModel);
-						}
-					}
-
-					Button
-					{
-						text: "↺"
-
-						font.pointSize: 18
-						height: Theme.toolButtonHeight
-						width: Theme.toolButtonWidth
-
-						enabled: isIssueContainsTimeToLog(modelData)
-
-						onClicked: resetIssueTimer(modelData)
-					}
-
-					Button
-					{
-						text: "🗑"
-
-						font.pointSize: 13
-						height: Theme.toolButtonHeight
-						width: Theme.toolButtonWidth
-
-						highlighted: false
-
-						onClicked:
-						{
-							itemToRemoveID = modelData.issue.iD;
-							deleteConfirmationDialog.open();
-						}
-					}
+					readOnly: true
+					selectByMouse: true
 				}
-			}
 
-			TextEdit
-			{
-				text: modelData.issue.summary
+				Rectangle
+				{
+					anchors.left: parent.left
+					anchors.leftMargin: Theme.paddingMedium
+					anchors.right: parent.right
+					anchors.rightMargin: Theme.paddingMedium
 
-				anchors.left: parent.left
-				anchors.leftMargin: Theme.paddingMedium
+					height: 15
+					color: "transparent"
+				}
 
-				color: Material.foreground
-				selectionColor: Material.accent
-				font.pointSize: 10
+				Rectangle
+				{
+					anchors.left: parent.left
+					anchors.leftMargin: Theme.paddingMedium
+					anchors.right: parent.right
+					anchors.rightMargin: Theme.paddingMedium
 
-				readOnly: true
-				selectByMouse: true
-			}
-
-			Rectangle
-			{
-				anchors.left: parent.left
-				anchors.leftMargin: Theme.paddingMedium
-				anchors.right: parent.right
-				anchors.rightMargin: Theme.paddingMedium
-
-				height: 15
-				color: "transparent"
-			}
-
-			Rectangle
-			{
-				anchors.left: parent.left
-				anchors.leftMargin: Theme.paddingMedium
-				anchors.right: parent.right
-				anchors.rightMargin: Theme.paddingMedium
-
-				height: 1
-				color: Material.accent
+					height: 1
+					color: Material.accent
+				}
 			}
 		}
-	}
 
-	Button
-	{
-		text: "+"
+		Button
+		{
+			text: "+"
 
-		height: Theme.toolButtonHeight
-		width: Theme.toolButtonWidth
+			height: Theme.toolButtonHeight
+			width: Theme.toolButtonWidth
 
-		anchors.right: parent.right
-		anchors.rightMargin: Theme.paddingMedium
+			anchors.right: parent.right
+			anchors.rightMargin: Theme.paddingMedium
 
-		highlighted: true
+			highlighted: true
 
-		onClicked: createNewIssue()
-	}
+			onClicked: createNewIssue()
+		}
 
-	MessageDialog
-	{
-		id: deleteConfirmationDialog
+		MessageDialog
+		{
+			id: deleteConfirmationDialog
 
-		icon: StandardIcon.Question
-		standardButtons: StandardButton.Yes | StandardButton.No
+			icon: StandardIcon.Question
+			standardButtons: StandardButton.Yes | StandardButton.No
 
-		informativeText: "Are you sure to delete the item?"
+			informativeText: "Are you sure to delete the item?"
 
-		onYes: removeIssue()
-	}
+			onYes: removeIssue()
+		}
 
-	Timer
-	{
-		interval: 60000
-		running: true
-		repeat: true
+		Timer
+		{
+			interval: 60000
+			running: true
+			repeat: true
 
-		onTriggered: refreshModel()
+			onTriggered: refreshModel()
+		}
 	}
 
 	// Commands
