@@ -16,5 +16,9 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<copyright>Licensed under LGPL</copyright>
 		<tags>jira issue-management its issue-tracking-system cross-platform qml desktop qmlnet desktop-cross-platform</tags>
+
+		<dependencies>
+			<dependency id="dotnet-5.0-runtime" version="5.0.0" />
+		</dependencies>
 	</metadata>
 </package>
