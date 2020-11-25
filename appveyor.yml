@@ -17,7 +17,7 @@ build:
   verbosity: minimal
 
 after_build:
-  - .\Publish.ps1
+  - ps: .\Publish.ps1
 
 artifacts
- - path: '**\*.nupkg'
+  - path: '**\*.nupkg'
