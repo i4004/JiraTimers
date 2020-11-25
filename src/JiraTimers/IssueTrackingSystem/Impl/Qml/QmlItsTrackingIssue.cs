@@ -15,9 +15,6 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 
 		public DateTime? StartTime { get; set; }
 
-		[NotifySignal]
-		public string FormattedStartTime => (StartTime ?? DateTime.Now).ToString("yyyy-MM-dd HH:mm");
-
 		public TimeSpan ElapsedTime { get; set; }
 
 		[NotifySignal]
@@ -28,6 +25,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 										  + (ElapsedTime.Minutes > 0 ? $" {ElapsedTime.Minutes}m" : ""))
 			.Trim();
 
+		[NotifySignal]
 		public bool IsTimerRunning
 		{
 			get => _timer != null;
