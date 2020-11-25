@@ -6,17 +6,14 @@ using Qml.Net;
 
 namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 {
-	public class QmlItsTrackingIssue : IItsTrackingIssue
+	public class ItsTrackingIssue : IItsTrackingIssue
 	{
 		private Timer? _timer;
 
-		[JsonConverter(typeof(ConcreteConverter<QmlItsIssue>))]
+		[JsonConverter(typeof(ConcreteConverter<ItsIssue>))]
 		public IItsIssue? Issue { get; set; }
 
 		public DateTime? StartTime { get; set; }
-
-		[NotifySignal]
-		public string FormattedStartTime => (StartTime ?? DateTime.Now).ToString("yyyy-MM-dd HH:mm");
 
 		public TimeSpan ElapsedTime { get; set; }
 
@@ -28,6 +25,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 										  + (ElapsedTime.Minutes > 0 ? $" {ElapsedTime.Minutes}m" : ""))
 			.Trim();
 
+		[NotifySignal]
 		public bool IsTimerRunning
 		{
 			get => _timer != null;

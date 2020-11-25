@@ -13,11 +13,11 @@ namespace JiraTimers.Setup.IOC
 		public static IDIRegistrator RegisterIts(this IDIRegistrator registrator)
 		{
 			registrator.Register<JiraBasedItsIssuesFactory>(LifetimeType.Singleton)
-				.Register<IItsTrackingIssuesFactory, QmlItsTrackingIssuesFactory>(LifetimeType.Singleton);
+				.Register<IItsTrackingIssuesFactory, ItsTrackingIssuesFactory>(LifetimeType.Singleton);
 
 			registrator.Register<IItsClientFactory, JiraItsClientFactory>(LifetimeType.Singleton)
-				.Register<QmlItsClientStore>(LifetimeType.Singleton)
-				.Register<IItsClientStore>(r => r.Resolve<QmlItsClientStore>(), LifetimeType.Singleton);
+				.Register<ItsClientStore>(LifetimeType.Singleton)
+				.Register<IItsClientStore>(r => r.Resolve<ItsClientStore>(), LifetimeType.Singleton);
 
 			registrator.Register<IItsTrackingIssuesList, ItsTrackingIssuesList>(LifetimeType.Singleton);
 

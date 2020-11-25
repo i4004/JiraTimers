@@ -215,7 +215,6 @@ ThemedWindow
 
 				var controller = scope.getItsTrackingIssuesListController();
 
-				workLog.startDate = issue.startTime;
 
 				if (workLog.strategy == WorkLogStrategy.newRemainingEstimate)
 					workLog.newEstimate = newEstimateTextField.text;
@@ -255,7 +254,10 @@ ThemedWindow
 	{
 		issue = item;
 
+		if (issue.startTime != null)
+			workLog.startTime = issue.startTime;
+
 		timeSpentTextField.text = issue.textElapsedTime;
-		startTimeLabel.text = issue.formattedStartTime;
+		startTimeLabel.text = workLog.formattedStartTime;
 	}
 }

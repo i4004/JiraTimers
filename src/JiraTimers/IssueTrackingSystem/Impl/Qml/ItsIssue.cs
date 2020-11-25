@@ -2,7 +2,7 @@
 
 namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 {
-	public class QmlItsIssue : IItsIssue
+	public class ItsIssue : IItsIssue
 	{
 		public string? ID { get; set; }
 

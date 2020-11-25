@@ -2,12 +2,12 @@
 
 namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 {
-	public class QmlItsTrackingIssuesFactory : IItsTrackingIssuesFactory
+	public class ItsTrackingIssuesFactory : IItsTrackingIssuesFactory
 	{
 		public IItsTrackingIssue Create() =>
-			new QmlItsTrackingIssue
+			new ItsTrackingIssue
 			{
-				Issue = new QmlItsIssue
+				Issue = new ItsIssue
 				{
 					ID = Guid.NewGuid().ToString()
 				}
