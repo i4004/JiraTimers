@@ -19,5 +19,5 @@ build:
 after_build:
   - ps: .\Publish.ps1
 
-artifacts
+artifacts:
   - path: "**\*.nupkg"
