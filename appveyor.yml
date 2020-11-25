@@ -20,4 +20,4 @@ after_build:
   - ps: .\Publish.ps1
 
 artifacts:
-  - path: "**\*.nupkg"
+  - path: '**\*.nupkg'
