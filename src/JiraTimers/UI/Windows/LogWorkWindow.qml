@@ -242,7 +242,7 @@ ThemedWindow
 		}
 	}
 
-	QmlWorkLog
+	WorkLog
 	{
 		id: workLog
 

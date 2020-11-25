@@ -29,7 +29,7 @@ namespace JiraTimers.IssueTrackingSystem.Impl
 		{
 			CreateStoreFileIfNotExists();
 
-			var result = JsonConvert.DeserializeObject<List<QmlItsTrackingIssue>>(ReadJson());
+			var result = JsonConvert.DeserializeObject<List<ItsTrackingIssue>>(ReadJson());
 
 			return result.Cast<IItsTrackingIssue>().ToList();
 		}

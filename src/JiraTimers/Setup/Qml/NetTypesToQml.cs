@@ -13,7 +13,7 @@ namespace JiraTimers.Setup.Qml
 		public static void Register()
 		{
 			QmlTypesRegistrator.Register<JiraTimersLifeTimeScope>(TypesUri);
-			QmlTypesRegistrator.Register<QmlWorkLog>(TypesUri);
+			QmlTypesRegistrator.Register<WorkLog>(TypesUri);
 
 			QmlTypesRegistrator.RegisterSingleton($"{QmlFilesFolderName}/AppInfo.qml", "AppInfo", TypesUri);
 			QmlTypesRegistrator.RegisterSingleton($"{QmlFilesFolderName}/Theme.qml", "Theme", TypesUri);

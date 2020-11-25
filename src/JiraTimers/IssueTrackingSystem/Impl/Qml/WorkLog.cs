@@ -3,13 +3,14 @@ using Qml.Net;
 
 namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 {
-	public class QmlWorkLog : IWorkLog
+	public class WorkLog : IWorkLog
 	{
 		private WorkLogStrategy _strategy;
 
 		private DateTime? _startTime;
 
 		public string? TimeSpent { get; set; }
+
 		public DateTime StartTime
 		{
 			get => _startTime ?? DateTime.Now;

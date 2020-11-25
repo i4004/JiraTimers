@@ -6,11 +6,11 @@ using Qml.Net;
 
 namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 {
-	public class QmlItsTrackingIssue : IItsTrackingIssue
+	public class ItsTrackingIssue : IItsTrackingIssue
 	{
 		private Timer? _timer;
 
-		[JsonConverter(typeof(ConcreteConverter<QmlItsIssue>))]
+		[JsonConverter(typeof(ConcreteConverter<ItsIssue>))]
 		public IItsIssue? Issue { get; set; }
 
 		public DateTime? StartTime { get; set; }

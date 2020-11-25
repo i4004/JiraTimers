@@ -66,7 +66,7 @@ namespace JiraTimers.Tests.Settings
 
 			var items = new List<IItsTrackingIssue>
 			{
-				new QmlItsTrackingIssue{Issue = new QmlItsIssue
+				new ItsTrackingIssue{Issue = new ItsIssue
 				{
 					ID = "1",
 					Key = "ISS-1",
@@ -74,7 +74,7 @@ namespace JiraTimers.Tests.Settings
 				},
 					StartTime = new DateTime(2020, 11, 11)
 				},
-				new QmlItsTrackingIssue{Issue = new QmlItsIssue
+				new ItsTrackingIssue{Issue = new ItsIssue
 				{
 					ID = "2",
 					Key = "ISS-2",
