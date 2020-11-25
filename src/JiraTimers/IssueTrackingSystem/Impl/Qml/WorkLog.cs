@@ -7,8 +7,18 @@ namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 	{
 		private WorkLogStrategy _strategy;
 
+		private DateTime? _startTime;
+
 		public string? TimeSpent { get; set; }
-		public DateTime StartDate { get; set; }
+
+		public DateTime StartTime
+		{
+			get => _startTime ?? DateTime.Now;
+			set => _startTime = value;
+		}
+
+		[NotifySignal]
+		public string FormattedStartTime => StartTime.ToString("yyyy-MM-dd HH:mm");
 
 		public string? Comment { get; set; }
 

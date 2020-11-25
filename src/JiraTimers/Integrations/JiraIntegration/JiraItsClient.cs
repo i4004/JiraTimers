@@ -65,7 +65,7 @@ namespace JiraTimers.Integrations.JiraIntegration
 		{
 			LastOperationResult = null;
 
-			var jiraWorkLog = new Worklog(workLog.TimeSpent, workLog.StartDate, workLog.Comment);
+			var jiraWorkLog = new Worklog(workLog.TimeSpent, workLog.StartTime, workLog.Comment);
 
 			try
 			{

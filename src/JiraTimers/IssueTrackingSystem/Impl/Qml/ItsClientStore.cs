@@ -5,14 +5,14 @@ using Qml.Net;
 
 namespace JiraTimers.IssueTrackingSystem.Impl.Qml
 {
-	public class QmlItsClientStore : IItsClientStore
+	public class ItsClientStore : IItsClientStore
 	{
 		private readonly ISettings _settings;
 		private readonly IItsClientFactory _clientFactory;
 
 		private bool _isConnected;
 
-		public QmlItsClientStore(ISettings settings, IItsClientFactory clientFactory)
+		public ItsClientStore(ISettings settings, IItsClientFactory clientFactory)
 		{
 			_settings = settings;
 			_clientFactory = clientFactory;

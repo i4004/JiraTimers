@@ -7,7 +7,7 @@ namespace JiraTimers.Integrations.JiraIntegration
 	public class JiraBasedItsIssuesFactory
 	{
 		public IItsIssue Create(Issue sourceIssue) =>
-			new QmlItsIssue
+			new ItsIssue
 			{
 				Key = sourceIssue.Key.Value,
 				Summary = sourceIssue.Summary,
