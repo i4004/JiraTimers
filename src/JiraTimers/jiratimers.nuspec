@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>jiratimers</id>
-		<version>0.9</version>
+		<version>$version$</version>
 		<title>JiraTimers</title>
 		<authors>Alexander Krylkov</authors>
 		<owners>Alexander Krylkov</owners>
@@ -21,4 +21,9 @@
 			<dependency id="dotnet-5.0-runtime" version="5.0.0" />
 		</dependencies>
 	</metadata>
+
+	<files>
+		<file src="ChocolateyInstall.ps1" />
+		<file src="publish-win\**\*.*" target="app" />
+	</files>
 </package>
