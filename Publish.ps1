@@ -1,4 +1,3 @@
-
 function GetVersion
 {
 	$assembly = [Reflection.Assembly]::Loadfile($dllPath)
@@ -6,7 +5,6 @@ function GetVersion
 	$assemblyName = $assembly.GetName()
 	return $assemblyName.version
 }
-
 
 # Paths
 
