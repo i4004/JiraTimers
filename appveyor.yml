@@ -15,3 +15,9 @@ build:
   project: src/JiraTimers.sln
   parallel: true
   verbosity: minimal
+
+after_build:
+  - ps: .\Publish.ps1
+
+artifacts:
+  - path: '**\*.nupkg'
