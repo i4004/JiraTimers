@@ -1,13 +1,3 @@
-function GetVersion
-{
-	Param ([string]$dllPath)
-
-	$assembly = [Reflection.Assembly]::Loadfile($dllPath)
-
-	$assemblyName = $assembly.GetName()
-	return $assemblyName.version
-}
-
 # Paths
 
 $solutionFilePath = "src/JiraTimers.sln"
@@ -17,9 +7,17 @@ $winReleasePath = Join-Path $projectPath "publish-win"
 $workingDirectory = Get-Location
 $fullReleasePath = Join-Path $workingDirectory $winReleasePath
 $dllPath = Join-Path $fullReleasePath "JiraTimers.dll"
-
 $publishProfileName = "Release-Win"
-$version = GetVersion -dllPath $dllPath
+
+function GetVersion
+{
+	$assembly = [Reflection.Assembly]::Loadfile($dllPath)
+
+	$assemblyName = $assembly.GetName()
+	return $assemblyName.version
+}
+
+$version = GetVersion
 
 # Publish
 dotnet publish $solutionFilePath -p:PublishProfile=$publishProfileName
