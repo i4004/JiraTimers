@@ -9,6 +9,9 @@ $workingDirectory = Get-Location
 $fullReleasePath = Join-Path $workingDirectory $winReleasePath
 $dllPath = Join-Path $fullReleasePath "JiraTimers.dll"
 $publishProfileName = "Release-Win"
+
+$dllPath
+
 $version = [Reflection.AssemblyName]::GetAssemblyName($dllPath).Version.ToString()
 
 # Publish
