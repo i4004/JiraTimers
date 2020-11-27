@@ -13,7 +13,8 @@ $projectPath = ".\src\JiraTimers"
 $nuspecFilePath = Join-Path $projectPath "jiratimers.nuspec"
 $winReleasePath = Join-Path $projectPath "publish-win"
 $workingDirectory = Get-Location
-$dllPath = Join-Path $workingDirectory $winReleasePath "JiraTimers.dll"
+$fullReleasePath = Join-Path $workingDirectory $winReleasePath
+$dllPath = Join-Path $fullReleasePath "JiraTimers.dll"
 
 $publishProfileName = "Release-Win"
 $version = GetVersion
