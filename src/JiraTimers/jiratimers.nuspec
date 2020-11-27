@@ -24,6 +24,7 @@
 
 	<files>
 		<file src="ChocolateyInstall.ps1" />
+		<file src="ChocolateyUninstall.ps1" />
 		<file src="publish-win\**\*.*" target="app" />
 	</files>
 </package>
