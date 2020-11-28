@@ -25,7 +25,7 @@ dotnet publish $solutionFilePath -p:PublishProfile=$publishProfileName
 $version = [Reflection.AssemblyName]::GetAssemblyName($dllPath).Version.ToString()
 
 # Patch MSI project version
-(Get-Content $setupProjectPath) -replace '{version}', $version | Set-Content $setupProjectPath
+((Get-Content -Path $setupProjectPath -Raw) -replace '{version}', $version) | Set-Content -Path $setupProjectPath
 
 # Build MSI version
 & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.com" $setupProjectPath /build Release /projectconfig Release
