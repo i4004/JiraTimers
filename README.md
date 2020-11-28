@@ -12,6 +12,17 @@
 
 JiraTimers is a desktop cross-platform tool written in C# + QML for recording time spent on different Jira issues.
 
+## Installation
+
+### Via Сhocolatey
+
+```powershell
+choco install jiratimers -y
+```
+### Via Вownload
+
+MSI installer available on [releases](https://github.com/i4004/JiraTimers/releases) pages.
+
 ## Screenshots
 
 ### Main window
