@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraTimers.IntegrationTests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JiraTimers.Tests", "JiraTimers.Tests\JiraTimers.Tests.csproj", "{DF481AEB-A8E3-4222-B3CB-3480E5D30F6B}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JiraTimers.Setup", "JiraTimers.Setup\JiraTimers.Setup.vdproj", "{3F93DC4E-88BB-4FB7-9154-A49BD6DE1AA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,9 @@ Global
 		{DF481AEB-A8E3-4222-B3CB-3480E5D30F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF481AEB-A8E3-4222-B3CB-3480E5D30F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF481AEB-A8E3-4222-B3CB-3480E5D30F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F93DC4E-88BB-4FB7-9154-A49BD6DE1AA7}.Debug|Any CPU.ActiveCfg = Debug
+		{3F93DC4E-88BB-4FB7-9154-A49BD6DE1AA7}.Release|Any CPU.ActiveCfg = Release
+		{3F93DC4E-88BB-4FB7-9154-A49BD6DE1AA7}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
