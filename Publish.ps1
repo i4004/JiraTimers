@@ -21,12 +21,16 @@ $setupProjectPath = "src/JiraTimers.Setup/JiraTimers.Setup.vdproj"
 # Publish
 dotnet publish $solutionFilePath -p:PublishProfile=$publishProfileName
 
+# Retrieve app version
+$version = [Reflection.AssemblyName]::GetAssemblyName($dllPath).Version.ToString()
+
+# Patch MSI project version
+(Get-Content $setupProjectPath) -replace '{version}', $version | Set-Content $setupProjectPath
+
 # Build MSI version
 & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.com" $setupProjectPath /build Release /projectconfig Release
 
-# Build Choco
-
-$version = [Reflection.AssemblyName]::GetAssemblyName($dllPath).Version.ToString()
+# Pack Choco package
 choco pack $nuspecFilePath --version $version
 
 exit $LastExitCode
