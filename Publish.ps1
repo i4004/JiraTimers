@@ -16,12 +16,14 @@ $workingDirectory = Get-Location
 $fullReleasePath = Join-Path $workingDirectory $winReleasePath
 $dllPath = Join-Path $fullReleasePath "JiraTimers.dll"
 $publishProfileName = "Release-Win"
+$devenvOutputLogFileName = "DevenvOutput.log"
+$setupProjectPath = "src/JiraTimers.Setup/JiraTimers.Setup.vdproj"
 
 # Publish
 dotnet publish $solutionFilePath -p:PublishProfile=$publishProfileName
 
 # Build MSI version
-& "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe" src/JiraTimers.Setup/JiraTimers.Setup.vdproj /build Release /projectconfig Release
+& "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.com" $setupProjectPath /build Release /projectconfig Release /Out $devenvOutputLogFileName
 
 # Build Choco
 
