@@ -30,7 +30,7 @@ $version = [Reflection.AssemblyName]::GetAssemblyName($dllPath).Version.ToString
 "3/4: Build MSI version..."
 & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.com" $setupProjectPath /build Release /projectconfig Release
 
-"3/4: Pack Choco package..."
+"4/4: Pack Choco package..."
 choco pack $nuspecFilePath --version $version
 
 exit $LastExitCode
