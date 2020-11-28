@@ -11,8 +11,11 @@
 		<releaseNotes>https://github.com/i4004/JiraTimers/releases</releaseNotes>
 		<projectUrl>https://github.com/i4004/JiraTimers</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/i4004/JiraTimers/master/images/Logo128x128.png</iconUrl>
-		<packageSourceUrl>hhttps://github.com/i4004/JiraTimers/tree/master/src</packageSourceUrl>
+		<packageSourceUrl>https://github.com/i4004/JiraTimers/tree/master/src</packageSourceUrl>
+		<projectSourceUrl>https://github.com/i4004/JiraTimers/tree/master/src</projectSourceUrl>
 		<licenseUrl>https://github.com/i4004/JiraTimers/blob/master/LICENSE.txt</licenseUrl>
+		<bugTrackerUrl>https://app.zenhub.com/workspaces/jiratimers-5d8f719fbe90910001987cdc/board?repos=211514366</bugTrackerUrl>
+		<docsUrl>https://github.com/i4004/JiraTimers</docsUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<copyright>Licensed under LGPL</copyright>
 		<tags>jira issue-management its issue-tracking-system cross-platform qml desktop qmlnet desktop-cross-platform</tags>
