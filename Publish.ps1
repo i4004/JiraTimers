@@ -1,3 +1,10 @@
+trap
+{
+	"Powershell execution error"
+	write-output $_
+	exit 1
+}
+
 # Paths
 
 $solutionFilePath = "src/JiraTimers.sln"
@@ -17,3 +24,5 @@ $version = [Reflection.AssemblyName]::GetAssemblyName($dllPath).Version.ToString
 
 # Pach
 choco pack $nuspecFilePath --version $version
+
+exit $LastExitCode
