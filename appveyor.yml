@@ -10,4 +10,4 @@ build_script:
 
 artifacts:
   - path: '**\*.nupkg'
-  - path: '**\JiraTimers.Setup.*.exe'
+  - path: '**\JiraTimers.Setup.*.msi'
