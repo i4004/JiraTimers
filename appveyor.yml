@@ -11,7 +11,7 @@ build_script:
 test:
   assemblies:
     only:
-      - **/JiraTimers.Tests.dll
+      - "**/*/JiraTimers.Tests.dll"
 
 artifacts:
   - path: '**\*.nupkg'
