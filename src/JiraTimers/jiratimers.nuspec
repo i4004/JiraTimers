@@ -23,6 +23,8 @@
 	</metadata>
 
 	<files>
+		<file src="..\..\LICENSE.txt" target="LICENSE.txt" />
+		<file src="VERIFICATION.txt" target="VERIFICATION.txt" />
 		<file src="ChocolateyInstall.ps1" />
 		<file src="ChocolateyUninstall.ps1" />
 		<file src="publish-win\**\*.*" target="app" />
