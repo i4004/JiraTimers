@@ -5,13 +5,12 @@ image: Visual Studio 2019
 skip_tags: true
 clone_depth: 1
 
-configuration: Release
-platform: Any CPU
+build_script:
+  - ps: .\Publish.ps1
 
-before_build:
-  - nuget restore src/JiraTimers.sln
+after_build:
+  - ps: dotnet test src/JiraTimers.Tests/JiraTimers.Tests.csproj
 
-build:
-  project: src/JiraTimers.sln
-  parallel: true
-  verbosity: minimal
+artifacts:
+  - path: '**\*.nupkg'
+  - path: '**\JiraTimers.Setup.*.msi'
