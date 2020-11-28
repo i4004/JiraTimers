@@ -51,7 +51,7 @@ if ($LastExitCode -ne 0)
 
 "5/8: Create zip archive"
 
-$archiveName = "JiraTimers" + $version + ".zip"
+$archiveName = "JiraTimers." + $version + ".zip"
 $compressPath = $fullReleasePath + "/*"
 
 Compress-Archive -Path $compressPath -DestinationPath $archiveName
