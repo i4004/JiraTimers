@@ -20,9 +20,12 @@ $publishProfileName = "Release-Win"
 # Publish
 dotnet publish $solutionFilePath -p:PublishProfile=$publishProfileName
 
-$version = [Reflection.AssemblyName]::GetAssemblyName($dllPath).Version.ToString()
+# Build MSI version
+& "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe" src/JiraTimers.Setup/JiraTimers.Setup.vdproj /build Release /projectconfig Release
 
-# Pach
+# Build Choco
+
+$version = [Reflection.AssemblyName]::GetAssemblyName($dllPath).Version.ToString()
 choco pack $nuspecFilePath --version $version
 
 exit $LastExitCode

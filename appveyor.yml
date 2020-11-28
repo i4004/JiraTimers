@@ -5,19 +5,9 @@ image: Visual Studio 2019
 skip_tags: true
 clone_depth: 1
 
-configuration: Release
-platform: Any CPU
-
-before_build:
-  - nuget restore src/JiraTimers.sln
-
-build:
-  project: src/JiraTimers.sln
-  parallel: true
-  verbosity: minimal
-
-after_build:
+build_script:
   - ps: .\Publish.ps1
 
 artifacts:
   - path: '**\*.nupkg'
+  - path: '**\JiraTimers.Setup.*.exe'
