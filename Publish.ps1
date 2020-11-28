@@ -22,7 +22,7 @@ $setupProjectPath = "src/JiraTimers.Setup/JiraTimers.Setup.vdproj"
 dotnet publish $solutionFilePath -p:PublishProfile=$publishProfileName
 
 # Retrieve app version
-$version = [Reflection.AssemblyName]::GetAssemblyName($dllPath).Version.ToString()
+$version = [Reflection.AssemblyName]::GetAssemblyName($dllPath).Version.ToString(3)
 
 "2/4: Patch MSI project version..."
 ((Get-Content -Path $setupProjectPath -Raw) -replace '{version}', $version) | Set-Content -Path $setupProjectPath
