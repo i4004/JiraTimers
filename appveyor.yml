@@ -8,6 +8,11 @@ clone_depth: 1
 build_script:
   - ps: .\Publish.ps1
 
+test:
+  assemblies:
+    only:
+      - **/JiraTimers.Tests.dll
+
 artifacts:
   - path: '**\*.nupkg'
   - path: '**\JiraTimers.Setup.*.msi'
