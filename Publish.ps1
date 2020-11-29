@@ -8,16 +8,22 @@ trap
 # Paths
 
 $solutionFilePath = "src/JiraTimers.sln"
-$localProjectPath = ".\src\JiraTimers"
 $projectPath = "\src\JiraTimers"
-$nuspecFilePath = Join-Path $localProjectPath "jiratimers.nuspec"
-$winReleasePath = Join-Path $projectPath "publish-win"
-$workingDirectory = Get-Location
-$fullReleasePath = Join-Path $workingDirectory $winReleasePath
-$dllPath = Join-Path $fullReleasePath "JiraTimers.dll"
 $publishProfileName = "Release-Win"
+
+$workingDirectory = Get-Location
+$winReleasePath = Join-Path $projectPath "publish-win"
+$fullReleasePath = Join-Path $workingDirectory $winReleasePath
+$appDllPath = Join-Path $fullReleasePath "JiraTimers.dll"
+
+$chocoPackageFilesPath = ".\chocolatey-package"
+$nuspecFilePath = Join-Path $chocoPackageFilesPath "jiratimers.nuspec"
+$verificationFilePath = Join-Path $chocoPackageFilesPath "VERIFICATION.txt"
+
 $setupProjectPath = "src/JiraTimers.Setup/JiraTimers.Setup.vdproj"
-$verificationFilePath = "src/JiraTimers/VERIFICATION.txt"
+%devenvPath = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe"
+
+# Build process
 
 "1/8: Build windows release..."
 
@@ -29,7 +35,7 @@ if ($LastExitCode -ne 0)
 }
 
 "2/8: Retrieve app version"
-$version = [Reflection.AssemblyName]::GetAssemblyName($dllPath).Version.ToString(3)
+$version = [Reflection.AssemblyName]::GetAssemblyName($appDllPath).Version.ToString(3)
 
 "3/8: Patch MSI project version..."
 
@@ -42,7 +48,7 @@ if ($LastExitCode -ne 0)
 
 "4/8: Build MSI version..."
 
-& "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.com" $setupProjectPath /build Release /projectconfig Release
+& $devenvPath $setupProjectPath /build Release /projectconfig Release
 
 if ($LastExitCode -ne 0)
 {
