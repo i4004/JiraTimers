@@ -27,6 +27,6 @@
 		<file src="VERIFICATION.txt" target="VERIFICATION.txt" />
 		<file src="ChocolateyInstall.ps1" />
 		<file src="ChocolateyUninstall.ps1" />
-		<file src="src\JiraTimers\publish-win\**\*.*" target="app" />
+		<file src="..\src\JiraTimers\publish-win\**\*.*" target="app" />
 	</files>
 </package>
