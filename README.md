@@ -17,7 +17,7 @@ JiraTimers is a desktop cross-platform tool written in C# + QML for recording ti
 ### Via Сhocolatey
 
 ```powershell
-choco install jiratimers --version=0.9.2 -y
+choco install jiratimers -y
 ```
 ### Via Download
 
