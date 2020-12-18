@@ -21,7 +21,7 @@ choco install jiratimers -y
 ```
 ### Via Download
 
-MSI installer available on [releases](https://github.com/i4004/JiraTimers/releases) pages.
+MSI installer and archived binaries available on [releases](https://github.com/i4004/JiraTimers/releases) pages.
 
 ## Build
 
