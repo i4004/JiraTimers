@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Text;
+using JiraTimers.Security;
 using Microsoft.Extensions.Configuration;
 using PCLCrypto;
-using Simplify.System.Extensions;
 
 namespace JiraTimers.Settings
 {
 	public class SecuredSettings : JiraTimersSettings
 	{
 		private const string KeyFieldName = "CryptoKey";
+		private readonly ICryptographicBuffer _cryptographicBuffer;
+		private readonly EncryptionService _encryptionService;
 
-		private readonly ISymmetricKeyAlgorithmProvider _provider;
-
-		private readonly byte[] _keyMaterial;
-
-		public SecuredSettings(IConfiguration configuration, ISymmetricKeyAlgorithmProvider provider) : base(configuration)
+		public SecuredSettings(EncryptionServiceFactory encryptionServiceFactory, ICryptographicBuffer cryptographicBuffer, IConfiguration configuration) : base(configuration)
 		{
-			_provider = provider;
-			_keyMaterial = LoadKey(configuration);
+			_cryptographicBuffer = cryptographicBuffer;
+			_encryptionService = encryptionServiceFactory.Create(LoadKey(configuration));
 		}
 
 		public override string? JiraUserPassword
@@ -26,44 +24,39 @@ namespace JiraTimers.Settings
 			{
 				var password = base.JiraUserPassword;
 
-				return password != null ? Decrypt(DecodeBase64(password)) : null;
+				return password != null ? FromEncryptedAndEncodedString(password) : null;
 			}
-			set => base.JiraUserPassword = value == null ? null : EncodeBase64(Encrypt(value));
+			set => base.JiraUserPassword = value == null ? null : ToEncryptedAndEncodedString(value);
 		}
 
-		private static byte[] LoadKey(IConfiguration configuration)
+		private static byte[] GenerateKey()
+		{
+			return WinRTCrypto.CryptographicBuffer.GenerateRandom(16);
+		}
+
+		private static string DecodeBase64(string str) => Encoding.Unicode.GetString(Convert.FromBase64String(str));
+
+		private static string EncodeBase64(string str) => Convert.ToBase64String(Encoding.Unicode.GetBytes(str));
+
+		private byte[] ToBytesDecoded(string str) => _cryptographicBuffer.DecodeFromBase64String(str);
+
+		private byte[] LoadKey(IConfiguration configuration)
 		{
 			var keyString = configuration[KeyFieldName];
 
 			if (keyString != null)
-				return DecodeBase64(keyString).ToBytesArray();
+				return ToBytesDecoded(keyString);
 
-			var key = Guid.NewGuid().ToByteArray();
-			configuration[KeyFieldName] = EncodeBase64(key.GetString());
+			var key = GenerateKey();
+			configuration[KeyFieldName] = ToStringEncoded(key);
 
 			return key;
 		}
 
-		private static string DecodeBase64(string str) => Encoding.UTF8.GetString(Convert.FromBase64String(str));
+		private string ToStringEncoded(byte[] bytes) => _cryptographicBuffer.EncodeToBase64String(bytes);
 
-		private static string EncodeBase64(string str) => Convert.ToBase64String(Encoding.UTF8.GetBytes(str));
+		private string ToEncryptedAndEncodedString(string str) => EncodeBase64(_encryptionService.Encrypt(str));
 
-		private string Encrypt(string str)
-		{
-			var key = _provider.CreateSymmetricKey(_keyMaterial);
-
-			var cipherText = WinRTCrypto.CryptographicEngine.Encrypt(key, Encoding.UTF8.GetBytes(str));
-
-			return cipherText.GetString();
-		}
-
-		private string Decrypt(string str)
-		{
-			var key = _provider.CreateSymmetricKey(_keyMaterial);
-
-			var plainText = WinRTCrypto.CryptographicEngine.Decrypt(key, Encoding.UTF8.GetBytes(str));
-
-			return plainText.GetString();
-		}
+		private string FromEncryptedAndEncodedString(string str) => _encryptionService.Decrypt(DecodeBase64(str));
 	}
 }

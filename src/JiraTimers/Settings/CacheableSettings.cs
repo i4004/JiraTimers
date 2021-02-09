@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using JiraTimers.Security;
+using Microsoft.Extensions.Configuration;
 using PCLCrypto;
 
 namespace JiraTimers.Settings
@@ -11,7 +12,8 @@ namespace JiraTimers.Settings
 		private bool? _minimizeToSystemTray;
 		private bool? _minimizeOnClose;
 
-		public CacheableSettings(IConfiguration configuration, ISymmetricKeyAlgorithmProvider provider) : base(configuration, provider)
+		public CacheableSettings(EncryptionServiceFactory encryptionServiceFactory, ICryptographicBuffer cryptographicBuffer, IConfiguration configuration)
+			: base(encryptionServiceFactory, cryptographicBuffer, configuration)
 		{
 		}
 

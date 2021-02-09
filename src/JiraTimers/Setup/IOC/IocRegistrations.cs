@@ -1,4 +1,4 @@
-using JiraTimers.Settings;
+using JiraTimers.Security;
 using Simplify.DI;
 
 namespace JiraTimers.Setup.IOC
