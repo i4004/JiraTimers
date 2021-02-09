@@ -2,7 +2,7 @@
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using PCLCrypto;
-using Simplify.Extensions;
+using Simplify.System.Extensions;
 
 namespace JiraTimers.Settings
 {
