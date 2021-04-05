@@ -68,7 +68,7 @@ Recommended IDEs:
 
 ## Additional
 
-### How to launch JiraTimers when home driver is different from you system drive
+### How to launch JiraTimers when home drive is different from you system drive
 
 https://gist.github.com/i4004/3d0da5d6123ccf93f17ac9b911a77f37
 
