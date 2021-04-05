@@ -66,6 +66,12 @@ Recommended IDEs:
 
 ![Submit Work Log Window Light](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/screenshots/submit-work-log-window-light.png)
 
+## Additional
+
+### How to launch JiraTimers when home driver is different from you system drive
+
+https://gist.github.com/i4004/3d0da5d6123ccf93f17ac9b911a77f37
+
 ## Contributing
 
 There are many ways in which you can participate in the project. Like most open-source software projects, contributing code is just one of many outlets where you can help improve. Some of the things that you could help out with are:
