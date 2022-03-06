@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<OutputType>exe</OutputType>
 		<Nullable>enable</Nullable>
 		<RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
 
-		<Version>0.9.3</Version>
+		<Version>0.9.4</Version>
 
 		<Authors>Alexander Krylkov</Authors>
 		<Product>JiraTimers</Product>
@@ -14,10 +14,10 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Atlassian.SDK" Version="12.4.*" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.*" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.*" />
-		<PackageReference Include="PCLCrypto" Version="2.1.40-alpha" />
-		<PackageReference Include="Simplify.DI" Version="4.0.*" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+		<PackageReference Include="PCLCrypto" Version="2.1.40-alpha " />
+		<PackageReference Include="Simplify.DI" Version="4.1.5" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Qml.Net" Version="0.11.0" />

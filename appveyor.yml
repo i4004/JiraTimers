@@ -1,6 +1,6 @@
 version: "{build}"
 
-image: Visual Studio 2019
+image: Visual Studio 2022
 
 skip_tags: true
 clone_depth: 1
@@ -14,4 +14,4 @@ after_build:
 artifacts:
   - path: '**\*.nupkg'
   - path: '**\JiraTimers.Setup.*.msi'
-  - path: 'JiraTimers*.zip'
+  - path: "JiraTimers*.zip"
