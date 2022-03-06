@@ -6,8 +6,8 @@
 		"type": "coreclr",
 		"request": "launch",
 		"preLaunchTask": "Build",
-		"program": "${workspaceFolder}/src/JiraTimers/bin/Debug/netcoreapp3.1/JiraTimers.exe",
-		"cwd": "${workspaceFolder}/src/JiraTimers/bin/Debug/netcoreapp3.1",
+		"program": "${workspaceFolder}/src/JiraTimers/bin/Debug/net6.0/JiraTimers.dll",
+		"cwd": "${workspaceFolder}/src/JiraTimers/bin/Debug/net6.0",
 		"console": "integratedTerminal",
 		"internalConsoleOptions": "neverOpen",
 		"env":
