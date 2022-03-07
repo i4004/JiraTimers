@@ -21,7 +21,7 @@ $nuspecFilePath = Join-Path $chocoPackageFilesPath "jiratimers.nuspec"
 $verificationFilePath = Join-Path $chocoPackageFilesPath "VERIFICATION.txt"
 
 $setupProjectPath = "src/JiraTimers.Setup/JiraTimers.Setup.vdproj"
-$devenvPath = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.com"
+$devenvPath = "C:\Program Files (x86)\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.com"
 
 # Build process
 
