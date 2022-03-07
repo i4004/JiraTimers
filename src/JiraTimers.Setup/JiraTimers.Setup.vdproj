@@ -77,17 +77,17 @@
         "InstallerBootstrapper" = "3:2"
             "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
             {
-            "Enabled" = "11:FALSE"
+            "Enabled" = "11:TRUE"
             "PromptEnabled" = "11:TRUE"
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.3.1.x64"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.6.0.x64"
                     {
-                    "Name" = "8:.NET Core Runtime 3.1.9 (x64)"
-                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.3.1.x64"
+                    "Name" = "8:.NET Runtime 6.0.2 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.6.0.x64"
                     }
                 }
             }
@@ -759,7 +759,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F56A7877492245C4ABB39A8F369DBEFD"
             {
-            "SourcePath" = "8:..\\JiraTimers\\obj\\Release\\netcoreapp3.1\\apphost.exe"
+            "SourcePath" = "8:..\\JiraTimers\\obj\\Release\\net6.0\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_361BD807C7CF46A2AD034FE4C650F11A"
