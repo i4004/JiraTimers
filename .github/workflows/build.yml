@@ -21,13 +21,13 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Packages
-          path: "**\*.nupkg"
+          path: "**\\*.nupkg"
 
       - name: Create MSI installer artifact
         uses: actions/upload-artifact@v2
         with:
           name: Packages
-          path: "**\JiraTimers.Setup.*.msi"
+          path: "**\\JiraTimers.Setup.*.msi"
 
       - name: Create archive artifact
         uses: actions/upload-artifact@v2
