@@ -13,7 +13,7 @@ jobs:
       - name: Install DotNet
         uses: actions/setup-dotnet@v1
 
-      - name: Create Source Packages
+      - name: Perform Publish
         shell: pwsh
         run: ./Publish.ps1
 
