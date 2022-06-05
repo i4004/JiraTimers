@@ -2,7 +2,7 @@
 
 ![Simplify](https://raw.githubusercontent.com/i4004/JiraTimers/master/images/Logo128x128.png)
 
-[![Issues board](https://dxssrr2j0sq4w.cloudfront.net/3.2.0/img/external/zenhub-badge.svg)](https://app.zenhub.com/workspaces/jiratimers-5d8f719fbe90910001987cdc/board?repos=211514366)
+[![Issues Board](https://img.shields.io/badge/issues-Board-yellow)](https://github.com/users/i4004/projects/6/views/1)
 [![Build Package](https://github.com/i4004/JiraTimers/actions/workflows/build.yml/badge.svg)](https://github.com/i4004/JiraTimers/actions/workflows/build.yml)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/i4004/JiraTimers)](https://www.codefactor.io/repository/github/i4004/JiraTimers)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
